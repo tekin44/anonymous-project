@@ -17,6 +17,6 @@ if (!$exist) {
 } else {
 	session_start();
 	$_SESSION['id'] = $user;
-	echo "<script>window.location = 'table.php'</script>";
+	echo "<script>window.location = 'case.php'</script>";
 }
 ?>
