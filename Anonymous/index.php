@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "dbconfig.php";
+include_once("dbconfig.php");
 
 if(!$_SESSION['id'])
 	echo "<script>window.location = 'login.php'</script>";
