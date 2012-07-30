@@ -1,7 +1,5 @@
 <?php
-	include_once('adodb5/adodb.inc.php');
-	$DB = NewADOConnection('pgsql');
-	$DB->Connect('localhost', 'postgres', 'rahasia','absensi');
+	include_once('function/database.php');
+	$DB = new Database('absensi','postgres', 'rahasia','localhost');
 	if (!$DB) die("Connection failed");
-	return;   
 ?>
