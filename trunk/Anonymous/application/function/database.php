@@ -21,12 +21,37 @@
 		return $count['count'];
 	} 
 	
+	function insert($table,$columns,$values){
+		$sql = $this->createInsertQuery($table,$columns,$values);
+		if(pg_query($sql)){
+			return true;
+		}
+		return false;
+	}
+	
 	private function createSql($table,$what,$where_clause){
 		$sql = "SELECT ".$what." FROM ".$table;
 		if($where_clause){
 			$sql .= " WHERE ".implode(" AND ",$where_clause);
 		}
 		return $sql;
+	}
+	
+	private function createInsertQuery($table,$columns,$values){
+		$sql = "INSERT INTO ".$table." (";
+		$sql .= implode(",",$columns);
+		$sql .= ")VALUES(";
+		$sql .= implode(",",$values);
+		$sql .= ")";
+		return sql;
+	}
+	
+	function getRowsTable($table){
+		$where = array();
+		$where[] = "table_name = '$table'";
+		$sql = $this->createSql('information_schema.columns','column_name',$where);
+		$result = pg_query($sql);
+		return $result;
 	}
  }
 ?>
