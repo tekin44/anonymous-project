@@ -359,37 +359,7 @@ $(document).pngFix( );
 
 	
 		<?php 
-		switch($tag){
-			case '1':
-				echo "sadasda";
-				break;
-			case '2':
-				echo "adasdasda";
-				break;
-			case '3':
-				echo "sadasas";
-				break;
-			case '4':
-				echo "fsdfsdf";
-				break;
-			case '5':
-				include "guru.html";
-				break;
-			case '6':
-				include "guru.html";
-				break;	
-			case '7':
-				include "guru.html";
-				break;
-			case '8':
-				include "guru.html";
-				break;
-			case '9':
-				include "guru.html";
-				break;
-			default:
-				echo "dadasdasd";
-		}		
+		
 		?>
 	
  
