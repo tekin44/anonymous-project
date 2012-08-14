@@ -1,8 +1,8 @@
-<!--  start message-yellow -->
+				<!--  start message-yellow -->
 				<div id="message-yellow">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0">
 				<tr>
-					<td class="yellow-left">You have a new message. <a href="">Go to Inbox.</a></td>
+					<td class="yellow-left">Pesan terkirim dari tanggal a sampai b sebanyak 20</td>
 					<td class="yellow-right"><a class="close-yellow"><img src="images/table/icon_close_yellow.gif"   alt="" /></a></td>
 				</tr>
 				</table>
@@ -18,11 +18,17 @@
 					<th class="table-header-repeat line-left"><a href="">Waktu</a></th>
 					<th class="table-header-repeat line-left"><a href="">Dikirim Oleh</a></th>
 				</tr>
+				<?php
+					foreach($logs as $log){
+				?>
 				<tr>
-					<td>Sabev</td>
-					<td>George</td>
-					<td>george@mainevent.co.za</td>
+					<td><?=$log->msg?></td>
+					<td><?=$log->waktu?></td>
+					<td><?=$log->id_person?></td>
 				</tr>
+				<?php
+					}
+				?>
 				</table>
 				<!--  end product-table................................... --> 
 				</form>

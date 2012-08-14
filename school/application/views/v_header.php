@@ -255,7 +255,7 @@ $(document).pngFix( );
 
 	<!--  start page-heading -->
 	<div id="page-heading">
-		<h1><?php echo $kend[0]->PICT_KENDARAAN; ?></h1>
+		<h1><?php echo $title; ?></h1>
 	</div>
 	<!-- end page-heading -->
 
