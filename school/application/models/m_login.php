@@ -15,27 +15,15 @@ class m_login extends CI_Model {
 	}
 
 	public function validate($username, $password) {
-		$query = $this->db->get_where('login', array (
-			'username' => $username
-		));
-		$cek = $query->num_rows();
-		if ($cek != 0) {
-			foreach ($query->result() as $row)
-				: $client['id_client'] = $row->id;
-			$client['username'] = $row->username;
-			$client['password'] = $row->password;
-			endforeach;
-
-			$passmd5 = md5($password);
-
-			if ($passmd5 == $client['password']) {
-				$this->login($client['id_client']);
-				return true;
-			} else {
-				return false;
+		$query = $this->db->query("select * from user where id_person = '".$username."' and user_pass = '".md5($password)."'");
+		if ($query->num_rows() != 0) {
+			foreach ($query->result() as $row){
+				$client['id_prev'] = $row->id;
+				$client['id_person'] = $row->username;
 			}
+			return $client;
 		} else {
-			return false;
+			return null;
 		}
 	}
 
