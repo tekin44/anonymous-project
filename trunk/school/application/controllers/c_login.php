@@ -7,7 +7,7 @@ class c_login extends CI_Controller {
 	function __construct() {
 		parent :: __construct();
 		$this->load->model('m_login');
-		$this->client_logon = $this->session->userdata('logged');
+		$this->client_logon = $this->session->userdata('id_person');
 	}
 
 	public function index() {
@@ -22,19 +22,23 @@ class c_login extends CI_Controller {
 		if (!$this->client_logon) {
 			if ($_POST) {
 				$user = $this->m_login->validate($_POST['username'], $_POST['password']);
-
-				if ($user == TRUE) {
-					redirect('index');
-				} else {
+				if ($user) {		
+					$this->session->set_userdata($user);
+					switch($user['id_prev']){
+						case '1': redirect('index_absensi'); break;
+						case '2': redirect('index_sms'); break;
+						case '3': redirect('index_spp'); break;
+						case '4': redirect('index_nilai'); break;
+					}			
+				}else{					
 					$data['pesan'] = 'Username atau Password salah';
-					$this->load->view('v_login', $data);
 				}
-
 			} else {
-				$this->load->view('v_login');
+				$data['pesan'] = 'Isi username dan password anda';
 			}
+			$this->load->view('v_login', $data);
 		}else{
-			redirect('index');
+			redirect('login');
 		}
 	}
 
