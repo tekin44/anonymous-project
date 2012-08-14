@@ -8,6 +8,7 @@ class c_login extends CI_Controller {
 		parent :: __construct();
 		$this->load->model('m_login');
 		$this->client_logon = $this->session->userdata('id_person');
+		
 	}
 
 	public function index() {
