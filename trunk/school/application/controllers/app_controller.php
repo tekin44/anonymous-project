@@ -9,19 +9,17 @@ abstract class app_controller extends CI_Controller {
 		//if()
 	}
 
-	public function index()
+	public function direct($app)
 	{
-		if($this->client_logon)
-		{
-			$data['pesan'] = 'Anda sudah berhasil login! Klik di sini untuk <a href="http://localhost/school/logout">LOGOUT</a>.';
-			$this->load->view('v_header', $data);
-			$this->load->view('v_home', $data);
-			$this->load->view('v_footer', $data);
+		if($this->client_logon != $app){
+			switch($app){
+						case '1': redirect('index_absensi'); break;
+						case '2': redirect('index_sms'); break;
+						case '3': redirect('index_spp'); break;
+						case '4': redirect('index_nilai'); break;
+					}
 		}
-		else
-		{
-			redirect('login');
-		}
+		
 	}
 }
 ?>
