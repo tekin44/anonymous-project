@@ -23,3 +23,4 @@ class c_home extends CI_Controller {
 		}
 	}
 }
+?>
