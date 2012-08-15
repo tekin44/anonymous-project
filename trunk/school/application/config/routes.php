@@ -40,7 +40,9 @@
 
 $route['default_controller'] = "c_login/index";
 $route['index'] = "c_home/index";
-$route['index_absensi'] = "c_absen/index";
+$route['absen_siswa'] = "c_absen_siswa/index";
+$route['absen_guru'] = "c_absen_guru/index";
+$route['absen_staff'] = "c_absen_staff/index";
 $route['index_sms'] = "c_sms/index";
 $route['index_spp'] = "c_spp/index";
 $route['index_nilai'] = "c_nilai/index";
