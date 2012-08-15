@@ -220,19 +220,23 @@ $(document).pngFix( );
 		<!--  start nav -->
 		<div class="nav">
 		<div class="table">
-		                    
-		<ul class="current"><li><a href="#nogo"><b>Products</b><!--[if IE 7]><!--></a><!--<![endif]-->
+		        
+		<?php foreach($menus as $menu){ 
+			if(!$menu->men_id_menu){?>            
+		<ul class="select"><li><a href="<?=$menu->action_menu?>"><b><?=$menu->nama_menu?></b><!--[if IE 7]><!--></a><!--<![endif]-->
 		<!--[if lte IE 6]><table><tr><td><![endif]-->
 		<div class="select_sub show">
 			<ul class="sub">
-				<li><a href="#nogo">View all products</a></li>
-				<li class="sub_show"><a href="#nogo">Add product</a></li>
-				<li><a href="#nogo">Delete products</a></li>
+		<?php foreach($menus as $men){ 
+			if($men->men_id_menu == $menu->id_menu){ ?>
+					<li><a href="<?=$men->action_menu?>"><?=$men->nama_menu?></a></li>
+				<?php }} ?>
 			</ul>
 		</div>
 		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
 		</li>
 		</ul>
+		<?php }} ?>
 		
 		<div class="clear"></div>
 		</div>
@@ -272,6 +276,3 @@ $(document).pngFix( );
 		<td>
 		<!--  start content-table-inner ...................................................................... START -->
 		<div id="content-table-inner">
-		
-			<!--  start table-content  -->
-			<div id="table-content">

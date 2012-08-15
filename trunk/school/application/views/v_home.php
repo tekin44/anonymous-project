@@ -1,3 +1,7 @@
+
+		
+			<!--  start table-content  -->
+			<div id="table-content">
 <!--  start message-yellow -->
 				<div id="message-yellow">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0">

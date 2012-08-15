@@ -12,3 +12,4 @@ class m_sms extends CI_Model {
 	
 	
 }
+?>
