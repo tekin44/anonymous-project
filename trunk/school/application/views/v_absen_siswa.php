@@ -63,9 +63,7 @@
 					<td><? echo $item->nama_siswa ?></td>
 					<td><? echo $item->waktu_masuk ?></td>
 					<td><? echo $item->waktu_keluar ?></td>
-					<td class="options-width">
-					<a href="" title="Edit" class="icon-1 info-tooltip"></a>
-					</td>
+					<td><?php echo"<a href=".base_url()."absen_siswa style=\"text-decoration: none;\" >";?>edit</a></td>
 				</tr>
 				
 				<?}?>
