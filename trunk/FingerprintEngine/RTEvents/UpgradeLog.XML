@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="RTEvents">
+</Property><Property Name="Solution File" Value="D:\Data\Tim\C#Demo\TFT\RTEvents\RTEvents.sln">
+</Property><Property Name="User Options File" Value="D:\Data\Tim\C#Demo\TFT\RTEvents\RTEvents.suo">
+</Property><Property Name="Date" Value="Tuesday, August 14, 2012">
+</Property><Property Name="Time" Value="13:41 PM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="RTEvents.sln" Description="File successfully backed up as D:\Data\Tim\C#Demo\TFT\RTEvents\Backup\RTEvents.sln">
+</Event><Event ErrorLevel="0" Project="" Source="RTEvents.suo" Description="File successfully backed up as D:\Data\Tim\C#Demo\TFT\RTEvents\Backup\RTEvents.suo">
+</Event><Event ErrorLevel="0" Project="RTEvents" Source="RTEvents.csproj" Description="Project file successfully backed up as D:\Data\Tim\C#Demo\TFT\RTEvents\Backup\RTEvents.csproj">
+</Event><Event ErrorLevel="0" Project="RTEvents" Source="RTEventsMain.cs" Description="File successfully backed up as D:\Data\Tim\C#Demo\TFT\RTEvents\Backup\RTEventsMain.cs">
+</Event><Event ErrorLevel="0" Project="RTEvents" Source="RTEventsMain.Designer.cs" Description="File successfully backed up as D:\Data\Tim\C#Demo\TFT\RTEvents\Backup\RTEventsMain.Designer.cs">
+</Event><Event ErrorLevel="0" Project="RTEvents" Source="Program.cs" Description="File successfully backed up as D:\Data\Tim\C#Demo\TFT\RTEvents\Backup\Program.cs">
+</Event><Event ErrorLevel="0" Project="RTEvents" Source="Properties\AssemblyInfo.cs" Description="File successfully backed up as D:\Data\Tim\C#Demo\TFT\RTEvents\Backup\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="RTEvents" Source="Properties\Resources.Designer.cs" Description="File successfully backed up as D:\Data\Tim\C#Demo\TFT\RTEvents\Backup\Properties\Resources.Designer.cs">
+</Event><Event ErrorLevel="0" Project="RTEvents" Source="Properties\Settings.Designer.cs" Description="File successfully backed up as D:\Data\Tim\C#Demo\TFT\RTEvents\Backup\Properties\Settings.Designer.cs">
+</Event><Event ErrorLevel="0" Project="RTEvents" Source="SearchforUSBCom.cs" Description="File successfully backed up as D:\Data\Tim\C#Demo\TFT\RTEvents\Backup\SearchforUSBCom.cs">
+</Event><Event ErrorLevel="0" Project="RTEvents" Source="Properties\Settings.settings" Description="File successfully backed up as D:\Data\Tim\C#Demo\TFT\RTEvents\Backup\Properties\Settings.settings">
+</Event><Event ErrorLevel="2" Project="RTEvents" Source="images\top550.jpg" Description="Failed to backup file as D:\Data\Tim\C#Demo\TFT\RTEvents\Backup\images\top550.jpg">
+</Event><Event ErrorLevel="0" Project="RTEvents" Source="images\top485.jpg" Description="File successfully backed up as D:\Data\Tim\C#Demo\TFT\RTEvents\Backup\images\top485.jpg">
+</Event><Event ErrorLevel="0" Project="RTEvents" Source="RTEventsMain.resx" Description="File successfully backed up as D:\Data\Tim\C#Demo\TFT\RTEvents\Backup\RTEventsMain.resx">
+</Event><Event ErrorLevel="0" Project="RTEvents" Source="Properties\Resources.resx" Description="File successfully backed up as D:\Data\Tim\C#Demo\TFT\RTEvents\Backup\Properties\Resources.resx">
+</Event><Event ErrorLevel="1" Project="RTEvents" Source="RTEvents.csproj" Description="Your project is targeting .NET Framework 2.0 or 3.0. If your project uses assemblies requiring a newer .NET Framework, your project will fail to build. You can change the .NET Framework version by clicking Properties on the project menu and then selecting a new version in the '.NET Framework' dropdown box. (In Visual Basic, this is located on the Compile tab by clicking the 'Advanced Compiler Options...' button.)">
+</Event><Event ErrorLevel="0" Project="RTEvents" Source="RTEvents.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="RTEvents" Source="RTEvents.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="RTEvents.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="RTEvents.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="RTEvents" Source="RTEvents.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
