@@ -48,6 +48,8 @@ $route['index_spp'] = "c_spp/index";
 $route['index_nilai'] = "c_nilai/index";
 $route['login'] = "c_login/login";
 $route['logout'] = "c_login/logout";
+$route['sms_broadcast'] = "c_sms/broadcastForm";
+$route['do_broadcast'] = "c_sms/broadcast";
 
 $route['404_override'] = '';
 
