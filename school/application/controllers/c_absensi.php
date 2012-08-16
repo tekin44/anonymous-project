@@ -20,5 +20,14 @@ class c_absensi extends CI_Controller {
 		$this->load->view('v_absensi', $this->data);
 		$this->load->view('v_footer', $this->data);
 	}
+	
+	public function editAbsensi($no_absensi) {
+		$this->load->model('m_absen');
+		$this->data['rows'] = $this->m_absen->editAbsensi($no_absensi);
+		$this->data['title'] = "Edit Data Absensi";
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_edit_absensi', $this->data);
+		$this->load->view('v_footer', $this->data);
+	}
 
 }
