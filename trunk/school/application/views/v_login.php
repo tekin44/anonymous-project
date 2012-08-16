@@ -66,7 +66,7 @@ $(document).pngFix( );
 		</tr>
 		<tr>
 			<th></th>
-			<td><?=form_submit('submit', 'Login')?></td>
+			<td><?=form_submit('submit', 'login')?></td>
 		</tr>
 		</table>
 		<?=form_close()?>
