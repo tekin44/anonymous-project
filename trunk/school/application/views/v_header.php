@@ -3,18 +3,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Internet Dreams</title>
-<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" title="default" />
+<link rel="stylesheet" href="/school/css/screen.css" type="text/css" media="screen" title="default" />
 <!--[if IE]>
-<link rel="stylesheet" media="all" type="text/css" href="css/pro_dropline_ie.css" />
+<link rel="stylesheet" media="all" type="text/css" href="/school/css/pro_dropline_ie.css" />
 <![endif]-->
 
 <!--  jquery core -->
-<script src="js/jquery/jquery-1.4.1.min.js" type="text/javascript"></script>
+<script src="/school/js/jquery/jquery-1.4.1.min.js" type="text/javascript"></script>
 
 <!--  checkbox styling script -->
-<script src="js/jquery/ui.core.js" type="text/javascript"></script>
-<script src="js/jquery/ui.checkbox.js" type="text/javascript"></script>
-<script src="js/jquery/jquery.bind.js" type="text/javascript"></script>
+<script src="/school/js/jquery/ui.core.js" type="text/javascript"></script>
+<script src="/school/js/jquery/ui.checkbox.js" type="text/javascript"></script>
+<script src="/school/js/jquery/jquery.bind.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function(){
 	$('input').checkBox();
@@ -27,7 +27,7 @@ $(function(){
 </script>  
 
 <!--  styled select box script version 2 --> 
-<script src="js/jquery/jquery.selectbox-0.5_style_2.js" type="text/javascript"></script>
+<script src="/school/js/jquery/jquery.selectbox-0.5_style_2.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	$('.styledselect_form_1').selectbox({ inputClass: "styledselect_form_1" });
@@ -36,7 +36,7 @@ $(document).ready(function() {
 </script>
 
 <!--  styled select box script version 3 --> 
-<script src="js/jquery/jquery.selectbox-0.5_style_2.js" type="text/javascript"></script>
+<script src="/school/js/jquery/jquery.selectbox-0.5_style_2.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	$('.styledselect_pages').selectbox({ inputClass: "styledselect_pages" });
@@ -44,7 +44,7 @@ $(document).ready(function() {
 </script>
 
 <!--  styled file upload script --> 
-<script src="js/jquery/jquery.filestyle.js" type="text/javascript"></script>
+<script src="/school/js/jquery/jquery.filestyle.js" type="text/javascript"></script>
 <script type="text/javascript" charset="utf-8">
   $(function() {
       $("input.file_1").filestyle({ 
@@ -57,11 +57,11 @@ $(document).ready(function() {
 </script>
 
 <!-- Custom jquery scripts -->
-<script src="js/jquery/custom_jquery.js" type="text/javascript"></script>
+<script src="/school/js/jquery/custom_jquery.js" type="text/javascript"></script>
  
 <!-- Tooltips -->
-<script src="js/jquery/jquery.tooltip.js" type="text/javascript"></script>
-<script src="js/jquery/jquery.dimensions.js" type="text/javascript"></script>
+<script src="/school/js/jquery/jquery.tooltip.js" type="text/javascript"></script>
+<script src="/school/js/jquery/jquery.dimensions.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function() {
 	$('a.info-tooltip ').tooltip({
@@ -78,9 +78,9 @@ $(function() {
 
 
 <!--  date picker script -->
-<link rel="stylesheet" href="css/datePicker.css" type="text/css" />
-<script src="js/jquery/date.js" type="text/javascript"></script>
-<script src="js/jquery/jquery.datePicker.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/school/css/datePicker.css" type="text/css" />
+<script src="/school/js/jquery/date.js" type="text/javascript"></script>
+<script src="/school/js/jquery/jquery.datePicker.js" type="text/javascript"></script>
 <script type="text/javascript" charset="utf-8">
         $(function()
 {
@@ -150,7 +150,7 @@ $('#d').trigger('change');
 </script>
 
 <!-- MUST BE THE LAST SCRIPT IN <HEAD></HEAD></HEAD> png fix -->
-<script src="js/jquery/jquery.pngFix.pack.js" type="text/javascript"></script>
+<script src="/school/js/jquery/jquery.pngFix.pack.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 $(document).pngFix( );
@@ -166,7 +166,7 @@ $(document).pngFix( );
 
 	<!-- start logo -->
 	<div id="logo">
-	<a href=""><img src="images/shared/logo.png" width="156" height="40" alt="" /></a>
+	<a href=""><img src="/school/images/shared/logo.png" width="156" height="40" alt="" /></a>
 	</div>
 	<!-- end logo -->
  	<div class="clear"></div>
@@ -188,9 +188,9 @@ $(document).pngFix( );
 		<div id="nav-right">
 		
 			<div class="nav-divider">&nbsp;</div>
-			<div class="showhide-account"><img src="images/shared/nav/nav_myaccount.gif" width="93" height="14" alt="" /></div>
+			<div class="showhide-account"><img src="/school/images/shared/nav/nav_myaccount.gif" width="93" height="14" alt="" /></div>
 			<div class="nav-divider">&nbsp;</div>
-			<a href="http://localhost/school/logout" id="logout"><img src="images/shared/nav/nav_logout.gif" width="64" height="14" alt="" /></a>
+			<a href="http://localhost/school/logout" id="logout"><img src="/school/images/shared/nav/nav_logout.gif" width="64" height="14" alt="" /></a>
 			<div class="clear">&nbsp;</div>
 		
 			<!--  start account-content -->	
@@ -265,11 +265,11 @@ $(document).pngFix( );
 
 	<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
 	<tr>
-		<th rowspan="3" class="sized"><img src="images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+		<th rowspan="3" class="sized"><img src="/school/images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
 		<th class="topleft"></th>
 		<td id="tbl-border-top">&nbsp;</td>
 		<th class="topright"></th>
-		<th rowspan="3" class="sized"><img src="images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+		<th rowspan="3" class="sized"><img src="/school/images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
 	</tr>
 	<tr>
 		<td id="tbl-border-left"></td>
