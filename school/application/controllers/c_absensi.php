@@ -14,7 +14,7 @@ class c_absensi extends CI_Controller {
 
 	public function index() {
 		$this->load->model('m_absen');
-		$this->data['rows'] = $this->m_absen->displayAbsenSiswa();
+		$this->data['rows'] = $this->m_absen->displayAbsen();
 		$this->data['title'] = "Data Absensi";
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_absensi', $this->data);
@@ -28,6 +28,18 @@ class c_absensi extends CI_Controller {
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_edit_absensi', $this->data);
 		$this->load->view('v_footer', $this->data);
+	}
+	
+	public function updateAbsensi() {
+		$this->load->model('m_absen');
+		$masuk = $this->input->post('checkbox_masuk');
+		$keluar = $this->input->post('checkbox_keluar');
+		echo $keluar;
+		if ($keluar !=NULL)
+		{
+		$this->m_absen->updateAbsensi();
+		}
+		redirect(index_absensi);
 	}
 
 }
