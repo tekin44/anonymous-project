@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ZKSoftware")]
-[assembly: AssemblyProduct("RTEvents")]
+[assembly: AssemblyProduct("FSERealtime")]
 [assembly: AssemblyCopyright("Copyright (C) zk 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
