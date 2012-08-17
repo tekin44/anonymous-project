@@ -13,12 +13,22 @@ class c_absensi extends CI_Controller {
 	}
 
 	public function index() {
+		$masuk = $this->input->post('date');
+		if ($masuk == 0)
+		{
 		$this->load->model('m_absen');
 		$this->data['rows'] = $this->m_absen->displayAbsen();
+		$this->data['rows_tanggal'] = $this->m_absen->getTanggal();
 		$this->data['title'] = "Data Absensi";
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_absensi', $this->data);
 		$this->load->view('v_footer', $this->data);
+		}
+		
+		else
+		{
+		echo $masuk;
+		}
 	}
 	
 	public function editAbsensi($no_absensi) {
@@ -34,12 +44,20 @@ class c_absensi extends CI_Controller {
 		$this->load->model('m_absen');
 		$masuk = $this->input->post('checkbox_masuk');
 		$keluar = $this->input->post('checkbox_keluar');
-		echo $keluar;
 		if ($keluar !=NULL)
 		{
 		$this->m_absen->updateAbsensi();
 		}
 		redirect(index_absensi);
+	}
+	
+		public function displayBelumAbsen() {
+		$this->load->model('m_absen');
+		$this->data['rows'] = $this->m_absen->displayBelumAbsen();
+		$this->data['title'] = "Data Yang Belum Absen";
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_belum_absen', $this->data);
+		$this->load->view('v_footer', $this->data);
 	}
 
 }
