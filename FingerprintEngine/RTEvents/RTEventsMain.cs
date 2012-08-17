@@ -18,7 +18,7 @@ namespace RTEvents
 
         private DataSet ds = new DataSet();
         private DataTable dt = new DataTable();
-        private static String idMesin="1";
+        private static String idMesin="10";
         private NpgsqlConnection conn = new NpgsqlConnection(String.Format("Server={0};Port={1};" +
                 "User Id={2};Password={3};Database={4};",
                 "192.168.0.100", "5432", "postgres",
@@ -31,6 +31,7 @@ namespace RTEvents
         {
             
             InitializeComponent();
+            labelMesin.Text = idMesin;
             connectMesin();
             FPlistener();
             
