@@ -13,11 +13,12 @@ class c_absensi extends CI_Controller {
 	}
 
 	public function index() {
-		$masuk = $this->input->post('date');
-		if ($masuk == 0)
+		$tanggal = $this->input->post('date');
+		if ($tanggal == 0)
 		{
+		$tanggal = CURRENT_DATE;
 		$this->load->model('m_absen');
-		$this->data['rows'] = $this->m_absen->displayAbsen();
+		$this->data['rows'] = $this->m_absen->displayAbsen($tanggal);
 		$this->data['rows_tanggal'] = $this->m_absen->getTanggal();
 		$this->data['title'] = "Data Absensi";
 		$this->load->view('v_header', $this->data);
@@ -27,7 +28,14 @@ class c_absensi extends CI_Controller {
 		
 		else
 		{
-		echo $masuk;
+		$tanggal = "'".$tanggal."'";
+		$this->load->model('m_absen');
+		$this->data['rows'] = $this->m_absen->displayAbsen($tanggal);
+		$this->data['rows_tanggal'] = $this->m_absen->getTanggal();
+		$this->data['title'] = "Data Absensi";
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_absensi', $this->data);
+		$this->load->view('v_footer', $this->data);
 		}
 	}
 	
