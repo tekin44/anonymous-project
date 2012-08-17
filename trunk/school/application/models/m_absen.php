@@ -4,14 +4,14 @@ if (!defined('BASEPATH'))
 
 class m_absen extends CI_Model {
 
-	public function displayAbsen() 
+	public function displayAbsen($tanggal) 
 		{
 			$this->load->database();
 			$query = $this->db->query("select b.no_absensi, a.no_induk, a.nama_person, d.waktu_absen as waktu_masuk, c.waktu_absen as waktu_keluar  
 				from person a inner join absen b on a.no_induk = b.no_induk 
 				inner join keterangan_absen d on b.no_absensi = d.no_absensi
 				left join (select b.waktu_absen, b.no_absensi from absen a inner join keterangan_absen b on a.no_absensi = b.no_absensi where keterangan = '2') c on b.no_absensi = c.no_absensi
-				where d.keterangan ='1' and b.tanggal_absensi = CURRENT_DATE
+				where d.keterangan ='1' and b.tanggal_absensi = $tanggal
 				");
 			return $query->result();
 		}
@@ -56,10 +56,10 @@ class m_absen extends CI_Model {
 		public function displayBelumAbsen() 
 		{
 			$this->load->database();
-			$query = $this->db->query("select person.no_induk, nama_person
-			from person left join absen
-			ON person.no_induk = absen.no_induk
-				");
+			$query = $this->db->query("
+			select * from person where 
+			not exists (select no_induk from absen where absen.no_induk=person.no_induk and tanggal_absensi=CURRENT_DATE)
+			");
 			return $query->result();
 		}
 }
