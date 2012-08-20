@@ -17,13 +17,15 @@ class c_absensi extends CI_Controller {
 		$tanggal = $this->input->post('date');
 		if ($tanggal == 0)
 		{
-		$tanggal = CURRENT_DATE;
+		$getToday = $this->m_absen->getHariIni();
+		
+		foreach($getToday as $item) 
+			{
+			$tanggal= $item->hari_ini;
+			}
 		}
 		
-		else
-		{
 		$tanggal = "'".$tanggal."'";
-		}
 		
 		$this->data['rows'] = $this->m_absen->displayAbsen($tanggal);
 		$this->data['rows_tanggal'] = $this->m_absen->getTanggal();
@@ -57,16 +59,19 @@ class c_absensi extends CI_Controller {
 		public function displayBelumAbsen() {
 		$this->load->model('m_absen');
 		$tanggal = $this->input->post('date_belum');
+		
 		if ($tanggal == 0)
 		{
-		$tanggal = CURRENT_DATE;
-		}
-		else
-		{
-		$tanggal = "'".$tanggal."'";
+		$getToday = $this->m_absen->getHariIni();
+		
+		foreach($getToday as $item) 
+			{
+			$tanggal= $item->hari_ini;
+			}
 		}
 		
-
+		$tanggal = "'".$tanggal."'";
+		
 		$this->data['title'] = "Data Yang Belum Absen";
 		$this->data['rows'] = $this->m_absen->displayBelumAbsen($tanggal);
 		$this->data['rows_tanggal'] = $this->m_absen->getTanggal();

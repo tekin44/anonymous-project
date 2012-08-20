@@ -24,6 +24,15 @@ class m_absen extends CI_Model {
 				");
 			return $query->result();
 		}
+		
+		public function getHariIni() 
+		{
+			$this->load->database();
+			$query = $this->db->query("
+				select CURRENT_DATE as hari_ini
+				");
+			return $query->result();
+		}
 	
 		public function editAbsensi($no_absensi) 
 		{
