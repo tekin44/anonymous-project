@@ -44,6 +44,9 @@ $route['index_absensi'] = "c_absensi/index";
 $route['index_sms'] = "c_sms/index";
 $route['index_spp'] = "c_spp/index";
 $route['index_nilai'] = "c_nilai/index";
+
+$route['absen_belum_masuk'] = "c_absensi/displayBelumAbsen";
+
 $route['login'] = "c_login/login";
 $route['logout'] = "c_login/logout";
 $route['sms_broadcast'] = "c_sms/broadcastForm";
