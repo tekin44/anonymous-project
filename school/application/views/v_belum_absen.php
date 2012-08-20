@@ -1,4 +1,18 @@
+					Tanggal : 
+					<?php echo $tanggal ?>
+					<?php echo form_open('c_absensi/displayBelumAbsen'); ?>
+					<?php
+					$dropdown = array();
+					foreach($rows_tanggal as $item) 
+					{
+					$dropdown[$item->tanggal_absensi] = $item->tanggal_absensi;
+					}
+					echo form_dropdown('date_belum', $dropdown, 'CURRENT_TIMESTAMP'); 
+					?>
 
+					<?php echo form_submit('submit', 'cari'); ?> 
+					<?php echo form_close(); ?>	
+					<br><br><br>
 				<!--  start product-table ..................................................................................... -->
 				<form id="mainform" action="">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">

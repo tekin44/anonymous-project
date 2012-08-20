@@ -13,30 +13,25 @@ class c_absensi extends CI_Controller {
 	}
 
 	public function index() {
+		$this->load->model('m_absen');
 		$tanggal = $this->input->post('date');
 		if ($tanggal == 0)
 		{
 		$tanggal = CURRENT_DATE;
-		$this->load->model('m_absen');
-		$this->data['rows'] = $this->m_absen->displayAbsen($tanggal);
-		$this->data['rows_tanggal'] = $this->m_absen->getTanggal();
-		$this->data['title'] = "Data Absensi";
-		$this->load->view('v_header', $this->data);
-		$this->load->view('v_absensi', $this->data);
-		$this->load->view('v_footer', $this->data);
 		}
 		
 		else
 		{
 		$tanggal = "'".$tanggal."'";
-		$this->load->model('m_absen');
+		}
+		
 		$this->data['rows'] = $this->m_absen->displayAbsen($tanggal);
 		$this->data['rows_tanggal'] = $this->m_absen->getTanggal();
+		$this->data['tanggal'] = $tanggal;
 		$this->data['title'] = "Data Absensi";
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_absensi', $this->data);
 		$this->load->view('v_footer', $this->data);
-		}
 	}
 	
 	public function editAbsensi($no_absensi) {
@@ -61,8 +56,21 @@ class c_absensi extends CI_Controller {
 	
 		public function displayBelumAbsen() {
 		$this->load->model('m_absen');
-		$this->data['rows'] = $this->m_absen->displayBelumAbsen();
+		$tanggal = $this->input->post('date_belum');
+		if ($tanggal == 0)
+		{
+		$tanggal = CURRENT_DATE;
+		}
+		else
+		{
+		$tanggal = "'".$tanggal."'";
+		}
+		
+
 		$this->data['title'] = "Data Yang Belum Absen";
+		$this->data['rows'] = $this->m_absen->displayBelumAbsen($tanggal);
+		$this->data['rows_tanggal'] = $this->m_absen->getTanggal();
+		$this->data['tanggal'] = $tanggal;
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_belum_absen', $this->data);
 		$this->load->view('v_footer', $this->data);
