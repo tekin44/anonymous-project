@@ -1,4 +1,5 @@
 					Tanggal : 
+					<?php echo $tanggal ?>
 					<?php echo form_open('index_absensi'); ?>
 					<?php
 					$dropdown = array();

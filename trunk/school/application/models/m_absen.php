@@ -53,12 +53,12 @@ class m_absen extends CI_Model {
 			}
 		}
 		
-		public function displayBelumAbsen() 
+		public function displayBelumAbsen($tanggal) 
 		{
 			$this->load->database();
 			$query = $this->db->query("
 			select * from person where 
-			not exists (select no_induk from absen where absen.no_induk=person.no_induk and tanggal_absensi=CURRENT_DATE)
+			not exists (select no_induk from absen where absen.no_induk=person.no_induk and tanggal_absensi=$tanggal)
 			");
 			return $query->result();
 		}
