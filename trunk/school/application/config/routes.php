@@ -41,6 +41,7 @@
 $route['default_controller'] = "c_login/index";
 $route['index'] = "c_login/index";
 $route['index_absensi'] = "c_absensi/index";
+$route['index_kategori'] = "c_kategori/index";
 $route['index_sms'] = "c_sms/index";
 $route['index_spp'] = "c_spp/index";
 $route['index_nilai'] = "c_nilai/index";
