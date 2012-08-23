@@ -38,5 +38,23 @@ class c_kategori extends CI_Controller {
 		
 		redirect(index_kategori);
 	}
+	
+	public function kategoriSiswa() {
+		$this->load->model('m_kategori');
+		$this->data['rows_kategori'] = $this->m_kategori->getKategori();
+		$this->data['title'] = "Tambah Kategori Untuk Siswa";
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_kategori_siswa', $this->data);
+		$this->load->view('v_footer', $this->data);
+	}
+	
+	public function tambahKategoriSiswa() {
+		$this->load->model('m_kategori');
+		$id = $this->input->post('id_kategori');
+		$nis = $this->input->post('nomor_induk');
+
+		$this->m_kategori->tambahKategoriSiswa($id, $nis);
+		redirect(index_kategori);
+	}
 
 }

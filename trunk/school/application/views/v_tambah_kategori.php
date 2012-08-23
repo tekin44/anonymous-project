@@ -6,7 +6,7 @@
 		
 		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
 		<tr>
-			<th valign="top">ID Kategori :</th>
+			<th valign="top">ID Kategori:</th>
 			<td><? echo form_input('id_kategori', ''); ?></td>
 		</tr>
 		

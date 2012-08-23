@@ -14,6 +14,7 @@ class c_master_data extends CI_Controller {
 		$this->load->model('m_person');
 		$this->load->model('m_message');
 		$this->data['menus'] = $this->m_menu->getAll();
+		$this->client_logon = $this->session->userdata('login');
 	}
 
 	public function show_data_siswa() {

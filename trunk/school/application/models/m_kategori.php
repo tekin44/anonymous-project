@@ -22,5 +22,24 @@ class m_kategori extends CI_Model {
 			values ('$id', '$nama')
 			");
 		}
+		
+	public function getKategori() 
+		{
+			$this->load->database();
+		
+			$query = $this->db->query("
+			select * from kategori
+			");
+			return $query->result();
+		}
+		
+	public function tambahKategoriSiswa($id, $nis) 
+		{
+			$this->load->database();
+			
+			$query = $this->db->query("
+			insert into kategori_siswa values('$id','$nis')
+			");
+		}
 }
 ?>

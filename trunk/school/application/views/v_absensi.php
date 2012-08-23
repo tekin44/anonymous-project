@@ -36,7 +36,9 @@
 					<td><? echo $item->nama_person ?></td>
 					<td><? echo $item->waktu_masuk ?></td>
 					<td><? echo $item->waktu_keluar ?></td>
-					<td><?php echo "<a href=".base_url()."c_absensi/editAbsensi/$item->no_absensi ' style=\"text-decoration: none;\" >";?>edit</a></td>
+					<td>
+					<?="<a href='".base_url()."c_absensi/editAbsensi/$item->no_absensi' title='Edit' class='icon-1 info-tooltip'>";?></a>
+					</td>
 				</tr>
 				
 				<?}?>
