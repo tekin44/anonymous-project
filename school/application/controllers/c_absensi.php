@@ -8,32 +8,41 @@ class c_absensi extends CI_Controller {
 		parent :: __construct();
 		$this->load->model('m_menu');
 		$this->data['menus'] = $this->m_menu->getAll();
-		//$this->client_logon = $this->session->userdata('id_person');
+		$this->client_logon = $this->session->userdata('login');
 
 	}
 
 	public function index() {
-		$this->load->model('m_absen');
-		$tanggal = $this->input->post('date');
-		if ($tanggal == 0)
-		{
-		$getToday = $this->m_absen->getHariIni();
-		
-		foreach($getToday as $item) 
+	
+	if ($this->client_logon) {
+			//$this->redirectto($this->client_logon['id_prev']);
+			
+			$this->load->model('m_absen');
+			$tanggal = $this->input->post('date');
+			if ($tanggal == 0)
 			{
-			$tanggal= $item->hari_ini;
+			$getToday = $this->m_absen->getHariIni();
+		
+			foreach($getToday as $item) 
+				{
+				$tanggal= $item->hari_ini;
+				}
 			}
+		
+			$tanggal = "'".$tanggal."'";
+		
+			$this->data['rows'] = $this->m_absen->displayAbsen($tanggal);
+			$this->data['rows_tanggal'] = $this->m_absen->getTanggal();
+			$this->data['tanggal'] = $tanggal;
+			$this->data['title'] = "Data Absensi";
+			$this->load->view('v_header', $this->data);
+			$this->load->view('v_absensi', $this->data);
+			$this->load->view('v_footer', $this->data);
+			
+		} else {
+			redirect('login');
 		}
-		
-		$tanggal = "'".$tanggal."'";
-		
-		$this->data['rows'] = $this->m_absen->displayAbsen($tanggal);
-		$this->data['rows_tanggal'] = $this->m_absen->getTanggal();
-		$this->data['tanggal'] = $tanggal;
-		$this->data['title'] = "Data Absensi";
-		$this->load->view('v_header', $this->data);
-		$this->load->view('v_absensi', $this->data);
-		$this->load->view('v_footer', $this->data);
+
 	}
 	
 	public function editAbsensi($no_absensi) {
