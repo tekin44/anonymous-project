@@ -28,7 +28,7 @@ class c_sms extends CI_Controller {
 		}*/
 	}
 
-	public function broadcastForm() {
+	public function broadcast_form() {
 		$this->data['title'] = "Broadcast SMS";
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_broadcast', $this->data);
