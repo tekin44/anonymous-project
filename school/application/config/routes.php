@@ -44,14 +44,19 @@ $route['index_absensi'] = "c_absensi/index";
 $route['index_kategori'] = "c_kategori/index";
 $route['index_sms'] = "c_sms/index";
 $route['index_spp'] = "c_spp/index";
+$route['data_siswa'] = "c_master_data/show_data_siswa";
+$route['data_guru'] = "c_master_data/show_data_guru";
+$route['data_staff'] = "c_master_data/show_data_staff";
 $route['index_nilai'] = "c_nilai/index";
-
+$route['hari_libur'] = "c_config/show_hari_libur";
 $route['absen_belum_masuk'] = "c_absensi/displayBelumAbsen";
-
+$route['config'] = "c_config/show_config";
 $route['login'] = "c_login/login";
 $route['logout'] = "c_login/logout";
-$route['sms_broadcast'] = "c_sms/broadcastForm";
+$route['sms_broadcast'] = "c_sms/broadcast_form";
 $route['do_broadcast'] = "c_sms/broadcast";
+$route['edit_siswa'] = "c_master_data/edit_siswa";
+
 
 $route['404_override'] = '';
 
