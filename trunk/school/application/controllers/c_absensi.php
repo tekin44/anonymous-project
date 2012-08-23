@@ -60,8 +60,10 @@ class c_absensi extends CI_Controller {
 		$keluar = $this->input->post('checkbox_keluar');
 		if ($keluar !=NULL)
 		{
-		$this->m_absen->updateAbsensi();
+		$no_induk = $this->client_logon['no_induk'];
+		$this->m_absen->updateAbsensi($no_induk);
 		}
+		
 		redirect(index_absensi);
 	}
 	
