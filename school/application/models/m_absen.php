@@ -46,7 +46,7 @@ class m_absen extends CI_Model {
 			return $query->result();
 		}
 	
-		public function updateAbsensi() 
+		public function updateAbsensi($no_induk) 
 		{
 			$no = $this->input->post('no_absensi');
 			$jam = "'".date ('H:i:s' ,time())."'";
@@ -58,6 +58,11 @@ class m_absen extends CI_Model {
 			$query = $this->db->query("
 			insert into keterangan_absen
 			values ($no,'2',$jam)
+			");
+			
+			$query = $this->db->query("
+			insert into log_edit_absen
+			values ($no_induk, $no)
 			");
 			}
 		}
