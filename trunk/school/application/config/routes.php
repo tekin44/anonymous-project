@@ -58,10 +58,9 @@ $route['logout'] = "c_login/logout";
 $route['sms_broadcast'] = "c_sms/broadcast_form";
 $route['do_broadcast'] = "c_sms/broadcast";
 $route['edit_siswa'] = "c_master_data/edit_siswa";
+$route['mesin_absensi'] = "c_config/show_mesin";
 $route['tambah_kategori'] = "c_kategori/viewTambahKategori";
 $route['kategori_siswa'] = "c_kategori/kategoriSiswa";
-
-
 $route['404_override'] = '';
 
 

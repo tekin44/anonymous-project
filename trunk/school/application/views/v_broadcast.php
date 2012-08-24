@@ -12,8 +12,10 @@
 		<tr>
 		<th valign="top">Kirim ke :</th>
 		<td>	
-		<select  class="styledselect_form_1" name="kategori">
-			<option value="">All</option>
+		<select name="id_kategori" class="styledselect_form_1">
+			<?php foreach($items as $item){ ?>
+				<option value="<?=$item->id_kategori?>"><?=$item->nama_kategori?></option>
+			<?php } ?>
 		</select>
 		</td>
 		<td></td>
