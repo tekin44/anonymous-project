@@ -38,9 +38,11 @@
 |
 */
 
+$route['admin_page'] = "c_admin/index";
 $route['default_controller'] = "c_login/index";
 $route['index'] = "c_login/index";
 $route['index_absensi'] = "c_absensi/index";
+$route['index_admin'] = "c_admin/index";
 $route['index_kategori'] = "c_kategori/index";
 $route['index_sms'] = "c_sms/index";
 $route['index_spp'] = "c_spp/index";
@@ -56,6 +58,8 @@ $route['logout'] = "c_login/logout";
 $route['sms_broadcast'] = "c_sms/broadcast_form";
 $route['do_broadcast'] = "c_sms/broadcast";
 $route['edit_siswa'] = "c_master_data/edit_siswa";
+$route['tambah_kategori'] = "c_kategori/viewTambahKategori";
+$route['kategori_siswa'] = "c_kategori/kategoriSiswa";
 
 
 $route['404_override'] = '';
