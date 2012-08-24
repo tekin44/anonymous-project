@@ -16,7 +16,7 @@ class m_absen extends CI_Model {
 			return $query->result();
 		}
 		
-		public function getIDParentMenu() 
+		public function getTanggal() 
 		{
 			$this->load->database();
 			$query = $this->db->query("
