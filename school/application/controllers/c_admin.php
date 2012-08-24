@@ -100,7 +100,7 @@ class c_admin extends CI_Controller {
 		$this->load->model('m_admin');
 		$data['id_menu'] = $this->input->post('id_menu');
 		$data['id_prev'] = $this->input->post('id_prev');
-		if ($men_id_menu != "")
+		if ($this->input->post('men_id_menu') != "")
 		{
 			$data['men_id_menu'] = $this->input->post('men_id_menu');
 		}
