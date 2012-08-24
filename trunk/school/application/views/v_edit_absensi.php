@@ -37,12 +37,28 @@
 			?>
 		</td></th></tr>
 		<tr>
-			<th>&nbsp;</th>
-			<td valign="top">
-				<?php echo form_submit('submit', 'update'); ?> 
+			<th valign="top">Keterangan</th><td>
+				<?php 
+				$options = array(
+                  '0'  	=> '',
+                  '2'   => 'Sakit',
+                  '3'   => 'Izin',
+                );
+
+				echo form_dropdown('keterangan', $options, '0');
+				
+				?> 
 			</td>
 			<td></td>
 		</tr>
+		<tr>
+			<th>&nbsp;</th>
+			<td valign="top">
+				<?php echo form_submit('submit', 'update', 'form-submit'); ?> 
+			</td>
+			<td></td>
+		</tr>
+		
 		</table>
 		<?}?>
 		
