@@ -7,9 +7,15 @@ class m_mesin_absensi extends CI_Model {
 	var $table = 'mesin_absensi';
 	var $pk = 'id_mesin';
 
-	public function get_mesin() {
+	public function get_mesins() {
 		$this->load->database();
 		$query = $this->db->query("select * from ".$this->table);
+		return $query->result();
+	}
+
+	public function get_mesin($id) {
+		$this->load->database();
+		$query = $this->db->query("select * from ".$this->table." where ".$this->pk." = '".$id."'");
 		return $query->result();
 	}
 	

@@ -14,17 +14,23 @@
 				<form id="mainform" action="">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
 				<tr>
+					<th class="table-header-repeat line-left"><a href="">Waktu Terkirim</a></th>
 					<th class="table-header-repeat line-left"><a href="">Isi Pesan</a>	</th>
-					<th class="table-header-repeat line-left"><a href="">Waktu</a></th>
-					<th class="table-header-repeat line-left"><a href="">Dikirim Oleh</a></th>
+					<th class="table-header-repeat line-left"><a href="">No Tujuan</a></th>
+					<th class="table-header-repeat line-left"><a href="">Status Pengiriman</a></th>
 				</tr>
 				<?php
-					foreach($logs as $log){
+					foreach($items as $item){
+						if($item->flag==1)
+							$status = "Belum Terkirim";
+						else
+							$status = "Terkirim";
 				?>
 				<tr>
-					<td><?=$log->msg?></td>
-					<td><?=$log->waktu?></td>
-					<td><?=$log->id_person?></td>
+					<td><?=$item->waktu_pengiriman?></td>
+					<td><?=$item->isi_pesan?></td>
+					<td><?=$item->no_tujuan?></td>
+					<td><?=$status?></td>
 				</tr>
 				<?php
 					}

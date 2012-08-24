@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 class m_sms extends CI_Model {
 
 	public function getLogs(){
-		$sql = "select * from log";
+		$sql = "select * from log_pesan";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}

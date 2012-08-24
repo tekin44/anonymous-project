@@ -123,11 +123,46 @@ class c_config extends CI_Controller {
 	public function show_mesin() {
 		$this->load->model('m_mesin_absensi');
 		$this->data['result'] = $this->result;
-		$this->data['items'] = $this->m_mesin_absensi->get_mesin();
+		$this->data['items'] = $this->m_mesin_absensi->get_mesins();
 		$this->data['title'] = "Mesin Absensi";
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_mesin', $this->data);
 		$this->load->view('v_footer', $this->data);
+	}
+	
+	public function turn_mesin($state,$id){
+		if($state=="0"){
+			$value['status_mesin'] = '1';
+			exec('\school\exe\EngineMesin'.$id.'.exe');
+		}else
+			$value['status_mesin'] = '0';
+		$this->load->model('m_mesin_absensi');
+		$this->m_mesin_absensi->edit($id,$value);
+		redirect("mesin_absensi");
+	}
+
+	public function form_mesin($id) {
+		$this->data['title'] = "Edit Mesin";
+		$this->load->model('m_mesin_absensi');
+		$this->data['item'] = $this->m_mesin_absensi->get_mesin($id);
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_form_mesin', $this->data);
+		$this->load->view('v_footer', $this->data);
+	}	
+
+	public function edit_mesin() {
+		$value = array ();
+		$result = null;
+		$this->load->model('m_mesin_absensi');
+		$value['ip_address'] = $_REQUEST['ip_address'];
+		$value['port_mesin'] = $_REQUEST['port_mesin'];
+		$value['status_mesin'] = 0;
+		$result = $this->m_mesin_absensi->edit($_REQUEST['id_mesin'], $value);
+		if ($result)
+			$this->msg = $this->m_message->show_success("Data Berhasil Disimpan");
+		else
+			$this->msg = $this->m_message->show_error("Data Gagal Disimpan");
+		redirect('mesin_absensi');
 	}
 }
 ?>

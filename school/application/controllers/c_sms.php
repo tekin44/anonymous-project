@@ -20,7 +20,7 @@ class c_sms extends CI_Controller {
 	public function index() {
 		/*if($this->client_logon)
 		{*/
-		$this->data['logs'] = $this->m_sms->getLogs();
+		$this->data['items'] = $this->m_sms->getLogs();
 		$this->data['title'] = "Log Pengiriman Pesan";
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_sms', $this->data);
@@ -33,18 +33,25 @@ class c_sms extends CI_Controller {
 	}
 
 	public function broadcast_form() {
+		$this->load->model('m_kategori');
+		$this->data['items'] = $this->m_kategori->displayAbsen();
 		$this->data['title'] = "Broadcast SMS";
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_broadcast', $this->data);
 		$this->load->view('v_footer', $this->data);
 	}
 
-	public function broadcast() {
-		$this->data['logs'] = $this->m_sms->getLogs();
-		$this->data['title'] = "Log Pengiriman Pesan";
-		$this->load->view('v_header', $this->data);
-		$this->load->view('v_sms', $this->data);
-		$this->load->view('v_footer', $this->data);
+	public function do_broadcast() {
+		$this->load->model('m_siswa');
+		$this->load->model('m_log_pesan');
+		$items = $this->m_siswa->getData($_REQUEST['id_kategori']);
+		foreach($items as $item){
+			$value['no_tujuan'] = $item->no_tujuan;
+			$value['isi_text'] = $_REQUEST['msg'];
+			$value['flag'] = 0;
+			$this->m_log_pesan->insert($value);
+		}
+		redirect('sms_broadcast');
 	}
 	
 	function redirectto($prev) {

@@ -8,15 +8,23 @@
 					<th class="table-header-options line-left"><a href="">Action</a></th>
 				</tr>
 				
-				<?php foreach ($siswa as $item){?>
+				<?php foreach ($items as $item){
+					if($item->status_mesin=="1"){
+						$status = "Connected";
+						$state = "title='Shut Down' class='icon-2 info-tooltip'";
+					}else{
+						$status = "Disconnected";
+						$state = "title='Turn On' class='icon-5 info-tooltip'";
+					}
+				?>
 				
 				<tr class="alternate-row">
 					<td><?=$item->ip_address ?></td>
 					<td><?=$item->port_mesin ?></td>
-					<td><?=$item->status_mesin ?></td>
+					<td><?=$status ?></td>
 					<td>
+					<?="<a href='".base_url()."c_config/turn_mesin/$item->status_mesin/$item->id_mesin' ".$state.">";?></a>
 					<?="<a href='".base_url()."c_config/form_mesin/$item->id_mesin' title='Edit' class='icon-1 info-tooltip'>";?></a>
-					<?="<a href='".base_url()."c_master_data/delete/1/$item->no_induk' title='Delete' class='icon-2 info-tooltip'>";?></a>
 					</td>
 				</tr>
 				
@@ -24,12 +32,3 @@
 				</table>
 				<!--  end product-table................................... --> 
 				</form>
-				<!--  start actions-box ............................................... -->
-				<div id="actions-box">
-					<a href="" class="action-slider"></a>
-					<div id="actions-box-slider">
-						<a href="c_master_data/form_siswa/1" class="action-edit">Add</a>
-					</div>
-					<div class="clear"></div>
-				</div>
-				<!-- end actions-box........... -->
