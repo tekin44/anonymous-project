@@ -47,7 +47,7 @@ class c_admin extends CI_Controller {
 		$user_pass = md5($this->input->post('user_pass'));
 
 		$this->m_admin->insertUser($no_induk, $id_prev, $user_pass);
-		redirect(admin_page);
+		redirect(index_admin);
 	}
 	
 	public function editUser($no_induk) {
@@ -62,7 +62,7 @@ class c_admin extends CI_Controller {
 	public function deleteUser($no_induk) {
 		$this->load->model('m_admin');
 		$this->data['rows'] = $this->m_admin->deleteUser($no_induk);
-		redirect(admin_page);
+		redirect(index_admin);
 	}
 	
 	public function updateUser() {
@@ -73,7 +73,7 @@ class c_admin extends CI_Controller {
 
 		$this->m_admin->updateUser($no_induk, $id_prev, $user_pass);
 		
-		redirect(admin_page);
+		redirect(index_admin);
 	}
 	
 	public function indexMenu() {
@@ -108,7 +108,7 @@ class c_admin extends CI_Controller {
 		$data['action_menu'] = $this->input->post('action_menu');
 
 		$this->m_admin->insertMenu($data);
-		redirect(admin_page);
+		redirect(index_admin_menu);
 	}
 	
 	public function editMenu($id_menu) {
@@ -128,16 +128,19 @@ class c_admin extends CI_Controller {
 		// redirect(admin_page);
 	// }
 	
-	// public function updateUser() {
-		// $this->load->model('m_admin');
-		// $no_induk = $this->input->post('no_induk');
-		// $id_prev = $this->input->post('id_prev');
-		// $user_pass = $this->input->post('user_pass');
-
-		// $this->m_admin->updateUser($no_induk, $id_prev, $user_pass);
+	public function updateMenu() {
+		$this->load->model('m_admin');
 		
-		// redirect(admin_page);
-	// }
+		$id_menu = $this->input->post('id_menu');
+		$id_prev = $this->input->post('id_prev');
+		$men_id_menu = $this->input->post('men_id_menu');
+		$nama_menu = $this->input->post('nama_menu');
+		$action_menu = $this->input->post('action_menu');
+
+		$this->m_admin->updateUser($data);
+		
+		redirect(index_admin_menu);
+	}
 	
 	function redirectto($prev) {
 		switch ($prev) {
