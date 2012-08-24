@@ -46,9 +46,10 @@
 			<td><? echo form_input('action_menu', $row->action_menu); ?></td>
 		</tr>
 		<tr>
-			<th>&nbsp;</th>
+			<th>&nbsp;</th>			
 			<td valign="top">
-				<?php echo form_submit('submit', 'update'); ?> 
+				<input type="submit" value="" class="form-submit" />
+				<input type="reset" value="" class="form-reset"  />
 			</td>
 			<td></td>
 		</tr>
