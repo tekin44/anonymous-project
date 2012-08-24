@@ -95,14 +95,14 @@ class m_admin extends CI_Model {
 			// $query = $this->db->query("delete from users where no_induk = '$no_induk'");
 		// }
 	
-	// public function updateUser($no_induk, $id_prev, $user_pass) 
-		// {
-			// $this->load->database();
-			// $query = $this->db->query("
-			// update users 
-			// set no_induk='$no_induk', id_prev='$id_prev', user_pass='$user_pass'
-			// where no_induk='$no_induk'
-			// ");
-		// }
+	public function updateMenu($data) 
+		{
+			$this->load->database();
+			$query = $this->db->query("
+			update users 
+			set id_menu = $id_menu, id_prev='$id_prev', men_id_menu=$men_id_menu, nama_menu='$nama_menu', action_menu='$action_menu'
+			where id_menu=$id_menu
+			");
+		}
 }
 ?>
