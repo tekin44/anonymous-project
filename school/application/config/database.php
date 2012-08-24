@@ -48,9 +48,9 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '192.168.137.1';
+$db['default']['hostname'] = '192.168.0.100';
 $db['default']['username'] = 'postgres';
-$db['default']['password'] = 'r4H4514';
+$db['default']['password'] = '51pB4b4m1';
 $db['default']['database'] = 'sekolah';
 $db['default']['dbdriver'] = 'postgre';
 $db['default']['dbprefix'] = '';

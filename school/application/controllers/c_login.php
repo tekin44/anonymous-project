@@ -57,6 +57,9 @@ class c_login extends CI_Controller {
 			case 'nilai' :
 				redirect('index_nilai');
 				break;
+			case 'admin' :
+				redirect('index_admin');
+				break;
 		}
 	}
 

@@ -23,8 +23,8 @@
 				<div id="actions-box">
 					<a href="" class="action-slider"></a>
 					<div id="actions-box-slider">
-						<a href="c_kategori/viewTambahKategori" class="action-edit">Tambah kategori</a>
-						<a href="c_kategori/kategoriSiswa" class="action-edit">Tambah kategori untuk siswa</a>
+						<a href="tambah_kategori" class="action-edit">Tambah kategori</a>
+						<a href="kategori_siswa" class="action-edit">Tambah kategori untuk siswa</a>
 					</div>
 					<div class="clear"></div>
 				</div>
