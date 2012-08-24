@@ -60,10 +60,11 @@ class c_absensi extends CI_Controller {
 		$this->load->model('m_absen');
 		$masuk = $this->input->post('checkbox_masuk');
 		$keluar = $this->input->post('checkbox_keluar');
+		$keterangan = $this->input->post('keterangan');
 		if ($keluar !=NULL)
 		{
 		$no_induk = $this->client_logon['no_induk'];
-		$this->m_absen->updateAbsensi($no_induk);
+		$this->m_absen->updateAbsensi($no_induk, $keterangan);
 		}
 		
 		redirect(index_absensi);
