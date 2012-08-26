@@ -85,7 +85,7 @@ class m_admin extends CI_Model {
 	public function editMenu($id_menu) 
 		{
 			$this->load->database();
-			$query = $this->db->query("select * from menu where id_menu = $id_menu");
+			$query = $this->db->query("select * from menu where id_menu = '".$id_menu."'");
 			return $query->result();
 		}
 		

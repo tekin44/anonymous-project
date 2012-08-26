@@ -56,11 +56,12 @@ $route['config'] = "c_config/show_config";
 $route['login'] = "c_login/login";
 $route['logout'] = "c_login/logout";
 $route['sms_broadcast'] = "c_sms/broadcast_form";
-$route['do_broadcast'] = "c_sms/broadcast";
+$route['do_broadcast'] = "c_sms/do_broadcast";
 $route['edit_siswa'] = "c_master_data/edit_siswa";
 $route['mesin_absensi'] = "c_config/show_mesin";
 $route['tambah_kategori'] = "c_kategori/viewTambahKategori";
 $route['kategori_siswa'] = "c_kategori/kategoriSiswa";
+$route['sms_schedule'] = "c_sms/show_scheduled_sms";
 $route['404_override'] = '';
 
 

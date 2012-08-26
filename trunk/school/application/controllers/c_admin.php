@@ -100,12 +100,12 @@ class c_admin extends CI_Controller {
 		$this->load->model('m_admin');
 		$data['id_menu'] = $this->input->post('id_menu');
 		$data['id_prev'] = $this->input->post('id_prev');
-		if ($this->input->post('men_id_menu') != 0)
+		if ($this->input->post('men_id_menu')!="no")
 		{
 			$data['men_id_menu'] = $this->input->post('men_id_menu');
 		}
 		$data['nama_menu'] = $this->input->post('nama_menu');
-		$data['action_menu'] = $this->input->post('action_menu');
+		$data['action_menu'] = "/school/".$this->input->post('action_menu');
 
 		$this->m_admin->insertMenu($data);
 		redirect(index_admin_menu);
@@ -133,12 +133,10 @@ class c_admin extends CI_Controller {
 		$id_menu = $this->input->post('id_menu');
 		$data['id_prev'] = $this->input->post('id_prev');
 		$data['men_id_menu'] = $this->input->post('men_id_menu');
-		if ($data['men_id_menu'] == 0)
-			$data['men_id_menu'] = null;
-		else
-			
+		if ($data['men_id_menu'] == "no")
+			$data['men_id_menu'] = null;			
 		$data['nama_menu'] = $this->input->post('nama_menu');
-		$data['action_menu'] = $this->input->post('action_menu');
+		$data['action_menu'] = "/school/".$this->input->post('action_menu');
 
 		$this->m_admin->updateMenu($data,$id_menu);
 		
