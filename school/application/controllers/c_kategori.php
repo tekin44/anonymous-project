@@ -41,22 +41,37 @@ class c_kategori extends CI_Controller {
 		redirect(index_kategori);
 	}
 	
-	public function kategoriSiswa() {
+	public function kategoriSiswa($id_kategori) {
 		$this->load->model('m_kategori');
-		$this->data['rows_kategori'] = $this->m_kategori->getKategori();
-		$this->data['title'] = "Tambah Kategori Untuk Siswa";
+		$this->load->model('m_siswa');
+		$this->data['kategori'] = $this->m_kategori->getKategori($id_kategori);
+		$this->data['items'] = $this->m_siswa->getByKategori($id_kategori);
+		$this->data['title'] = "Tambah Kategori Siswa";
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_kategori_siswa', $this->data);
 		$this->load->view('v_footer', $this->data);
 	}
 	
+	public function add_siswa($id_kategori) {
+		$this->data['id_kategori'] = $id_kategori;
+		$this->data['title'] = "Tambah Siswa";
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_add_kat_siswa', $this->data);
+		$this->load->view('v_footer', $this->data);
+	}
+	
 	public function tambahKategoriSiswa() {
+		$this->load->model('m_siswa');
 		$this->load->model('m_kategori');
-		$id = $this->input->post('id_kategori');
-		$nis = $this->input->post('nomor_induk');
-
-		$this->m_kategori->tambahKategoriSiswa($id, $nis);
-		redirect(index_kategori);
+		$nis = $_REQUEST['no_induk'];
+		$id = $_REQUEST['id_kategori'];
+		$count = $this->m_siswa->check($nis);
+		if(!$count){
+			$this->kategoriSiswa($id);
+			return;
+		}
+		$sql = $this->m_kategori->tambahKategoriSiswa($id, $nis);
+		$this->kategoriSiswa($id);		
 	}
 	
 	function redirectto($prev) {

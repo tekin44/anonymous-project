@@ -25,7 +25,7 @@
 		<tr>
 			<th valign="top">Parent Menu :</th>
 			<td><? 
-				$dropdowns[0] = "No Parent";
+				$dropdowns["no"] = "No Parent";
 				foreach($rows_menu as $items) 
 				{
 				$dropdowns[$items->id_menu] = $items->nama_menu;

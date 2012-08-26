@@ -1,38 +1,38 @@
-		<!--  start step-holder -->
-
-		<!--  end step-holder -->
-		<?php echo form_open('c_kategori/tambahKategoriSiswa'); ?>
-		<!-- start id-form -->
-		
-		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
-		<tr>
-			<th valign="top">Nomor Induk Siswa:</th>
-			<td><? echo form_input('nomor_induk', ''); ?></td>
-		</tr>
-		
-		<tr>
-			<th valign="top">Termasuk Dalam Kategori:</th>
-			<td>
-				<?php
-					$dropdown = array();
-					foreach($rows_kategori as $item) 
-					{
-					$dropdown[$item->id_kategori] = $item->nama_kategori;
-					}
-
-					echo form_dropdown('id_kategori', $dropdown); 
-				?>
-			</td>
-		</tr>
-
-		<tr>
-			<th>&nbsp;</th>
-			<td valign="top">
-				<?php echo form_submit('submit', 'tambah'); ?> 
-			</td>
-			<td></td>
-		</tr>
-		</table>
+				<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
+				<tr>
+					<th valign="top">Nama Kategori:</th>
+					<td><?=$kategori[0]->nama_kategori?></td>
+				</tr>
+				
+				<tr>
+					<th valign="top">Dengan Siswa:</th>
+				</tr>
+				</table>
+				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
+						<tr>
+							<th class="table-header-repeat line-left"><a href="">Nomor Induk</a></th>
+							<th class="table-header-repeat line-left"><a href="">Nama</a></th>
+						</tr>
+						
+						<?php foreach ($items as $item){?>
+						
+						<tr class="alternate-row">
+							<td><?=$item->no_induk ?></td>
+							<td><?=$item->nama_person ?></td>
+						</tr>
+						
+						<?}?>
+				</table>
+				<!--  end product-table................................... --> 
+				</form>
+				<!--  start actions-box ............................................... -->
+				<div id="actions-box">
+					<a href="" class="action-slider"></a>
+					<div id="actions-box-slider">
+						<a href="/school/c_kategori/add_siswa/<?=$kategori[0]->id_kategori?>" class="action-edit">Add</a>
+					</div>
+					<div class="clear"></div>
+				</div>
 		
 		<?php echo form_close(); ?>	
-		<!-- end id-form  -->		
+		<!-- end id-form  -->				

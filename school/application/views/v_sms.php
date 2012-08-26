@@ -14,27 +14,17 @@
 				<form id="mainform" action="">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
 				<tr>
-					<th class="table-header-repeat line-left"><a href="">Waktu Terkirim</a></th>
-					<th class="table-header-repeat line-left"><a href="">Isi Pesan</a>	</th>
-					<th class="table-header-repeat line-left"><a href="">No Tujuan</a></th>
-					<th class="table-header-repeat line-left"><a href="">Status Pengiriman</a></th>
+					<th class="table-header-repeat line-left"><a href="">No Tujuan</a>	</th>
+					<th class="table-header-repeat line-left"><a href="">Text</a></th>
+					<th class="table-header-repeat line-left"><a href="">Pengirim</a></th>
 				</tr>
-				<?php
-					foreach($items as $item){
-						if($item->flag==1)
-							$status = "Belum Terkirim";
-						else
-							$status = "Terkirim";
-				?>
+				<?php foreach($items as $item){ ?>
 				<tr>
-					<td><?=$item->waktu_pengiriman?></td>
-					<td><?=$item->isi_pesan?></td>
-					<td><?=$item->no_tujuan?></td>
-					<td><?=$status?></td>
+					<td><?=$item['DestinationNumber']?></td>
+					<td><?=$item['TextDecode']?></td>
+					<td><?=$item['CreatorID']?></td>
 				</tr>
-				<?php
-					}
-				?>
+				<?php } ?>
 				</table>
 				<!--  end product-table................................... --> 
 				</form>
