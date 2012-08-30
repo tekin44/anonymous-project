@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '192.168.0.100';
+$db['default']['hostname'] = '192.168.17.2';
 $db['default']['username'] = 'postgres';
 $db['default']['password'] = '51pB4b4m1';
-$db['default']['database'] = 'sekolah';
+$db['default']['database'] = 'temp_sekolah';
 $db['default']['dbdriver'] = 'postgre';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

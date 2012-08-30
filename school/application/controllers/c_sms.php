@@ -57,13 +57,13 @@ class c_sms extends CI_Controller {
 	public function do_broadcast() {
 		$this->load->model('m_siswa');
 		$this->load->model('m_log_pesan');
-		$items = $this->m_siswa->getByKategori($_REQUEST['id_kategori']);
-		foreach($items as $item){
-			$value['DestinationNumber'] = $item->no_hp_orang_tua;
+		//$items = $this->m_siswa->getByKategori($_REQUEST['id_kategori']);
+		//foreach($items as $item){
+			$value['DestinationNumber'] = $_REQUEST['no_tujuan'];//$item->no_hp_orang_tua;
 			$value['TextDecoded'] = $_REQUEST['msg'];
-			$value['CreatorID'] = $this->client_logon['no_induk'];
+			$value['CreatorID'] = "Cepy";
 			$this->insert_to_outbox($value);
-		}
+		//}
 		redirect('index_sms');
 	}
 	
@@ -77,7 +77,7 @@ class c_sms extends CI_Controller {
 	}
 	
 	public function insert_to_outbox($value){
-		$conn = pg_connect("host=localhost port=5432 dbname=sms user=postgres password=rahasia");
+		$conn = pg_connect("host=192.168.17.2 port=5432 dbname=sms user=postgres password=51pB4b4m1");
 		$insert = pg_query("INSERT INTO outbox (\"DestinationNumber\",\"TextDecoded\",\"CreatorID\") " .
 				"VALUES ('".$value['DestinationNumber']."','".$value['TextDecoded']."','".$value['CreatorID']."')");
 	}
