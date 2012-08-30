@@ -9,8 +9,13 @@ class m_person extends CI_Model {
 		$this->load->database();
 	}
 
+	public function get_unregister() {
+		$query = $this->db->query("select * from person where status_person = '1'");
+		return $query->result();
+	}
+
 	public function getAllSiswa() {
-		$query = $this->db->query("select * from siswa");
+		$query = $this->db->query("select * from siswa ORDER BY nama_person");
 		return $query->result();
 	}
 

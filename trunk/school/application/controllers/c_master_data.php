@@ -64,6 +64,8 @@ class c_master_data extends CI_Controller {
 	}
 
 	public function form_siswa($flag,$id=0) {
+		$this->load->model('m_person');
+		$this->data['items'] = $this->m_person->get_unregister();
 		if($flag==1)
 			$this->data['title'] = "Tambah Data Siswa";
 		else{
@@ -93,13 +95,13 @@ class c_master_data extends CI_Controller {
 		$value = array();
 		$result = null;
 		$flag = $_REQUEST['flag'];
+		$row['nama_person'] = $_REQUEST['nama_person'];
+		$row['status_person'] = '2';
+		$this->m_person->update($_REQUEST['no_induk'],$row);	
 		$value['nama_person'] = $_REQUEST['nama_person'];
 		if($flag==1){
 			$value['no_induk'] = $_REQUEST['no_induk'];
-			$this->m_person->insert($value);
-		}else{
-			$this->m_person->update($_REQUEST['no_induk'],$value);		
-		}	
+		}
 		$value['alamat_siswa'] = $_REQUEST['alamat_siswa'];
 		$value['nama_orang_tua'] = $_REQUEST['nama_orang_tua'];
 		$value['no_hp_siswa'] = $_REQUEST['no_hp_siswa'];
@@ -121,14 +123,15 @@ class c_master_data extends CI_Controller {
 		$value = array();
 		$result = null;
 		$flag = $_REQUEST['flag'];
+		$row['nama_person'] = $_REQUEST['nama_person'];
+		$row['status_person'] = '2';
+		$this->m_person->update($_REQUEST['no_induk'],$row);
 		$value['nama_person'] = $_REQUEST['nama_person'];
 		if($flag==1){
 			$value['no_induk'] = $_REQUEST['no_induk'];
-			$this->m_person->insert($value);
-		}else{
-			$this->m_person->update($_REQUEST['no_induk'],$value);		
-		}	
-		$value['tipe_staff'] = $_REQUEST['tipe_staff'];
+		}
+		$tipe = $_REQUEST['tipe_staff'];
+		$value['tipe_staff'] = $tipe;
 		if($flag==1)
 			$result = $this->m_person->insert_staff($value);
 		else
@@ -137,7 +140,8 @@ class c_master_data extends CI_Controller {
 			$this->msg = $this->m_message->show_success("Data Berhasil Disimpan");
 		else
 			$this->msg = $this->m_message->show_error("Data Gagal Disimpan");
-		redirect('data_guru');	
+		if($tipe == '1') redirect('data_guru');
+		else redirect('data_staff');
 	}
 	
 	public function delete($tipe,$id) {

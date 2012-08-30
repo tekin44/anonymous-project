@@ -15,7 +15,11 @@
 		<tr>
 			<th valign="top">No Induk:</th>
 			<td>
-				<input name='no_induk' <?=$disable?> type="text" class="inp-form" value="<?=$no_induk?>" /></td>
+				<select name="no_induk" class="styledselect_form_1">
+				<?php foreach($items as $item){ ?>
+					<option value="<?=$item->no_induk?>"><?=$item->no_induk?></option>
+				<?php } ?>
+				</select></td>
 			<td></td>
 		</tr>
 		<tr>
