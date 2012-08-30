@@ -166,7 +166,7 @@ $(document).pngFix( );
 
 	<!-- start logo -->
 	<div id="logo">
-	<a href=""><img src="/school/images/shared/logo.png" width="312" height="80" alt="" /></a>
+	<a href=""><img src="/school/images/shared/logo.png" width="156" height="40" alt="" /></a>
 	</div>
 	<!-- end logo -->
  	<div class="clear"></div>
