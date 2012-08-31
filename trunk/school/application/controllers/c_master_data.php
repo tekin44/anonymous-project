@@ -66,6 +66,7 @@ class c_master_data extends CI_Controller {
 	public function form_siswa($flag,$id=0) {
 		$this->load->model('m_person');
 		$this->data['items'] = $this->m_person->get_unregister();
+		$this->data['rows'] = $this->m_person->getKategori();
 		if($flag==1)
 			$this->data['title'] = "Tambah Data Siswa";
 		else{
