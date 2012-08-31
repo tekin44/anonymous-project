@@ -10,7 +10,7 @@ class m_absen extends CI_Model {
 						from person a inner join absen b on a.no_induk = b.no_induk 
 						left join keterangan_absen d on b.no_absensi = d.no_absensi
 						left join (select b.waktu_absen, b.no_absensi from absen a inner join keterangan_absen b on a.no_absensi = b.no_absensi where keterangan = '2') c on b.no_absensi = c.no_absensi
-						where d.keterangan ='1' and b.tanggal_absensi = $tanggal
+						where b.tanggal_absensi = $tanggal
 						");
 		return $query->result();
 	}
