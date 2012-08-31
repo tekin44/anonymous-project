@@ -78,5 +78,10 @@ class m_person extends CI_Model {
 		$insert = $this->db->delete("person",$data);
 		return $insert;
 	}
+	
+	public function getKategori() {
+		$query = $this->db->query("select * from kategori");
+		return $query->result();
+	}
 }
 ?>

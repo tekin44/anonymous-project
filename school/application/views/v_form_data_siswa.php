@@ -50,15 +50,33 @@
 			<th valign="top">Password:</th>
 			<td><input name='password' <?=$disable?> type="password" class="inp-form"  value="<?=$password?>" /></td>
 		</tr>
-		<tr>
+		
+		</table>
+		<input name="flag" type="hidden" value="<?=$flag?>"/>
+		</form>
+		<!-- end id-form  -->
+		
+		<!--  start product-table ..................................................................................... -->
+				<form id="mainform" action="">
+				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
+				<tr>
+					<th class="table-header-repeat line-left minwidth-1"><a href="">Termasuk dalam kategori</a>	</th>
+					<th class="table-header-repeat line-left minwidth-1"><a href=""></a>	</th>
+				</tr>
+				<?php foreach ($rows as $items){?>
+				<tr>
+					<td><?=$items->nama_kategori?></td>
+					<td><?echo form_checkbox("'".$items->nama_kategori."'", '1');?></td>
+				</tr>
+				<?}?>
+				</table>
+				</form>
+			
+			<tr>
 			<th>&nbsp;</th>
 			<td valign="top">
 				<input type="submit" value="" class="form-submit" />
 				<input type="reset" value="" class="form-reset"  />
 			</td>
 			<td></td>
-		</tr>
-		</table>
-		<input name="flag" type="hidden" value="<?=$flag?>"/>
-		</form>
-		<!-- end id-form  -->
+			</tr>
