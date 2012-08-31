@@ -18,19 +18,19 @@
 			<td><textarea name="msg_tidak_masuk" rows="" cols="" class="form-textarea"><?=$msg_tidak_masuk?></textarea></td>
 		</tr>
 				<tr>					
-					<th class="table-header-repeat line-left"><a href="">No HP ke-1 Kepala Sekolah</a></th>
+					<th valign="top">No HP ke-1 Kepala Sekolah</a></th>
 					<td><input name='no_kepsek' type="text" class="inp-form" value="<?=$no_kepsek?>" /></td>
 				</tr>	
 				<tr>					
-					<th class="table-header-repeat line-left"><a href="">No HP ke-2 Kepala Sekolah </a></th>
+					<th valign="top">No HP ke-2 Kepala Sekolah </a></th>
 					<td><input name='no_kepsek_2' type="text" class="inp-form" value="<?=$no_kepsek_2?>" /></td>
 				</tr>
 				<tr>					
-					<th class="table-header-repeat line-left"><a href="">Tanggal Mulai Tahun Pelajaran Baru</a></th>
+					<th valign="top">Tanggal Mulai Tahun Pelajaran Baru</a></th>
 					<td><input name='tanggal_pel_baru' type="text" class="inp-form" value="<?=$tanggal_pel_baru?>" /></td>
 				</tr>	
 				<tr>					
-					<th class="table-header-repeat line-left"><a href="">Tanggal Selesai Tahun Pelajaran</a></th>
+					<th valign="top">Tanggal Selesai Tahun Pelajaran</a></th>
 					<td><input name='tanggal_pel_selesai' type="text" class="inp-form" value="<?=$tanggal_pel_selesai?>" /></td>
 				</tr>
 		</table>

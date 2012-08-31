@@ -26,7 +26,7 @@
 				<div id="actions-box">
 					<a href="" class="action-slider"></a>
 					<div id="actions-box-slider">
-						<a href="c_admin/viewInsertUser" class="action-edit">Add</a>
+						<a href="/school/c_admin/viewInsertUser" class="action-edit">Add</a>
 					</div>
 					<div class="clear"></div>
 				</div>
