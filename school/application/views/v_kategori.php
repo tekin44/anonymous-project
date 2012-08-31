@@ -15,8 +15,7 @@
 					<td><? echo $item->id_kategori ?></td>
 					<td><? echo $item->nama_kategori ?></td>
 					<td>
-					<?="<a href='".base_url()."c_kategori/kategoriSiswa/$item->id_kategori' title='Add Siswa' class='icon-3 info-tooltip'>";?></a>
-					<?="<a href='".base_url()."c_kategori/form_kategori/$item->id_kategori' title='Edit' class='icon-1 info-tooltip'>";?></a>
+					<?="<a href='".base_url()."c_kategori/viewTambahKategori/2/$item->id_kategori' title='Edit' class='icon-1 info-tooltip'>";?></a>
 					<?="<a href='".base_url()."c_kategori/delete/$item->id_kategori' title='Delete' class='icon-2 info-tooltip'>";?></a>
 					</td>
 				</tr>
@@ -29,7 +28,7 @@
 				<div id="actions-box">
 					<a href="" class="action-slider"></a>
 					<div id="actions-box-slider">
-						<a href="/school/c_kategori/viewTambahKategori" class="action-edit">Add</a>
+						<a href="/school/c_kategori/viewTambahKategori/1" class="action-edit">Add</a>
 					</div>
 					<div class="clear"></div>
 				</div>
