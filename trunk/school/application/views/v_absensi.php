@@ -48,14 +48,7 @@
 					<td><? echo $item->waktu_keluar ?></td>
 					<td><? echo $ket ?></td>
 					<td>
-					<?					
-					
-						$tgl = date("Ymd", strtotime($item->tanggal_absensi));
-						$now = date("Ymd");
-						if ($tgl == $now) {
-							echo "<a href='" . base_url() . "c_absensi/editAbsensi/$item->no_absensi' title='Edit' class='icon-1 info-tooltip'>";
-						}
-?></a>
+					<?="<a href='" . base_url() . "c_absensi/editAbsensi/$item->no_absensi' title='Edit' class='icon-1 info-tooltip'>"?></a>
 					</td>
 				</tr>
 				
