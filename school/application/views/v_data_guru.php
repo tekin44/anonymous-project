@@ -27,7 +27,7 @@
 				<div id="actions-box">
 					<a href="" class="action-slider"></a>
 					<div id="actions-box-slider">
-						<a href="c_master_data/form_staff/1" class="action-edit">Add</a>
+						<a href="/school/c_master_data/form_staff/1" class="action-edit">Add</a>
 					</div>
 					<div class="clear"></div>
 				</div>
