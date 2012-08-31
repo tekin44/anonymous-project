@@ -14,8 +14,8 @@
 			<th valign="top">Alasan :</th>
 			<td>
 				<select name="status_absen" class="styledselect_form_1">
-					<option value="4">Sakit</option>
-					<option value="5">Ijin</option>
+					<option value="3">Sakit</option>
+					<option value="4">Ijin</option>
 				</select>
 			</td>
 			<td></td>
