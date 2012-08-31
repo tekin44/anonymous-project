@@ -11,8 +11,13 @@
 		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
 		<tr>
 			<th valign="top">No Induk:</th>
-			<td><input name='no_induk' <?=$disable?> type="text" class="inp-form" value="<?=$no_induk?>"/></td>
-			<td></td>
+			<td><select name="no_induk" class="styledselect_form_1">
+				<option value="">Pilih ID</option>
+				<?php foreach($row as $item) {?>
+					<option value="<?=$item->no_induk?>"><?=$item->no_induk?></option>
+				<?php } ?>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<th valign="top">Nama:</th>

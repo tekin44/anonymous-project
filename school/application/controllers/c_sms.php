@@ -22,8 +22,8 @@ class c_sms extends CI_Controller {
 		/*if($this->client_logon)
 		{*/
 		
-		$conn = pg_connect("host=localhost port=5432 dbname=sms user=postgres password=rahasia");
-		$sql = "SELECT * FROM outbox";
+		$conn = pg_connect("host=192.168.17.2 port=5432 dbname=sms user=postgres password=dbr4H4514");
+		$sql = "SELECT * FROM sentitems";
 		$query = pg_query($sql);
 		$rows = array();
 		$i = 0;
