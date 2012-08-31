@@ -116,6 +116,10 @@ class c_config extends CI_Controller {
 		$this->load->model('m_config');
 		$value['msg_telat'] = $_REQUEST['msg_telat'];
 		$value['msg_tidak_masuk'] = $_REQUEST['msg_tidak_masuk'];
+		$value['no_kepsek'] = $_REQUEST['no_kepsek'];
+		$value['no_kepsek_2'] = $_REQUEST['no_kepsek_2'];
+		$value['tanggal_pel_baru'] = $_REQUEST['tanggal_pel_baru'];
+		$value['tanggal_pel_selesai'] = $_REQUEST['tanggal_pel_selesai'];
 		$result = $this->m_config->edit(1, $value);
 		if ($result)
 			$this->msg = $this->m_message->show_success("Data Berhasil Disimpan");

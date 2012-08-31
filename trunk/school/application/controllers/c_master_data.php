@@ -86,6 +86,7 @@ class c_master_data extends CI_Controller {
 			$this->data['title'] = "Edit Data Staff";
 			$this->data['staff'] = $this->m_person->getStaff($id);
 		}			
+		$this->data['row'] = $this->m_person->get_unregister();
 		$this->data['flag'] = $flag;
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_form_data_staff', $this->data);
