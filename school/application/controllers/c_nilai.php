@@ -2,7 +2,7 @@
 if (!defined('BASEPATH'))
 	exit ('No direct script access allowed');
 
-class c_spp extends CI_Controller {
+class c_nilai extends CI_Controller {
 
 	function __construct() {
 		parent :: __construct();
