@@ -19,30 +19,13 @@
 			<th valign="top">Nomor Induk :</th>
 			<td><? echo $item->no_induk ?></td>
 		</tr>
-		<tr><th valign="top">Masuk</th><td>
-			<? if ($item->waktu_masuk == NULL)
-			{
-			echo form_checkbox('checkbox_masuk', '1', FALSE);	
-			}
-			else echo $item->waktu_masuk;
-			?>
-		</td></th></tr>
-
-		<tr><th valign="top">Keluar</th><td>
-			<? if ($item->waktu_keluar == NULL)
-			{
-			echo form_checkbox('checkbox_keluar', '1');	
-			}
-			else echo $item->waktu_keluar;
-			?>
-		</td></th></tr>
 		<tr>
 			<th valign="top">Keterangan</th><td>
 				<?php 
 				$options = array(
-                  '0'  	=> '',
-                  '2'   => 'Sakit',
-                  '3'   => 'Izin',
+                  '0'  	=> 'keterangan',
+                  '3'   => 'Sakit',
+                  '4'   => 'Izin',
                 );
 
 				echo form_dropdown('keterangan', $options, '0');
