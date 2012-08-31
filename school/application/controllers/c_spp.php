@@ -16,7 +16,7 @@ class c_spp extends CI_Controller {
 
 	public function index() {
 		if ($this->client_logon) {
-			$this->data['title'] = "Data Nilai";
+			$this->data['title'] = "Data SPP";
 			$this->load->view('v_header', $this->data);
 			$this->load->view('v_footer', $this->data);
 

@@ -16,7 +16,7 @@ class c_nilai extends CI_Controller {
 
 	public function index() {
 		if ($this->client_logon) {
-			$this->data['title'] = "Data SPP";
+			$this->data['title'] = "Data Nilai";
 			$this->load->view('v_header', $this->data);
 			$this->load->view('v_footer', $this->data);
 
