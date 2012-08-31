@@ -48,7 +48,7 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
+$db['default']['hostname'] = '192.168.17.2';
 $db['default']['username'] = 'postgres';
 $db['default']['password'] = '51pB4b4m1';
 $db['default']['database'] = 'sekolah';
