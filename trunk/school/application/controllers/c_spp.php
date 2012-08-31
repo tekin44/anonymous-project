@@ -9,14 +9,14 @@ class c_spp extends CI_Controller {
 		$this->load->model('m_menu');
 		$this->client_logon = $this->session->userdata('login');
 		$this->data['menus'] = $this->m_menu->getAll($this->client_logon['id_prev']);
-		if ($this->client_logon['id_prev'] != "sppap" && $this->client_logon['id_prev'] != "admin") {
+		if ($this->client_logon['id_prev'] != "nilai" && $this->client_logon['id_prev'] != "admin") {
 			$this->redirectto($this->client_logon['id_prev']);
 		}
 	}
 
 	public function index() {
 		if ($this->client_logon) {
-			$this->data['title'] = "Data SPP";
+			$this->data['title'] = "Data Nilai";
 			$this->load->view('v_header', $this->data);
 			$this->load->view('v_footer', $this->data);
 
