@@ -8,7 +8,7 @@ class m_absen extends CI_Model {
 		$this->load->database();
 		$query = $this->db->query("select b.*, a.no_induk, a.nama_person, d.waktu_absen as waktu_masuk, c.waktu_absen as waktu_keluar  
 						from person a inner join absen b on a.no_induk = b.no_induk 
-						inner join keterangan_absen d on b.no_absensi = d.no_absensi
+						left join keterangan_absen d on b.no_absensi = d.no_absensi
 						left join (select b.waktu_absen, b.no_absensi from absen a inner join keterangan_absen b on a.no_absensi = b.no_absensi where keterangan = '2') c on b.no_absensi = c.no_absensi
 						where d.keterangan ='1' and b.tanggal_absensi = $tanggal
 						");

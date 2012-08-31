@@ -83,6 +83,7 @@ class c_config extends CI_Controller {
 	}
 
 	public function delete_hari_libur($id) {
+		$this->load->model('m_hari_libur');
 		$result = $this->m_hari_libur->delete($id);
 		if ($result)
 			$this->msg = $this->m_message->show_success("Data Berhasil Disimpan");
