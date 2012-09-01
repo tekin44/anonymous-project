@@ -103,7 +103,7 @@ h2 {
 font-size: 1.6em;
 font-family: Georgia, "Times New Roman", Times, serif;
 font-weight: normal;
-color: #FFFFFF;
+color: black;
 text-align: left;
 margin: 3px 0 0 2px;
 }
@@ -290,7 +290,7 @@ background-color: #FFFFFF;
 text-align: left;
 border-right: 1px solid #B0B0B0;
 border-left: 1px solid #B0B0B0;
-padding-bottom: 80px;
+
 min-height: 544px;
 }
 
@@ -340,6 +340,27 @@ margin: 0 5px 18px 2px;
 line-height: 140%;
 }
 
+#name{
+padding-right: 90%;
+white-space:nowrap;
+}
+
+#name table
+{
+border : none;
+white-space:nowrap;
+ border-spacing:0;
+  border-collapse:collapse;
+
+}
+
+#name table .noborder, #name .noborder tr, #name .noborder th, #name .noborder td
+{
+border: none;
+text-align:end;
+white-space:nowrap;
+width:auto;
+}
 
 /* Table */
 

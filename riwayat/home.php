@@ -1,12 +1,14 @@
 <?php
 
 // Connect to server and select databse.
-$dbconn3 = pg_connect("host=localhost port=5432 dbname=sekolah user=postgres password=wajib");
+$dbconn3 = pg_connect("host=192.168.17.2 port=5432 dbname=sekolah user=postgres password=dbr4H4514");
 //connect to a database named "mary" on the host "sheep" with a username and password
 
 // username and password sent from form
 $myid=$_POST['myid'];
-$mypassword=md5($_POST['mypassword']);
+$mypassword=$_POST['mypassword'];
+//md5()
+
 
 $sql="SELECT * FROM siswa WHERE no_induk= '$myid' and password= '$mypassword'";
 $result=pg_query($sql);
@@ -39,42 +41,59 @@ while($row = pg_fetch_array($result)){
 
 <html>
 <head>
-
+<!-- CSS -->
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen, projection, tv">
+<link rel="stylesheet" href="css/login.css" type="text/css" media="screen, projection, tv">
+<link rel="stylesheet" href="css/style-print.css" type="text/css" media="print">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
 <title>DATA RIWAYAT SISWA</title>
-<br>
-		<h1 align="left">DATA RIWAYAT SISWA SMA N 1 CIREBON</h1>
-
+		
 </head>
 
 <body>
+<div id="main">
+
+	<div id="content-box">
+	
+
+		<div style="float:right">
+		<a href="javascript:window.print()"><img src="img/print_image.gif" border="0" ></a>
+		<a href="index.php"><img src="img/logout.gif" border="0" ></a>
+		</div>
+
+<h2 align="left">DATA RIWAYAT SISWA SMA N 1 CIREBON</h2>
+
+<div id="name">
+<table class="noborder">
+<tr>
+<td><b>NAMA</b></td>
+<td><b> : </b> </td>
+<td><b> <?=$nama?></b></td>
+</tr>
+<tr>
+<td><b>NIS</b> </td>
+<td><b> : </b> </td>
+<td><b><?=$nis?></b></td>  
+</tr>
+</table>
+</div>	
 
 <table>
 	<tr>
-		<td><h3><b>NAMA</b></h3></td>
-        <td><h3><b>:</b></h3></td>
-		<td><h3><b><?=$nama?></b></h3></td>
-	</tr>	   
-    <tr>
-		<td><h3><b>NIS</b></h3></td>
-        <td><h3><b>:</b></h3></td>
-		<td><h3><b><?=$nis?></b></h3></td>
-	</tr>
-	
-    <tr>
-		<td><h3><b>UANG SPP</b></h3></td>
-        <td><h3><b>:</b></h3></td>
-		<td><h3><b><?=$spp?></b></h3></td>
+		<td><b>UANG SPP</b></td>
+        <td><b>:</b></td>
+		<td><b><?=$spp?></b></td>
 	</tr>
     <tr>
-		<td><h3><b>UANG GEDUNG</b></h3></td>
-        <td><h3><b>:</b></h3></td>
-		<td><h3><b><?=$gedung?></b></h3></td>
+		<td><b>UANG GEDUNG</b></td>
+        <td><b>:</b></td>
+		<td><b><?=$gedung?></b></td>
 	</tr>
     <tr>
-		<td><h3><b>UANG TAHUNAN</b></h3></td>
-        <td><h3><b>:</b></h3></td>
-		<td><h3><b><?=$thn?></b></h3></td>
+		<td><b>UANG TAHUNAN</b></td>
+        <td><b>:</b></td>
+		<td><b><?=$thn?></b></td>
 	</tr>
 </table>
 
@@ -140,16 +159,9 @@ while($row = pg_fetch_array($result)){
     <th><?php echo '-'?></th>
     </tr>
 </table>
-
-
+</div>
+</div>
 </body>
-<br>
-<br>
-<A HREF="javascript:window.print()">
-<IMG SRC="img/print_image.gif" BORDER="0" >PRINT </A>
-
-
-
 </html>
 <?php
 }
