@@ -143,6 +143,13 @@ while($row = pg_fetch_array($result)){
 
 
 </body>
+<br>
+<br>
+<A HREF="javascript:window.print()">
+<IMG SRC="img/print_image.gif" BORDER="0" >PRINT </A>
+
+
+
 </html>
 <?php
 }
