@@ -8,7 +8,7 @@ class m_admin extends CI_Model {
 		{
 			$this->load->database();
 			$query = $this->db->query("
-				select * from users
+				select * from users a inner join person b on a.no_induk = b.no_induk
 				");
 			return $query->result();
 		}
@@ -94,6 +94,13 @@ class m_admin extends CI_Model {
 			// $this->load->database();
 			// $query = $this->db->query("delete from users where no_induk = '$no_induk'");
 		// }
+	
+	public function deleteMenu($id) 
+		{
+			$this->load->database();
+			$query = $this->db->delete("menu",array("id_menu"=>$id));
+			return $query;
+		}
 	
 	public function updateMenu($data,$id) 
 		{
