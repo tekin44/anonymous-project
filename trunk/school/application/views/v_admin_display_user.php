@@ -2,15 +2,15 @@
 				<form id="mainform" action="">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
 				<tr>
-					<th class="table-header-repeat line-left minwidth-1"><a href="">No. Induk</a>	</th>
-					<th class="table-header-repeat line-left minwidth-1"><a href="">Previlege</a></th>
+					<th class="table-header-repeat line-left minwidth-1"><a href="">Nama</a>	</th>
+					<th class="table-header-repeat line-left minwidth-1"><a href="">Wewenang</a></th>
 					<th class="table-header-options line-left"><a href="">Options</a></th>
 				</tr>
 				
 				<?php foreach ($rows as $item){?>
 				
 				<tr class="alternate-row">
-					<td><? echo $item->no_induk ?></td>
+					<td><? echo $item->nama_person ?></td>
 					<td><? echo $item->id_prev ?></td>
 					<td>
 					<?="<a href='".base_url()."c_admin/editUser/$item->no_induk' title='Edit' class='icon-1 info-tooltip'>";?></a>
