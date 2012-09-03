@@ -122,6 +122,12 @@ class c_admin extends CI_Controller {
 		$this->load->view('v_footer', $this->data);
 	}
 	
+	public function deleteMenu($id_menu) {
+		$this->load->model('m_admin');
+		$result = $this->m_admin->deleteMenu($id_menu);
+		redirect(index_admin_menu);
+	}
+	
 	// public function deleteUser($no_induk) {
 		// $this->load->model('m_admin');
 		// $this->data['rows'] = $this->m_admin->deleteUser($no_induk);
