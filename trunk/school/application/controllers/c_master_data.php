@@ -23,8 +23,24 @@ class c_master_data extends CI_Controller {
 	public function show_data_siswa() {
 		if($this->client_logon){
 			$this->data['result'] = $this->msg;
-			$this->data['siswa'] = $this->m_person->getAllSiswa();
 			$this->data['title'] = "Data Siswa";
+			
+			$key = $this->input->post('search_field');
+			$keynama = $this->input->post('search_fieldnama');
+			
+			if ($key == NULL && $keynama == NULL)
+			{
+			$this->data['siswa'] = $this->m_person->getAllSiswa();
+			}
+			else if ($key != NULL)
+			{
+			$this->data['siswa'] = $this->m_person->getSearchNISiswa($key);
+			}
+			else
+			{
+			$this->data['siswa'] = $this->m_person->getSearchNamaSiswa($keynama);
+			}
+			
 			$this->load->view('v_header', $this->data);
 			$this->load->view('v_data_siswa', $this->data);
 			$this->load->view('v_footer', $this->data);
@@ -36,8 +52,24 @@ class c_master_data extends CI_Controller {
 	public function show_data_guru() {
 		/*if($this->client_logon)*/
 		$this->data['result'] = $this->msg;
-		$this->data['guru'] = $this->m_person->getAllStaff(1);
 		$this->data['title'] = "Data Guru";
+		
+			$key = $this->input->post('search_field');
+			$keynama = $this->input->post('search_fieldnama');
+			
+			if ($key == NULL && $keynama == NULL)
+			{
+			$this->data['guru'] = $this->m_person->getAllStaff(1);
+			}
+			else if ($key != NULL)
+			{
+			$this->data['guru'] = $this->m_person->getSearchNIGuru($key);
+			}
+			else
+			{
+			$this->data['guru'] = $this->m_person->getSearchNamaGuru($keynama);
+			}
+		
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_data_guru', $this->data);
 		$this->load->view('v_footer', $this->data);
@@ -51,8 +83,24 @@ class c_master_data extends CI_Controller {
 	public function show_data_staff() {
 		/*if($this->client_logon)*/
 		$this->data['result'] = $this->msg;
-		$this->data['staff'] = $this->m_person->getAllStaff(2);
 		$this->data['title'] = "Data Staff";
+		
+		$key = $this->input->post('search_field');
+			$keynama = $this->input->post('search_fieldnama');
+			
+			if ($key == NULL && $keynama == NULL)
+			{
+			$this->data['staff'] = $this->m_person->getAllStaff(2);
+			}
+			else if ($key != NULL)
+			{
+			$this->data['staff'] = $this->m_person->getSearchNIStaff($key);
+			}
+			else
+			{
+			$this->data['staff'] = $this->m_person->getSearchNamaStaff($keynama);
+			}
+		
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_data_staff', $this->data);
 		$this->load->view('v_footer', $this->data);
@@ -110,15 +158,22 @@ class c_master_data extends CI_Controller {
 		$value['no_hp_orang_tua'] = $_REQUEST['no_hp_orang_tua'];
 		$value['email_siswa'] = $_REQUEST['email_siswa'];
 		$value['password'] = md5($_REQUEST['password']);
-		if($flag==1)
-			$result = $this->m_person->insert_siswa($value);
-		else
-			$result = $this->m_person->edit_siswa($_REQUEST['no_induk'],$value);
-		if($result)
-			$this->msg = $this->m_message->show_success("Data Berhasil Disimpan");
-		else
-			$this->msg = $this->m_message->show_error("Data Gagal Disimpan");
-		redirect('data_siswa');	
+		$kategori = $this->input->post('assign');
+		
+		foreach ($this->input->post('assign') as $key => $value)
+		{
+		echo "Index {$key}'s value is {$value}.";
+		}
+		
+		// if($flag==1)
+			// $result = $this->m_person->insert_siswa($value);
+		// else
+			// $result = $this->m_person->edit_siswa($_REQUEST['no_induk'],$value);
+		// if($result)
+			// $this->msg = $this->m_message->show_success("Data Berhasil Disimpan");
+		// else
+			// $this->msg = $this->m_message->show_error("Data Gagal Disimpan");
+		// redirect('data_siswa');	
 	}
 	
 	public function edit_staff() {

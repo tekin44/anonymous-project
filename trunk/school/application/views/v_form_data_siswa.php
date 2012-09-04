@@ -14,13 +14,16 @@
 		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
 		<tr>
 			<th valign="top">No Induk:</th>
+			<!-- cik rada dikomen hela
 			<td>
 				<select name="no_induk" class="styledselect_form_1">
-				<?php foreach($items as $item){ ?>
-					<option value="<?=$item->no_induk?>"><?=$item->no_induk?></option>
-				<?php } ?>
-				</select></td>
-			<td></td>
+				<?php //foreach($items as $item){ ?>
+					<option value="<?//=$item->no_induk?>"><?//=$item->no_induk?></option>
+				<?php //} ?>
+				</select>
+			</td>
+			-->
+			<td><input name='no_induk' type="text" class="inp-form" value="<?=$no_induk?>" /></td>
 		</tr>
 		<tr>
 			<th valign="top">Nama Siswa:</th>
@@ -50,14 +53,11 @@
 			<th valign="top">Password:</th>
 			<td><input name='password' <?=$disable?> type="password" class="inp-form"  value="<?=$password?>" /></td>
 		</tr>
-		
 		</table>
-		<input name="flag" type="hidden" value="<?=$flag?>"/>
-		</form>
-		<!-- end id-form  -->
 		
-		<!--  start product-table ..................................................................................... -->
-				<form id="mainform" action="">
+		
+				<!--  start product-table ..................................................................................... -->
+				
 				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
 				<tr>
 					<th class="table-header-repeat line-left minwidth-1"><a href="">Termasuk dalam kategori</a>	</th>
@@ -66,17 +66,21 @@
 				<?php foreach ($rows as $items){?>
 				<tr>
 					<td><?=$items->nama_kategori?></td>
-					<td><?echo form_checkbox("'".$items->nama_kategori."'", '1');?></td>
+					<td><input type="checkbox" name="assign[]" value=<?=$items->id_kategori?>><?=$items->nama_kategori?></td>
 				</tr>
 				<?}?>
 				</table>
-				</form>
-			
-			<tr>
+				
+		
+		<tr>
 			<th>&nbsp;</th>
 			<td valign="top">
 				<input type="submit" value="" class="form-submit" />
 				<input type="reset" value="" class="form-reset"  />
 			</td>
 			<td></td>
-			</tr>
+		</tr>
+		<input name="flag" type="hidden" value="<?=$flag?>"/>
+		</form>
+		<!-- end id-form  -->
+		
