@@ -1,20 +1,51 @@
-										Tanggal : 
-					<?php echo $tanggal ?>
-					<?php echo form_open('index_absensi'); ?>
-					<?php					
-					$dropdown = array ();
-					foreach ($rows_tanggal as $item) {
-						$dropdown[$item->tanggal_absensi] = $item->tanggal_absensi;
-					}
-
-					echo form_dropdown('date', $dropdown, 'CURRENT_TIMESTAMP');
-?>
-
-					<?php echo form_submit('submit', 'cari'); ?> 
-					<?php echo form_close(); ?>	
-					<br><br><br>
-					
-
+				Pencarian <br>
+				<form action="index" method="post">
+					<table border="0" cellpadding="0" cellspacing="0"  id="id-form" width="100%">
+						<tr>
+							<th valign="top">Tanggal:</td>
+							<td class="noheight">
+								<table border="0" cellpadding="0" cellspacing="0">
+									<tr  valign="top">
+										<td>			
+											<select name="d" id="d" class="styledselect-day">
+												<option value="">dd</option>
+												<?php for($i=1;$i<=31;$i++){
+													echo "<option value='".$i."'>".$i."</option>";
+												}?>
+											</select>
+										</td>
+										<td>
+											<select name="m" id="m" class="styledselect-month">
+												<option value="">mmm</option>
+											<?php for($i=1;$i<=12;$i++){
+												echo "<option value='".$i."'>".$i."</option>";
+											}?>
+											</select>
+										</td>
+										<td>
+											<select name="y" id="y"  class="styledselect-year">
+												<option value="">yyyy</option>
+											<?php for($i=1;$i<=2012;$i++){
+												echo "<option value='".$i."'>".$i."</option>";
+											}?>
+											</select>
+										</td>
+										<td>
+											<a href="" id="date-pick">
+												<img src="/school/images/forms/icon_calendar.jpg" alt="" />
+											</a>
+										</td>
+									</tr>
+								</table>
+							</td>
+							<th valign="top">No Induk:</th>
+							<td><input name="no_induk" type="text" class="inp-form" /></td>
+							<th valign="top">Nama:</th>
+							<td><input name="nama_person" type="text" class="inp-form" /></td>
+							<td><input type="submit" value="Cari" name="search" /></td>
+						</tr>
+					</table>
+				</form>
 				<!--  start product-table ..................................................................................... -->
 				<form id="mainform" action="">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
