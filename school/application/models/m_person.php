@@ -83,5 +83,52 @@ class m_person extends CI_Model {
 		$query = $this->db->query("select * from kategori");
 		return $query->result();
 	}
+	
+	public function getSearchNISiswa($key) {
+		$query = $this->db->query("select * from siswa where no_induk LIKE '%$key%' ORDER BY no_induk ASC");
+		return $query->result();
+	}
+	
+	public function getSearchNIGuru($key) {
+		$query = $this->db->query("select * from staff where no_induk LIKE '%$key%' AND tipe_staff = '1' ORDER BY no_induk ASC");
+		return $query->result();
+	}
+	
+	public function getSearchNIStaff($key) {
+		$query = $this->db->query("select * from staff where no_induk LIKE '%$key%' AND tipe_staff = '2' ORDER BY no_induk ASC");
+		return $query->result();
+	}
+	
+	public function getSearchNamaSiswa($key) {
+		$query = $this->db->query("select * from siswa 
+		where 
+		nama_person LIKE '%$key%' OR 
+		upper(nama_person) LIKE '%$key%' OR 
+		lower(nama_person) LIKE '%$key%' 
+		ORDER BY nama_person ASC");
+		return $query->result();
+	}
+	
+	public function getSearchNamaGuru($key) {
+		$query = $this->db->query("select * from staff 
+		where 
+		nama_person LIKE '%$key%' OR 
+		upper(nama_person) LIKE '%$key%' OR 
+		lower(nama_person) LIKE '%$key%' 
+		AND tipe_staff = '1'
+		ORDER BY nama_person ASC");
+		return $query->result();
+	}
+	
+	public function getSearchNamaStaff($key) {
+		$query = $this->db->query("select * from staff 
+		where 
+		nama_person LIKE '%$key%' OR 
+		upper(nama_person) LIKE '%$key%' OR 
+		lower(nama_person) LIKE '%$key%' 
+		AND tipe_staff = '2'
+		ORDER BY nama_person ASC");
+		return $query->result();
+	}
 }
 ?>

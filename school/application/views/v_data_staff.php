@@ -1,3 +1,19 @@
+				Cari berdasarkan nomor induk
+				<?php echo form_open('c_master_data/show_data_staff');?>
+				<? echo form_input('search_field');?>
+				<?php echo form_submit('submit', 'cari');?> 
+				<?php echo form_close();?>	
+				<br><br>
+				Atau,
+				<br>
+				
+				Cari berdasarkan nama
+				<?php echo form_open('c_master_data/show_data_staff');?>
+				<? echo form_input('search_fieldnama');?>
+				<?php echo form_submit('submit', 'cari');?> 
+				<?php echo form_close();?>	
+				<br><br><br>
+				
 				<?=$result?>
 				<!--  start product-table ..................................................................................... -->
 				<form id="mainform" action="">
