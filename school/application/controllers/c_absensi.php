@@ -14,31 +14,23 @@ class c_absensi extends CI_Controller {
 		}
 	}
 
-	public function index() {
-
+	public function index($src = null) {
+		if ($_POST) {
+			$d = $_REQUEST['d'] ? $_REQUEST['d'] : null;
+			$m = $_REQUEST['m'] ? $_REQUEST['m'] : null;
+			$y = $_REQUEST['y'] ? $_REQUEST['y'] : null;
+			$src['tanggal'] = $y . '-' . $m . '-' . $d;
+			$src['nama_person'] = $_REQUEST['nama_person'] ? $_REQUEST['nama_person'] : null;
+			$src['no_induk'] = $_REQUEST['no_induk'] ? $_REQUEST['no_induk'] : null;
+		}
 		if ($this->client_logon) {
-			//$this->redirectto($this->client_logon['id_prev']);
-
 			$this->load->model('m_absen');
-			$tanggal = $this->input->post('date');
-			if ($tanggal == 0) {
-				$getToday = $this->m_absen->getHariIni();
-
-				foreach ($getToday as $item) {
-					$tanggal = $item->hari_ini;
-				}
-			}
-
-			$tanggal = "'" . $tanggal . "'";
-
-			$this->data['rows'] = $this->m_absen->displayAbsen($tanggal);
+			$this->data['rows'] = $this->m_absen->display_absen($src);
 			$this->data['rows_tanggal'] = $this->m_absen->getTanggal();
-			$this->data['tanggal'] = $tanggal;
 			$this->data['title'] = "Data Absensi";
 			$this->load->view('v_header', $this->data);
 			$this->load->view('v_absensi', $this->data);
 			$this->load->view('v_footer', $this->data);
-
 		} else {
 			redirect('login');
 		}
@@ -67,7 +59,7 @@ class c_absensi extends CI_Controller {
 		$this->load->model('m_absen');
 		$keterangan = $this->input->post('keterangan');
 		$no = $this->input->post('no_absensi');
-		$this->m_absen->updateAbsensi($keterangan,$no);
+		$this->m_absen->updateAbsensi($keterangan, $no);
 		redirect(index_absensi);
 	}
 
@@ -98,8 +90,17 @@ class c_absensi extends CI_Controller {
 		$id = $_REQUEST['no_induk'];
 		$alasan = $_REQUEST['status_absen'];
 		$this->load->model('m_absen');
-		$result = $this->m_absen->insert($id,$alasan);
-		redirect('index_absensi');
+		$result = $this->m_absen->insert($id, $alasan);
+		redirect('c_admin/index');
+	}
+
+	function search() {
+		$d = $_REQUEST['d'] ? $_REQUEST['d'] : null;
+		$m = $_REQUEST['m'] ? $_REQUEST['m'] : null;
+		$y = $_REQUEST['y'] ? $_REQUEST['y'] : null;
+		$src['tanggal'] = $y . '-' . $m . '-' . $d;
+		$src['nama_person'] = $_REQUEST['nama_person'] ? $_REQUEST['nama_person'] : null;
+		$src['no_induk'] = $_REQUEST['no_induk'] ? $_REQUEST['no_induk'] : null;
 	}
 
 	function redirectto($prev) {
