@@ -22,19 +22,40 @@ class c_absensi extends CI_Controller {
 			$src['tanggal'] = $y . '-' . $m . '-' . $d;
 			$src['nama_person'] = $_REQUEST['nama_person'] ? $_REQUEST['nama_person'] : null;
 			$src['no_induk'] = $_REQUEST['no_induk'] ? $_REQUEST['no_induk'] : null;
+		}else{
+			$src['tanggal'] = date('Y-m-d');
+			$src['nama_person'] = null;
+			$src['no_induk'] = null;
 		}
 		if ($this->client_logon) {
 			$this->load->model('m_absen');
-			$this->data['rows'] = $this->m_absen->display_absen($src);
-			$this->data['rows_tanggal'] = $this->m_absen->getTanggal();
+			$this->data['rows'] = $this->m_absen->display_absen_siswa($src);
+			$this->data['tanggal'] = $src['tanggal'];
 			$this->data['title'] = "Data Absensi";
+			$this->data['report'] = "report_siswa";
+			$this->data['action'] = "index";
 			$this->load->view('v_header', $this->data);
 			$this->load->view('v_absensi', $this->data);
 			$this->load->view('v_footer', $this->data);
 		} else {
 			redirect('login');
 		}
-
+	}
+	
+	public function report_siswa($tgl) {
+			$src['tanggal'] = $tgl;
+			$this->load->model('m_absen');
+			$this->data['rows'] = $this->m_absen->display_absen_siswa($src);
+			$this->data['tanggal'] = $src['tanggal'];
+			$this->load->view('report', $this->data);
+	}
+	
+	public function report_guru($tgl) {
+			$src['tanggal'] = $tgl;
+			$this->load->model('m_absen');
+			$this->data['rows'] = $this->m_absen->display_absen_guru($src);
+			$this->data['tanggal'] = $src['tanggal'];
+			$this->load->view('report', $this->data);
 	}
 
 	public function absent() {
@@ -63,27 +84,32 @@ class c_absensi extends CI_Controller {
 		redirect(index_absensi);
 	}
 
-	public function displayBelumAbsen() {
-		$this->load->model('m_absen');
-		$tanggal = $this->input->post('date_belum');
-
-		if ($tanggal == 0) {
-			$getToday = $this->m_absen->getHariIni();
-
-			foreach ($getToday as $item) {
-				$tanggal = $item->hari_ini;
-			}
+	public function show_absen_guru($src = null) {
+		if ($_POST) {
+			$d = $_REQUEST['d'] ? $_REQUEST['d'] : null;
+			$m = $_REQUEST['m'] ? $_REQUEST['m'] : null;
+			$y = $_REQUEST['y'] ? $_REQUEST['y'] : null;
+			$src['tanggal'] = $y . '-' . $m . '-' . $d;
+			$src['nama_person'] = $_REQUEST['nama_person'] ? $_REQUEST['nama_person'] : null;
+			$src['no_induk'] = $_REQUEST['no_induk'] ? $_REQUEST['no_induk'] : null;
+		}else{
+			$src['tanggal'] = date('Y-m-d');
+			$src['nama_person'] = null;
+			$src['no_induk'] = null;
 		}
-
-		$tanggal = "'" . $tanggal . "'";
-
-		$this->data['title'] = "Data Yang Belum Absen";
-		$this->data['rows'] = $this->m_absen->displayBelumAbsen($tanggal);
-		$this->data['rows_tanggal'] = $this->m_absen->getTanggal();
-		$this->data['tanggal'] = $tanggal;
-		$this->load->view('v_header', $this->data);
-		$this->load->view('v_belum_absen', $this->data);
-		$this->load->view('v_footer', $this->data);
+		if ($this->client_logon) {
+			$this->load->model('m_absen');
+			$this->data['rows'] = $this->m_absen->display_absen_guru($src);
+			$this->data['tanggal'] = $src['tanggal'];
+			$this->data['title'] = "Data Absensi";
+			$this->data['report'] = "report_guru";
+			$this->data['action'] = "show_absen_guru";
+			$this->load->view('v_header', $this->data);
+			$this->load->view('v_absensi', $this->data);
+			$this->load->view('v_footer', $this->data);
+		} else {
+			redirect('login');
+		}
 	}
 
 	public function submit_absen() {
