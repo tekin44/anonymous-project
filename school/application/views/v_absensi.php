@@ -1,5 +1,5 @@
 				Pencarian <br>
-				<form action="index" method="post">
+				<form action="<?=$action?>" method="post">
 					<table border="0" cellpadding="0" cellspacing="0"  id="id-form" width="100%">
 						<tr>
 							<th valign="top">Tanggal:</td>
@@ -87,3 +87,12 @@
 				</table>
 				<!--  end product-table................................... --> 
 				</form>				
+				
+				
+				<div id="actions-box">
+					<a href="" class="action-slider"></a>
+					<div id="actions-box-slider">
+						<a href="/school/c_absensi/<?=$report?>/<?=$tanggal?>" class="action-edit">Import</a>
+					</div>
+					<div class="clear"></div>
+				</div>
