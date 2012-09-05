@@ -1,18 +1,19 @@
-				Cari berdasarkan nomor induk
-				<?php echo form_open('c_master_data/show_data_siswa');?>
-				<? echo form_input('search_field');?>
-				<?php echo form_submit('submit', 'cari');?> 
-				<?php echo form_close();?>	
-				<br><br>
-				Atau,
-				<br>
-				
-				Cari berdasarkan nama
-				<?php echo form_open('c_master_data/show_data_siswa');?>
-				<? echo form_input('search_fieldnama');?>
-				<?php echo form_submit('submit', 'cari');?> 
-				<?php echo form_close();?>	
-				<br><br><br>
+			<table border="0" cellpadding="0" cellspacing="0"  id="id-form" width="100%">
+					<tr>
+						<td>Cari berdasarkan nomor induk</td>
+						<td>Cari berdasarkan nama</td>
+					</tr>
+					
+					<tr>
+						<?php echo form_open('c_master_data/show_data_siswa');?>
+						<td><input name="search_field" type="text" class="inp-form" /> <?php echo form_submit('submit', 'cari');?> </td>
+						<?php echo form_close();?>
+						
+						<?php echo form_open('c_master_data/show_data_siswa');?>
+						<td><input name="search_fieldnama" type="text" class="inp-form" /> <?php echo form_submit('submit', 'cari');?></td>
+						<?php echo form_close();?>
+					</tr>
+			</table>
 				
 				<!--  start product-table ..................................................................................... -->
 				<form id="mainform" action="">
