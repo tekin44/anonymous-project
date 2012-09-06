@@ -191,7 +191,7 @@ $(document).pngFix( );
 			<div class="showhide-account"><img src="/school/images/shared/nav/nav_myaccount.gif" width="93" height="14" alt="" /></div>
 			-->
 			<div class="nav-divider">&nbsp;</div>
-			<a href="http://localhost/school/logout" id="logout"><img src="/school/images/shared/nav/nav_logout.gif" width="64" height="14" alt="" /></a>
+			<a href="http://192.168.17.2/school/logout" id="logout"><img src="/school/images/shared/nav/nav_logout.gif" width="64" height="14" alt="" /></a>
 			<div class="clear">&nbsp;</div>
 		
 			<!--  start account-content -->	
