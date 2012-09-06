@@ -28,11 +28,10 @@ class m_kategori extends CI_Model {
 		return $query->result();
 	}
 
-	public function tambahKategoriSiswa($id, $nis) {
+	public function tambahKategoriSiswa($value) {
 		$this->load->database();
-		$sql = "insert into kategori_siswa values('$id','$nis')";
-		$query = $this->db->query($sql);
-		return $sql;
+		$insert = $this->db->insert('kategori_siswa',$value);
+		return $insert;
 	}
 }
 ?>

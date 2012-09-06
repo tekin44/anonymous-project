@@ -19,6 +19,7 @@
 				<form id="mainform" action="">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
 				<tr>
+					<th class="table-header-repeat line-left"><a href="">No</a></th>
 					<th class="table-header-repeat line-left"><a href="">NIS</a></th>
 					<th class="table-header-repeat line-left minwidth-1"><a href="">Nama</a></th>
 					<th class="table-header-repeat line-left minwidth-1"><a href="">Alamat</a></th>
@@ -26,9 +27,13 @@
 					<th class="table-header-options line-left"><a href="">Action</a></th>
 				</tr>
 				
-				<?php foreach ($siswa as $item){?>
+				<?php 
+					$i = 0;
+					foreach ($siswa as $item){
+				?>
 				
 				<tr class="alternate-row">
+					<td><?=++$i ?></td>
 					<td><?=$item->no_induk ?></td>
 					<td><?=$item->nama_person ?></td>
 					<td><?=$item->alamat_siswa ?></td>

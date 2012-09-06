@@ -15,6 +15,11 @@ class m_siswa extends CI_Model {
 		return $query->result();
 	}
 	
+	public function get_pphone_by_id($id) {
+		$query = $this->db->query("select no_hp_orang_tua from siswa where no_induk = '" . $id . "'");
+		return $query->result();
+	}
+	
 	public function check($id){
 		$query = $this->db->query("select count(*) as c from siswa where no_induk = '" . $id . "'");
 		$c = $query->result();
@@ -22,6 +27,20 @@ class m_siswa extends CI_Model {
 			return false;
 		else
 			return true;
+	}
+	
+	public function get_pphone_by_kat($kats) {
+		$where = " WHERE ";
+		$value = array();
+		foreach($kats as $kat){
+			$value[] = "id_kategori = '".$kat."'";	
+		}
+		$where .= implode(' OR ',$value);
+		$sql = "SELECT DISTINCT(no_hp_orang_tua) FROM siswa a " .
+				"INNER JOIN kategori_siswa b " .
+				"ON a.no_induk = b.no_induk".$where;
+		$query = $this->db->query($sql);
+		return $query->result();
 	}
 }
 ?>

@@ -113,8 +113,9 @@ class c_master_data extends CI_Controller {
 
 	public function form_siswa($flag,$id=0) {
 		$this->load->model('m_person');
+		$this->load->model('m_kategori_siswa');
 		$this->data['items'] = $this->m_person->get_unregister();
-		$this->data['rows'] = $this->m_person->getKategori();
+		$this->data['kats'] = $this->m_kategori_siswa->get_kategori($id);
 		if($flag==1)
 			$this->data['title'] = "Tambah Data Siswa";
 		else{
@@ -141,39 +142,46 @@ class c_master_data extends CI_Controller {
 		$this->load->view('v_footer', $this->data);
 	}
 	
-	public function edit_siswa() {
-		$value = array();
-		$result = null;
+	public function submit() {
 		$flag = $_REQUEST['flag'];
-		$row['nama_person'] = $_REQUEST['nama_person'];
-		$row['status_person'] = '2';
-		$this->m_person->update($_REQUEST['no_induk'],$row);	
+		$this->update_person();
+		$this->insert_siswa($flag);
+		$this->add_kategori();
+		redirect('c_master_data/show_data_siswa');
+	}
+	
+	public function update_person() {
 		$value['nama_person'] = $_REQUEST['nama_person'];
+		$value['status_person'] = '2';
+		$this->m_person->update($_REQUEST['no_induk'],$value);	
+	}
+	
+	public function insert_siswa($flag){
 		if($flag==1){
 			$value['no_induk'] = $_REQUEST['no_induk'];
-		}
+		};
+		$value['nama_person'] = $_REQUEST['nama_person'];
 		$value['alamat_siswa'] = $_REQUEST['alamat_siswa'];
 		$value['nama_orang_tua'] = $_REQUEST['nama_orang_tua'];
 		$value['no_hp_siswa'] = $_REQUEST['no_hp_siswa'];
 		$value['no_hp_orang_tua'] = $_REQUEST['no_hp_orang_tua'];
 		$value['email_siswa'] = $_REQUEST['email_siswa'];
 		$value['password'] = md5($_REQUEST['password']);
-		$kategori = $this->input->post('assign');
-		
-		foreach ($this->input->post('assign') as $key => $value)
-		{
-		echo "Index {$key}'s value is {$value}.";
+		if($flag==1)
+			$result = $this->m_person->insert_siswa($value);
+		else
+			$result = $this->m_person->edit_siswa($_REQUEST['no_induk'],$value);	
+	}
+	
+	public function add_kategori(){
+		$value['no_induk'] = $_REQUEST['no_induk'];
+		$kat = $_REQUEST['kat'];
+		$this->load->model('m_kategori_siswa');
+		$this->m_kategori_siswa->delete($value);
+		for($i = 0;$i<count($kat);$i++){
+			$value['id_kategori'] = $kat[$i];
+			$this->m_kategori_siswa->add($value);
 		}
-		
-		// if($flag==1)
-			// $result = $this->m_person->insert_siswa($value);
-		// else
-			// $result = $this->m_person->edit_siswa($_REQUEST['no_induk'],$value);
-		// if($result)
-			// $this->msg = $this->m_message->show_success("Data Berhasil Disimpan");
-		// else
-			// $this->msg = $this->m_message->show_error("Data Gagal Disimpan");
-		// redirect('data_siswa');	
 	}
 	
 	public function edit_staff() {

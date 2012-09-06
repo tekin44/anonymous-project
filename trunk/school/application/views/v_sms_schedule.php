@@ -3,9 +3,8 @@
 				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
 				<tr>
 					<th class="table-header-repeat line-left"><a href="">No</a></th>
-					<th class="table-header-repeat line-left"><a href="">Nama Pesan</a></th>
+					<th class="table-header-repeat line-left minwidth-1"><a href="">Nama Pesan</a></th>
 					<th class="table-header-repeat line-left minwidth-1"><a href="">Isi Pesan</a></th>
-					<th class="table-header-repeat line-left"><a href="">Kategori</a></th>
 					<th class="table-header-options line-left"><a href="">Tanggal Kirim</a></th>
 					<th class="table-header-options line-left"><a href="">Status Pengiriman</a></th>
 					<th class="table-header-options line-left"><a href="">Action</a></th>
@@ -23,7 +22,6 @@
 					<td><?=++$i ?></td>
 					<td><?=$item->nama_pesan ?></td>
 					<td><?=$item->isi_pesan ?></td>
-					<td><?=$item->nama_kategori ?></td>
 					<td><?=$item->tgl_pengiriman ?></td>
 					<td><?=$status ?></td>
 					<td>
