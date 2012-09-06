@@ -15,7 +15,7 @@ class m_login extends CI_Model {
 	}
 
 	public function validate($username, $password) {
-		$query = $this->db->query("select * from users where no_induk = '".$username."' and user_pass = '".md5($password)."'");
+		$query = $this->db->query("select * from users where user_name = '".$username."' and user_pass = '".md5($password)."'");
 		if ($query->num_rows() != 0) {
 			foreach ($query->result() as $row){
 				$client['id_prev'] = $row->id_prev;
