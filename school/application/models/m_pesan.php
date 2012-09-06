@@ -6,13 +6,13 @@ class m_pesan extends CI_Model {
 
 	public function get_pesans() {
 		$this->load->database();
-		$query = $this->db->query("select * from pesan a inner join kategori b on a.id_kategori = b.id_kategori");
+		$query = $this->db->query("select * from pesan");
 		return $query->result();
 	}
 
 	public function get_pesan($id) {
 		$this->load->database();
-		$query = $this->db->query("select * from pesan a inner join kategori b on a.id_kategori = b.id_kategori where id_pesan = '".$id."'");
+		$query = $this->db->query("select * from pesan where id_pesan = '".$id."'");
 		return $query->result();
 	}
 
@@ -22,7 +22,7 @@ class m_pesan extends CI_Model {
 		return $query;
 	}
 
-	public function edit($value,$id) {
+	public function edit($id,$value) {
 		$this->load->database();
 		$query = $this->db->update("pesan",$value,"id_pesan = '".$id."'");
 		return $query;

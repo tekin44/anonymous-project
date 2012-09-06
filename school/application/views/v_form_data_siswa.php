@@ -10,20 +10,21 @@
 			$password = $flag==2?'********':'';
 		?>
 		<!-- start id-form -->
-		<form action='/school/c_master_data/edit_siswa' method='post'>
+		<form action='/school/c_master_data/submit' method='post'>
 		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
 		<tr>
 			<th valign="top">No Induk:</th>
-			<!-- cik rada dikomen hela
+			<?php if($flag=='1'){ ?>
 			<td>
 				<select name="no_induk" class="styledselect_form_1">
-				<?php //foreach($items as $item){ ?>
-					<option value="<?//=$item->no_induk?>"><?//=$item->no_induk?></option>
-				<?php //} ?>
+				<?php foreach($items as $item){ ?>
+					<option value="<?=$item->no_induk?>"><?=$item->no_induk?></option>
+				<?php } ?>
 				</select>
 			</td>
-			-->
-			<td><input name='no_induk' type="text" class="inp-form" value="<?=$no_induk?>" /></td>
+			<?php }else{ ?>
+			<td><input name='no_induk' readonly="readonly" type="text" class="inp-form" value="<?=$no_induk?>" /></td>
+			<?php } ?>
 		</tr>
 		<tr>
 			<th valign="top">Nama Siswa:</th>
@@ -53,25 +54,24 @@
 			<th valign="top">Password:</th>
 			<td><input name='password' <?=$disable?> type="password" class="inp-form"  value="<?=$password?>" /></td>
 		</tr>
+		<tr>
+			<th valign="top">Kategori:</th>
+			<td></td>
+		</tr>
 		</table>
-		
-		
-				<!--  start product-table ..................................................................................... -->
-				
-				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
+			<table border="0" align="center" width="45%" cellpadding="0" cellspacing="0" id="product-table">
+				<?php foreach($kats as $kat){ 
+					$check = "";
+					if($kat->checked)
+						$check = "checked"
+				?>
 				<tr>
-					<th class="table-header-repeat line-left minwidth-1"><a href="">Termasuk dalam kategori</a>	</th>
-					<th class="table-header-repeat line-left minwidth-1"><a href=""></a>	</th>
+					<td width="25"><input name="kat[]" <?=$check?> value="<?=$kat->id_kategori?>" type="checkbox"/></td>
+					<td><?=$kat->nama_kategori?></td>
 				</tr>
-				<?php foreach ($rows as $items){?>
-				<tr>
-					<td><?=$items->nama_kategori?></td>
-					<td><input type="checkbox" name="assign[]" value=<?=$items->id_kategori?>><?=$items->nama_kategori?></td>
-				</tr>
-				<?}?>
-				</table>
-				
-		
+				<?php } ?>
+			</table>
+		<table>
 		<tr>
 			<th>&nbsp;</th>
 			<td valign="top">
@@ -80,6 +80,7 @@
 			</td>
 			<td></td>
 		</tr>
+		</table>
 		<input name="flag" type="hidden" value="<?=$flag?>"/>
 		</form>
 		<!-- end id-form  -->
