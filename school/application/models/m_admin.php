@@ -8,7 +8,7 @@ class m_admin extends CI_Model {
 		{
 			$this->load->database();
 			$query = $this->db->query("
-				select * from users a inner join person b on a.no_induk = b.no_induk
+				select * from users a inner join person b on a.no_induk = b.no_induk ORDER BY nama_person
 				");
 			return $query->result();
 		}
@@ -50,7 +50,7 @@ class m_admin extends CI_Model {
 		{
 			$this->load->database();
 			$query = $this->db->query("
-				select a.id_menu, a.id_prev, b.nama_menu as parent, a.nama_menu, a.action_menu from menu a left join (select * from menu) b on a.men_id_menu = b.id_menu
+				select a.id_menu, a.id_prev, b.nama_menu as parent, a.nama_menu, a.action_menu from menu a left join (select * from menu) b on a.men_id_menu = b.id_menu ORDER BY b.nama_menu
 				");
 			return $query->result();
 		}

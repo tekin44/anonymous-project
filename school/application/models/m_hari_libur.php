@@ -6,7 +6,7 @@ class m_hari_libur extends CI_Model {
 
 	public function get_hari_liburs() {
 		$this->load->database();
-		$query = $this->db->query("select * from hari_libur");
+		$query = $this->db->query("select * from hari_libur ORDER BY tanggal_hari_libur");
 		return $query->result();
 	}
 	
