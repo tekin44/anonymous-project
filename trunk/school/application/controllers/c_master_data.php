@@ -25,21 +25,19 @@ class c_master_data extends CI_Controller {
 			$this->data['result'] = $this->msg;
 			$this->data['title'] = "Data Siswa";
 			
-			$key = $this->input->post('search_field');
-			$keynama = $this->input->post('search_fieldnama');
+			$key1 = $this->input->post('search_field1');
+			$key2 = $this->input->post('search_field2');
 			
-			if ($key == NULL && $keynama == NULL)
+			if ($key1 == NULL && $key2 == NULL)
 			{
-			$this->data['siswa'] = $this->m_person->getAllSiswa();
+				$this->data['siswa'] = $this->m_person->getAllSiswa();
 			}
-			else if ($key != NULL)
-			{
-			$this->data['siswa'] = $this->m_person->getSearchNISiswa($key);
-			}
-			else
-			{
-			$this->data['siswa'] = $this->m_person->getSearchNamaSiswa($keynama);
-			}
+				else if ($key1 != NULL){
+					$this->data['siswa'] = $this->m_person->getSearchNISiswa($key1);
+				}
+					else{
+						$this->data['siswa'] = $this->m_person->getSearchNamaSiswa($key2);
+					}
 			
 			$this->load->view('v_header', $this->data);
 			$this->load->view('v_data_siswa', $this->data);
@@ -54,21 +52,19 @@ class c_master_data extends CI_Controller {
 		$this->data['result'] = $this->msg;
 		$this->data['title'] = "Data Guru";
 		
-			$key = $this->input->post('search_field');
-			$keynama = $this->input->post('search_fieldnama');
+			$key1 = $this->input->post('search_field1');
+			$key2 = $this->input->post('search_field2');
 			
-			if ($key == NULL && $keynama == NULL)
+			if ($key1 == NULL && $key2 == NULL)
 			{
-			$this->data['guru'] = $this->m_person->getAllStaff(1);
+				$this->data['guru'] = $this->m_person->getAllStaff(1);
 			}
-			else if ($key != NULL)
-			{
-			$this->data['guru'] = $this->m_person->getSearchNIGuru($key);
-			}
-			else
-			{
-			$this->data['guru'] = $this->m_person->getSearchNamaGuru($keynama);
-			}
+				else if ($key1 != NULL){
+					$this->data['guru'] = $this->m_person->getSearchNIGuru($key1);
+				}
+					else{
+						$this->data['guru'] = $this->m_person->getSearchNamaGuru($key2);
+					}
 		
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_data_guru', $this->data);
@@ -85,21 +81,19 @@ class c_master_data extends CI_Controller {
 		$this->data['result'] = $this->msg;
 		$this->data['title'] = "Data Staff";
 		
-		$key = $this->input->post('search_field');
-			$keynama = $this->input->post('search_fieldnama');
+		$key1 = $this->input->post('search_field1');
+		$key2 = $this->input->post('search_field2');
 			
-			if ($key == NULL && $keynama == NULL)
+			if ($key1 == NULL && $key2 == NULL)
 			{
-			$this->data['staff'] = $this->m_person->getAllStaff(2);
+				$this->data['staff'] = $this->m_person->getAllStaff(2);
 			}
-			else if ($key != NULL)
-			{
-			$this->data['staff'] = $this->m_person->getSearchNIStaff($key);
-			}
-			else
-			{
-			$this->data['staff'] = $this->m_person->getSearchNamaStaff($keynama);
-			}
+				else if ($key1 != NULL){
+					$this->data['staff'] = $this->m_person->getSearchNIStaff($key1);
+				}
+					else{
+						$this->data['staff'] = $this->m_person->getSearchNamaStaff($key2);
+					}
 		
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_data_staff', $this->data);

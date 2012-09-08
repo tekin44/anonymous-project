@@ -16,8 +16,22 @@ class c_kategori extends CI_Controller {
 
 	public function index() {
 		$this->load->model('m_kategori');
-		$this->data['rows'] = $this->m_kategori->displayKategori();
 		$this->data['title'] = "Data Kategori";
+		
+		$key1 = $this->input->post('search_field1');
+		$key2 = $this->input->post('search_field2');
+			
+			if ($key1 == NULL && $key2 == NULL)
+			{
+				$this->data['rows'] = $this->m_kategori->displayKategori();
+			}
+				else if ($key1 != NULL){
+					$this->data['rows'] = $this->m_kategori->searchIdKategori($key1);
+				}
+					else{
+						$this->data['rows'] = $this->m_kategori->searchNamaKategori($key2);
+					}
+		
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_kategori', $this->data);
 		$this->load->view('v_footer', $this->data);

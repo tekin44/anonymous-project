@@ -20,8 +20,22 @@ class c_admin extends CI_Controller {
 	//if ($this->client_logon) {
 			//$this->redirectto($this->client_logon['id_prev']);
 			$this->load->model('m_admin');
-			$this->data['rows'] = $this->m_admin->displayUser();
 			$this->data['title'] = "Data User";
+			
+			$key1 = $this->input->post('search_field1');
+			$key2 = $this->input->post('search_field2');
+			
+			if ($key1 == NULL && $key2 == NULL)
+			{
+				$this->data['rows'] = $this->m_admin->displayUser();
+			}
+				else if ($key1 != NULL){
+					$this->data['rows'] = $this->m_admin->searchNamaUser($key1);
+				}
+					else{
+						$this->data['rows'] = $this->m_admin->searchWewenangUser($key2);
+					}
+			
 			$this->load->view('v_header', $this->data);
 			$this->load->view('v_admin_display_user', $this->data);
 			$this->load->view('v_footer', $this->data);

@@ -1,4 +1,19 @@
-
+			<table border="0" cellpadding="0" cellspacing="0"  id="id-form" width="100%">
+					<tr>
+						<td>Cari berdasarkan ID kategori</td>
+						<td>Cari berdasarkan nama kategori</td>
+					</tr>
+					
+					<tr>
+						<?php echo form_open('c_kategori/index');?>
+						<td><input name="search_field1" type="text" class="inp-form" /> <?php echo form_submit('submit', 'Cari');?> </td>
+						<?php echo form_close();?>
+						
+						<?php echo form_open('c_kategori/index');?>
+						<td><input name="search_field2" type="text" class="inp-form" /> <?php echo form_submit('submit', 'Cari');?></td>
+						<?php echo form_close();?>
+					</tr>
+			</table>
 
 				<!--  start product-table ..................................................................................... -->
 				<form id="mainform" action="">

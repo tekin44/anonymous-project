@@ -6,11 +6,11 @@
 					
 					<tr>
 						<?php echo form_open('c_master_data/show_data_siswa');?>
-						<td><input name="search_field" type="text" class="inp-form" /> <?php echo form_submit('submit', 'cari');?> </td>
+						<td><input name="search_field1" type="text" class="inp-form" /> <?php echo form_submit('submit', 'Cari');?> </td>
 						<?php echo form_close();?>
 						
 						<?php echo form_open('c_master_data/show_data_siswa');?>
-						<td><input name="search_fieldnama" type="text" class="inp-form" /> <?php echo form_submit('submit', 'cari');?></td>
+						<td><input name="search_field2" type="text" class="inp-form" /> <?php echo form_submit('submit', 'Cari');?></td>
 						<?php echo form_close();?>
 					</tr>
 			</table>
