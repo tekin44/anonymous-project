@@ -33,5 +33,25 @@ class m_kategori extends CI_Model {
 		$insert = $this->db->insert('kategori_siswa',$value);
 		return $insert;
 	}
+	
+	public function searchIdKategori($key1) {
+		$query = $this->db->query("select * from kategori
+		where 
+		id_kategori LIKE '%$key1%' OR 
+		upper(id_kategori) LIKE '%$key1%' OR 
+		lower(id_kategori) LIKE '%$key1%' 
+		ORDER BY id_kategori ASC");
+		return $query->result();
+	}
+	
+	public function searchNamaKategori($key2) {
+		$query = $this->db->query("select * from kategori
+		where 
+		nama_kategori LIKE '%$key2%' OR 
+		upper(nama_kategori) LIKE '%$key2%' OR 
+		lower(nama_kategori) LIKE '%$key2%' 
+		ORDER BY nama_kategori ASC");
+		return $query->result();
+	}
 }
 ?>

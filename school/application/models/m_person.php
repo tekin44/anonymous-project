@@ -84,48 +84,48 @@ class m_person extends CI_Model {
 		return $query->result();
 	}
 	
-	public function getSearchNISiswa($key) {
-		$query = $this->db->query("select * from siswa where no_induk LIKE '%$key%' ORDER BY no_induk ASC");
+	public function getSearchNISiswa($key1) {
+		$query = $this->db->query("select * from siswa where no_induk LIKE '%$key1%' ORDER BY no_induk ASC");
 		return $query->result();
 	}
 	
-	public function getSearchNIGuru($key) {
-		$query = $this->db->query("select * from staff where no_induk LIKE '%$key%' AND tipe_staff = '1' ORDER BY no_induk ASC");
+	public function getSearchNIGuru($key1) {
+		$query = $this->db->query("select * from staff where no_induk LIKE '%$key1%' AND tipe_staff = '1' ORDER BY no_induk ASC");
 		return $query->result();
 	}
 	
-	public function getSearchNIStaff($key) {
-		$query = $this->db->query("select * from staff where no_induk LIKE '%$key%' AND tipe_staff = '2' ORDER BY no_induk ASC");
+	public function getSearchNIStaff($key1) {
+		$query = $this->db->query("select * from staff where no_induk LIKE '%$key1%' AND tipe_staff = '2' ORDER BY no_induk ASC");
 		return $query->result();
 	}
 	
-	public function getSearchNamaSiswa($key) {
+	public function getSearchNamaSiswa($key2) {
 		$query = $this->db->query("select * from siswa 
 		where 
-		nama_person LIKE '%$key%' OR 
-		upper(nama_person) LIKE '%$key%' OR 
-		lower(nama_person) LIKE '%$key%' 
+		nama_person LIKE '%$key2%' OR 
+		upper(nama_person) LIKE '%$key2%' OR 
+		lower(nama_person) LIKE '%$key2%' 
 		ORDER BY nama_person ASC");
 		return $query->result();
 	}
 	
-	public function getSearchNamaGuru($key) {
+	public function getSearchNamaGuru($key2) {
 		$query = $this->db->query("select * from staff 
 		where 
-		nama_person LIKE '%$key%' OR 
-		upper(nama_person) LIKE '%$key%' OR 
-		lower(nama_person) LIKE '%$key%' 
+		nama_person LIKE '%$key2%' OR 
+		upper(nama_person) LIKE '%$key2%' OR 
+		lower(nama_person) LIKE '%$key2%' 
 		AND tipe_staff = '1'
 		ORDER BY nama_person ASC");
 		return $query->result();
 	}
 	
-	public function getSearchNamaStaff($key) {
+	public function getSearchNamaStaff($key2) {
 		$query = $this->db->query("select * from staff 
 		where 
-		nama_person LIKE '%$key%' OR 
-		upper(nama_person) LIKE '%$key%' OR 
-		lower(nama_person) LIKE '%$key%' 
+		nama_person LIKE '%$key2%' OR 
+		upper(nama_person) LIKE '%$key2%' OR 
+		lower(nama_person) LIKE '%$key2%' 
 		AND tipe_staff = '2'
 		ORDER BY nama_person ASC");
 		return $query->result();

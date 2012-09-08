@@ -46,8 +46,6 @@ class m_admin extends CI_Model {
 			");
 		}
 		
-		
-		
 	public function displayMenu() 
 		{
 			$this->load->database();
@@ -107,5 +105,25 @@ class m_admin extends CI_Model {
 			$this->load->database();
 			$query = $this->db->update("menu",$data,"id_menu = '".$id."'");
 		}
+		
+	public function searchNamaUser($key1) {
+		$query = $this->db->query("select * from users a inner join person b on a.no_induk = b.no_induk
+		where 
+		nama_person LIKE '%$key1%' OR 
+		upper(nama_person) LIKE '%$key1%' OR 
+		lower(nama_person) LIKE '%$key1%' 
+		ORDER BY nama_person ASC");
+		return $query->result();
+	}
+	
+	public function searchWewenangUser($key2) {
+		$query = $this->db->query("select * from users a inner join person b on a.no_induk = b.no_induk
+		where 
+		id_prev LIKE '%$key2%' OR 
+		upper(id_prev) LIKE '%$key2%' OR 
+		lower(id_prev) LIKE '%$key2%' 
+		ORDER BY id_prev ASC");
+		return $query->result();
+	}
 }
 ?>
