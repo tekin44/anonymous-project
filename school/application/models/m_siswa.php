@@ -8,6 +8,12 @@ class m_siswa extends CI_Model {
 		parent :: __construct();
 		$this->load->database();
 	}
+	
+	public function get_siswas(){
+		$sql = "select * from siswa ORDER BY nama_person";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 
 	public function getByKategori($kategori) {
 		$query = $this->db->query("select * from kategori_siswa a inner join 
