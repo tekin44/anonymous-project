@@ -377,6 +377,86 @@ class c_master_data extends CI_Controller {
 		redirect('c_master_data/show_pelajaran');
 	}
 	
+	
+	public function show_pengajar_kelas() {
+		/*if($this->client_logon)*/
+		//$this->data['result'] = $this->msg;
+		$this->data['title'] = "Data Pengajar Kelas";
+		
+		$this->load->model('m_pengajar_kelas');
+		$this->data['rows'] = $this->m_pengajar_kelas->show_pengajar_kelas();
+		
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_pengajar_kelas', $this->data);
+		$this->load->view('v_footer', $this->data);
+		/*}
+		else
+		{
+			redirect('login');
+		}*/
+	}
+	
+	public function submit_pengajar_kelas() {
+		$this->load->model('m_pengajar_kelas');
+		$nomor_induk_pengajar = $this->input->post('nomor_induk_pengajar');
+		$id_kelas = $this->input->post('id_kelas');
+		$nilai_kelulusan = $this->input->post('nilai_kelulusan');
+		
+		$this->m_pengajar_kelas->tambah_pengajar_kelas($nomor_induk_pengajar,$id_kelas,$nilai_kelulusan);
+		redirect('c_master_data/show_pengajar_kelas');
+	}
+	
+	
+	public function tambah_pengajar_kelas(){
+		/*if($this->client_logon)*/
+		//$this->data['result'] = $this->msg;
+		$this->data['title'] = "Tambah Data Pengajar Kelas";
+		
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_tambah_pengajar_kelas', $this->data);
+		$this->load->view('v_footer', $this->data);
+		/*}
+		else
+		{
+			redirect('login');
+		}*/
+	}
+	
+	public function delete_pengajar_kelas($nomor_induk_pengajar,$id_kelas) {
+		$this->load->model('m_pengajar_kelas');
+		$result = $this->m_pengajar_kelas->delete_pengajar_kelas($nomor_induk_pengajar,$id_kelas);
+		redirect('c_master_data/show_pengajar_kelas');
+	}
+	
+	public function show_siswa() {
+		//if($this->client_logon){
+			$this->data['result'] = $this->msg;
+			$this->data['title'] = "Data Siswa";
+			
+			$key1 = $this->input->post('search_field1');
+			$key2 = $this->input->post('search_field2');
+			
+			if ($key1 == NULL && $key2 == NULL)
+			{
+				$this->load->model('m_siswa');
+				$this->data['siswa'] = $this->m_siswa->get_siswas();
+			}
+				else if ($key1 != NULL){
+					$this->data['siswa'] = $this->m_siswa->getSearchNISiswa($key1);
+				}
+					else{
+						$this->data['siswa'] = $this->m_siswa->getSearchNamaSiswa($key2);
+					}
+			
+			$this->load->view('v_header', $this->data);
+			$this->load->view('v_siswa', $this->data);
+			$this->load->view('v_footer', $this->data);
+		//}else{
+			//redirect('login');
+		//}
+	}
+	
+	
 	function redirectto($prev) {
 		switch ($prev) {
 			case 'absen' :
