@@ -20,5 +20,19 @@ class m_kelas extends CI_Model {
 		return $query->result();
 	}
 	
+	public function update($id_kelas,$nama_kelas) {
+		$this->load->database();
+		$query = $this->db->query("
+						update kelas set nama_kelas = '$nama_kelas' where id_kelas = $id_kelas
+						");
+	}
+	
+	public function tambah_kelas($id_kelas,$nama_kelas) {
+		$this->load->database();
+		$query = $this->db->query("
+						insert into kelas values ($id_kelas, '$nama_kelas')
+						");
+	}
+	
 }
 ?>

@@ -227,7 +227,7 @@ class c_master_data extends CI_Controller {
 	public function show_kelas() {
 		/*if($this->client_logon)*/
 		//$this->data['result'] = $this->msg;
-		$this->data['title'] = "Edit Data Kelas";
+		$this->data['title'] = "Data Kelas";
 		
 		$this->load->model('m_kelas');
 		$this->data['rows'] = $this->m_kelas->show_kelas();
@@ -245,13 +245,47 @@ class c_master_data extends CI_Controller {
 	public function edit_kelas($id_kelas) {
 		/*if($this->client_logon)*/
 		//$this->data['result'] = $this->msg;
-		$this->data['title'] = "Data Kelas";
+		$this->data['title'] = "Edit Data Kelas";
 		
 		$this->load->model('m_kelas');
 		$this->data['rows'] = $this->m_kelas->edit_kelas($id_kelas);
 		
 		$this->load->view('v_header', $this->data);
-		$this->load->view('v_form_kelas', $this->data);
+		$this->load->view('v_edit_kelas', $this->data);
+		$this->load->view('v_footer', $this->data);
+		/*}
+		else
+		{
+			redirect('login');
+		}*/
+	}
+	
+	public function submit_kelas() {
+		$this->load->model('m_kelas');
+		$id_kelas = $this->input->post('id_kelas');
+		$nama_kelas = $this->input->post('nama_kelas');
+		
+		$this->m_kelas->tambah_kelas($id_kelas,$nama_kelas);
+		redirect('c_master_data/show_kelas');
+	}
+	
+	public function update_kelas() {
+		$this->load->model('m_kelas');
+	
+		$id_kelas = $this->input->post('id_kelas');
+		$nama_kelas = $this->input->post('nama_kelas');
+		$this->m_kelas->update($id_kelas,$nama_kelas);	
+		
+		redirect('c_master_data/show_kelas');
+	}
+	
+	public function tambah_kelas(){
+		/*if($this->client_logon)*/
+		//$this->data['result'] = $this->msg;
+		$this->data['title'] = "Tambah Data Kelas";
+		
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_tambah_kelas', $this->data);
 		$this->load->view('v_footer', $this->data);
 		/*}
 		else
