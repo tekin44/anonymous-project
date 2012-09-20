@@ -22,8 +22,6 @@
 					<th class="table-header-repeat line-left"><a href="">No</a></th>
 					<th class="table-header-repeat line-left"><a href="">NIS</a></th>
 					<th class="table-header-repeat line-left minwidth-1"><a href="">Nama</a></th>
-					<th class="table-header-repeat line-left minwidth-1"><a href="">Alamat</a></th>
-					<th class="table-header-repeat line-left"><a href="">Nama Orang Tua</a></th>
 					<th class="table-header-options line-left"><a href="">Action</a></th>
 				</tr>
 				
@@ -34,13 +32,10 @@
 				
 				<tr class="alternate-row">
 					<td><?=++$i ?></td>
-					<td><?=$item->no_induk ?></td>
-					<td><a href="v_nilai/<?=$item->no_induk?>"><?=$item->nama_person ?></a></td>
-					<td><?=$item->alamat_siswa ?></td>
-					<td><?=$item->nama_orang_tua ?></td>
+					<td><?=$item->nomor_induk_siswa ?></td>
+					<td><?=$item->nama_siswa ?></td>
 					<td>
-					<?="<a href='".base_url()."c_master_data/form_siswa/2/$item->no_induk' title='Edit' class='icon-1 info-tooltip'>";?></a>
-					<?="<a href='".base_url()."c_master_data/delete/1/$item->no_induk' title='Delete' class='icon-2 info-tooltip'>";?></a>
+					<?="<a href='".base_url()."c_nilai/form_siswa/2/$item->nomor_induk_siswa' title='Edit' class='icon-1 info-tooltip'>";?></a>
 					</td>
 				</tr>
 				
@@ -48,12 +43,3 @@
 				</table>
 				<!--  end product-table................................... --> 
 				</form>
-				<!--  start actions-box ............................................... -->
-				<div id="actions-box">
-					<a href="" class="action-slider"></a>
-					<div id="actions-box-slider">
-						<a href="/school/c_master_data/form_siswa/1" class="action-edit">Add</a>
-					</div>
-					<div class="clear"></div>
-				</div>
-				<!-- end actions-box........... -->

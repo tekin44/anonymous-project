@@ -10,17 +10,7 @@ class m_person extends CI_Model {
 	}
 
 	public function get_unregister() {
-		$query = $this->db->query("select * from person where status_person = '1'");
-		return $query->result();
-	}
-
-	public function getAllSiswa() {
-		$query = $this->db->query("select * from siswa ORDER BY nama_person");
-		return $query->result();
-	}
-
-	public function getSiswa($id) {
-		$query = $this->db->query("select * from siswa where no_induk = '".$id."'");
+		$query = $this->db->query("select * from users where status_user = '1'");
 		return $query->result();
 	}
 	
@@ -34,20 +24,7 @@ class m_person extends CI_Model {
 		return $query->result();
 	}
 	
-	public function insert_siswa($data) {
-		$insert = $this->db->insert("siswa",$data);
-		return $insert;
-	}
 	
-	public function edit_siswa($id,$data) {
-		$insert = $this->db->update('siswa', $data, "no_induk = '".$id."'"); 
-		return $insert;
-	}
-	
-	public function delete_siswa($data) {
-		$insert = $this->db->delete('siswa', $data); 
-		return $insert;
-	}
 	
 	public function insert_staff($data) {
 		$insert = $this->db->insert("staff",$data);
@@ -65,17 +42,17 @@ class m_person extends CI_Model {
 	}
 	
 	public function insert($data) {
-		$insert = $this->db->insert("person",$data);
+		$insert = $this->db->insert("users",$data);
 		return $insert;
 	}
 	
 	public function update($id,$data) {
-		$insert = $this->db->update("person",$data,"no_induk = '".$id."'");
+		$insert = $this->db->update("users",$data,"id_users = '".$id."'");
 		return $insert;
 	}
 	
 	public function delete($data) {
-		$insert = $this->db->delete("person",$data);
+		$insert = $this->db->delete("users",$data);
 		return $insert;
 	}
 	
@@ -84,10 +61,7 @@ class m_person extends CI_Model {
 		return $query->result();
 	}
 	
-	public function getSearchNISiswa($key1) {
-		$query = $this->db->query("select * from siswa where no_induk LIKE '%$key1%' ORDER BY no_induk ASC");
-		return $query->result();
-	}
+
 	
 	public function getSearchNIGuru($key1) {
 		$query = $this->db->query("select * from staff where no_induk LIKE '%$key1%' AND tipe_staff = '1' ORDER BY no_induk ASC");
@@ -99,15 +73,7 @@ class m_person extends CI_Model {
 		return $query->result();
 	}
 	
-	public function getSearchNamaSiswa($key2) {
-		$query = $this->db->query("select * from siswa 
-		where 
-		nama_person LIKE '%$key2%' OR 
-		upper(nama_person) LIKE '%$key2%' OR 
-		lower(nama_person) LIKE '%$key2%' 
-		ORDER BY nama_person ASC");
-		return $query->result();
-	}
+	
 	
 	public function getSearchNamaGuru($key2) {
 		$query = $this->db->query("select * from staff 

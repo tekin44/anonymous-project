@@ -34,13 +34,13 @@
 				
 				<tr class="alternate-row">
 					<td><?=++$i ?></td>
-					<td><?=$item->no_induk ?></td>
-					<td><?=$item->nama_person ?></td>
+					<td><?=$item->nomor_induk_siswa ?></td>
+					<td><?=$item->nama_siswa ?></td>
 					<td><?=$item->alamat_siswa ?></td>
 					<td><?=$item->nama_orang_tua ?></td>
 					<td>
-					<?="<a href='".base_url()."c_master_data/form_siswa/2/$item->no_induk' title='Edit' class='icon-1 info-tooltip'>";?></a>
-					<?="<a href='".base_url()."c_master_data/delete/1/$item->no_induk' title='Delete' class='icon-2 info-tooltip'>";?></a>
+					<?="<a href='".base_url()."c_master_data/form_siswa/2/$item->nomor_induk_siswa' title='Edit' class='icon-1 info-tooltip'>";?></a>
+					<?="<a href='".base_url()."c_master_data/delete/1/$item->nomor_induk_siswa' title='Delete' class='icon-2 info-tooltip'>";?></a>
 					</td>
 				</tr>
 				

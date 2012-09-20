@@ -10,7 +10,7 @@ class m_siswa extends CI_Model {
 	}
 	
 	public function get_siswas(){
-		$sql = "select * from siswa ORDER BY nama_person";
+		$sql = "select * from siswa ORDER BY nama_siswa";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
@@ -46,6 +46,46 @@ class m_siswa extends CI_Model {
 				"INNER JOIN kategori_siswa b " .
 				"ON a.no_induk = b.no_induk".$where;
 		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
+	public function getAllSiswa() {
+		$query = $this->db->query("select * from siswa ORDER BY nama_person");
+		return $query->result();
+	}
+
+	public function getSiswa($id) {
+		$query = $this->db->query("select * from siswa where no_induk = '".$id."'");
+		return $query->result();
+	}
+	
+	public function insert_siswa($data) {
+		$insert = $this->db->insert("siswa",$data);
+		return $insert;
+	}
+	
+	public function edit_siswa($id,$data) {
+		$insert = $this->db->update('siswa', $data, "no_induk = '".$id."'"); 
+		return $insert;
+	}
+	
+	public function delete_siswa($data) {
+		$insert = $this->db->delete('siswa', $data); 
+		return $insert;
+	}
+	
+	public function getSearchNISiswa($key1) {
+		$query = $this->db->query("select * from siswa where no_induk LIKE '%$key1%' ORDER BY no_induk ASC");
+		return $query->result();
+	}
+	
+	public function getSearchNamaSiswa($key2) {
+		$query = $this->db->query("select * from siswa 
+		where 
+		nama_person LIKE '%$key2%' OR 
+		upper(nama_person) LIKE '%$key2%' OR 
+		lower(nama_person) LIKE '%$key2%' 
+		ORDER BY nama_person ASC");
 		return $query->result();
 	}
 }
