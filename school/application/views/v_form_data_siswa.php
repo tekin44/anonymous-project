@@ -1,34 +1,38 @@
 		<?php
 			$disable = $flag==2?"readonly='readonly'":'';
-			$no_induk = $flag==2?$siswa[0]->no_induk:'';
-			$nama_person = $flag==2?$siswa[0]->nama_person:'';
+			$id_users = $flag==2?$siswa[0]->id_users:'';
+			$nomor_induk_siswa = $flag==2?$siswa[0]->nomor_induk_siswa:'';
+			$nama_siswa = $flag==2?$siswa[0]->nama_siswa:'';
 			$alamat_siswa = $flag==2?$siswa[0]->alamat_siswa:'';
 			$nama_orang_tua = $flag==2?$siswa[0]->nama_orang_tua:'';
 			$no_hp_siswa = $flag==2?$siswa[0]->no_hp_siswa:'';
 			$no_hp_orang_tua = $flag==2?$siswa[0]->no_hp_orang_tua:'';
 			$email_siswa = $flag==2?$siswa[0]->email_siswa:'';
-			$password = $flag==2?'********':'';
 		?>
 		<!-- start id-form -->
 		<form action='/school/c_master_data/submit' method='post'>
 		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
 		<tr>
-			<th valign="top">No Induk:</th>
+			<th valign="top">ID Users:</th>
 			<?php if($flag=='1'){ ?>
 			<td>
-				<select name="no_induk" class="styledselect_form_1">
+				<select name="id_users" class="styledselect_form_1">
 				<?php foreach($items as $item){ ?>
-					<option value="<?=$item->no_induk?>"><?=$item->no_induk?></option>
+					<option value="<?=$item->id_users?>"><?=$item->id_users?></option>
 				<?php } ?>
 				</select>
 			</td>
 			<?php }else{ ?>
-			<td><input name='no_induk' readonly="readonly" type="text" class="inp-form" value="<?=$no_induk?>" /></td>
+			<td><input name='id_users' readonly="readonly" type="text" class="inp-form" value="<?=$id_users?>" /></td>
 			<?php } ?>
 		</tr>
 		<tr>
+			<th valign="top">NIS:</th>
+			<td><input name='nomor_induk_siswa' type="text" class="inp-form" value="<?=$nomor_induk_siswa?>" /></td>
+		</tr>
+		<tr>
 			<th valign="top">Nama Siswa:</th>
-			<td><input name='nama_person' type="text" class="inp-form" value="<?=$nama_person?>" /></td>
+			<td><input name='nama_siswa' type="text" class="inp-form" value="<?=$nama_siswa?>" /></td>
 		</tr>
 		<tr>
 			<th valign="top">Alamat Siswa:</th>
@@ -49,10 +53,6 @@
 		<tr>
 			<th valign="top">Email:</th>
 			<td><input name='email_siswa' type="text" class="inp-form" value="<?=$email_siswa?>" /></td>
-		</tr>
-		<tr>
-			<th valign="top">Password:</th>
-			<td><input name='password' <?=$disable?> type="password" class="inp-form"  value="<?=$password?>" /></td>
 		</tr>
 		<tr>
 			<th valign="top">Kategori:</th>

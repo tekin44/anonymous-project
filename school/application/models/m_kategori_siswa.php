@@ -7,7 +7,7 @@ class m_kategori_siswa extends CI_Model {
 	public function get_kategori($ni) {
 		$this->load->database();
 		$query = $this->db->query("select * from kategori a left join " .
-				"(select id_kategori as id_kat, no_induk as checked from kategori_siswa where no_induk = '".$ni."') b " .
+				"(select id_kategori as id_kat, nomor_induk_siswa as checked from kategori_siswa where nomor_induk_siswa = '".$ni."') b " .
 				"on a.id_kategori = b.id_kat");
 		return $query->result();
 	}

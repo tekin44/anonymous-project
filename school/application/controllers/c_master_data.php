@@ -13,15 +13,16 @@ class c_master_data extends CI_Controller {
 		$this->load->model('m_person');
 		$this->load->model('m_message');
 		$this->load->model('m_menu');
+		$this->load->model('m_siswa');
 		$this->client_logon = $this->session->userdata('login');
-		$this->data['menus'] = $this->m_menu->getAll($this->client_logon['id_prev']);
-		if($this->client_logon['id_prev']!="admin"){
-			$this->redirectto($this->client_logon['id_prev']);
-		}
+		// $this->data['menus'] = $this->m_menu->getAll($this->client_logon['id_prev']);
+		// if($this->client_logon['id_prev']!="admin"){
+			// $this->redirectto($this->client_logon['id_prev']);
+		// }
 	}
 
 	public function show_data_siswa() {
-		if($this->client_logon){
+		//if($this->client_logon){
 			$this->data['result'] = $this->msg;
 			$this->data['title'] = "Data Siswa";
 			
@@ -30,7 +31,8 @@ class c_master_data extends CI_Controller {
 			
 			if ($key1 == NULL && $key2 == NULL)
 			{
-				$this->data['siswa'] = $this->m_person->getAllSiswa();
+				$this->load->model('m_siswa');
+				$this->data['siswa'] = $this->m_siswa->get_siswas();
 			}
 				else if ($key1 != NULL){
 					$this->data['siswa'] = $this->m_person->getSearchNISiswa($key1);
@@ -42,9 +44,9 @@ class c_master_data extends CI_Controller {
 			$this->load->view('v_header', $this->data);
 			$this->load->view('v_data_siswa', $this->data);
 			$this->load->view('v_footer', $this->data);
-		}else{
-			redirect('login');
-		}
+		//}else{
+			//redirect('login');
+		//}
 	}
 	
 	public function show_data_guru() {
@@ -140,31 +142,29 @@ class c_master_data extends CI_Controller {
 		$flag = $_REQUEST['flag'];
 		$this->update_person();
 		$this->insert_siswa($flag);
-		$this->add_kategori();
+		//$this->add_kategori();
 		redirect('c_master_data/show_data_siswa');
 	}
 	
 	public function update_person() {
-		$value['nama_person'] = $_REQUEST['nama_person'];
-		$value['status_person'] = '2';
-		$this->m_person->update($_REQUEST['no_induk'],$value);	
+		$value['status_user'] = '2';
+		$this->m_person->update($_REQUEST['id_users'],$value);	
 	}
 	
 	public function insert_siswa($flag){
-		if($flag==1){
-			$value['no_induk'] = $_REQUEST['no_induk'];
-		};
-		$value['nama_person'] = $_REQUEST['nama_person'];
+		$value['nomor_induk_siswa'] = $_REQUEST['nomor_induk_siswa'];
+		$value['nama_siswa'] = $_REQUEST['nama_siswa'];
 		$value['alamat_siswa'] = $_REQUEST['alamat_siswa'];
 		$value['nama_orang_tua'] = $_REQUEST['nama_orang_tua'];
 		$value['no_hp_siswa'] = $_REQUEST['no_hp_siswa'];
 		$value['no_hp_orang_tua'] = $_REQUEST['no_hp_orang_tua'];
 		$value['email_siswa'] = $_REQUEST['email_siswa'];
-		$value['password'] = md5($_REQUEST['password']);
-		if($flag==1)
-			$result = $this->m_person->insert_siswa($value);
-		else
-			$result = $this->m_person->edit_siswa($_REQUEST['no_induk'],$value);	
+		$value['password_siswa'] = md5('siswa');
+		if($flag==1){
+			$value['id_users'] = $_REQUEST['id_users'];
+			$result = $this->m_siswa->insert_siswa($value);
+		}else
+			$result = $this->m_siswa->edit_siswa($_REQUEST['no_induk'],$value);	
 	}
 	
 	public function add_kategori(){
@@ -222,6 +222,42 @@ class c_master_data extends CI_Controller {
 		else
 			$this->msg = $this->m_message->show_error("Proses Hapus Gagal");
 		redirect($redirect);	
+	}
+	
+	public function show_kelas() {
+		/*if($this->client_logon)*/
+		//$this->data['result'] = $this->msg;
+		$this->data['title'] = "Edit Data Kelas";
+		
+		$this->load->model('m_kelas');
+		$this->data['rows'] = $this->m_kelas->show_kelas();
+		
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_kelas', $this->data);
+		$this->load->view('v_footer', $this->data);
+		/*}
+		else
+		{
+			redirect('login');
+		}*/
+	}
+	
+	public function edit_kelas($id_kelas) {
+		/*if($this->client_logon)*/
+		//$this->data['result'] = $this->msg;
+		$this->data['title'] = "Data Kelas";
+		
+		$this->load->model('m_kelas');
+		$this->data['rows'] = $this->m_kelas->edit_kelas($id_kelas);
+		
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_form_kelas', $this->data);
+		$this->load->view('v_footer', $this->data);
+		/*}
+		else
+		{
+			redirect('login');
+		}*/
 	}
 	
 	function redirectto($prev) {
