@@ -34,5 +34,12 @@ class m_kelas extends CI_Model {
 						");
 	}
 	
+	public function delete_kelas($id_kelas) 
+		{
+			$this->load->database();
+			$query = $this->db->delete("kelas",array("id_kelas"=>$id_kelas));
+			return $query;
+		}
+	
 }
 ?>

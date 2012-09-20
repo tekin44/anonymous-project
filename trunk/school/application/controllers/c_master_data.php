@@ -294,6 +294,89 @@ class c_master_data extends CI_Controller {
 		}*/
 	}
 	
+	public function delete_kelas($id_kelas) {
+		$this->load->model('m_kelas');
+		$result = $this->m_kelas->delete_kelas($id_kelas);
+		redirect('c_master_data/show_kelas');
+	}
+	
+	
+	public function show_pelajaran() {
+		/*if($this->client_logon)*/
+		//$this->data['result'] = $this->msg;
+		$this->data['title'] = "Data Pelajaran";
+		
+		$this->load->model('m_pelajaran');
+		$this->data['rows'] = $this->m_pelajaran->show_pelajaran();
+		
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_pelajaran', $this->data);
+		$this->load->view('v_footer', $this->data);
+		/*}
+		else
+		{
+			redirect('login');
+		}*/
+	}
+	
+	public function edit_pelajaran($kode_pelajaran) {
+		/*if($this->client_logon)*/
+		//$this->data['result'] = $this->msg;
+		$this->data['title'] = "Edit Data Pelajaran";
+		
+		$this->load->model('m_pelajaran');
+		$this->data['rows'] = $this->m_pelajaran->edit_pelajaran($kode_pelajaran);
+		
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_edit_pelajaran', $this->data);
+		$this->load->view('v_footer', $this->data);
+		/*}
+		else
+		{
+			redirect('login');
+		}*/
+	}
+	
+	public function submit_pelajaran() {
+		$this->load->model('m_pelajaran');
+		$kode_pelajaran = $this->input->post('kode_pelajaran');
+		$nama_pelajaran = $this->input->post('nama_pelajaran');
+		
+		$this->m_pelajaran->tambah_pelajaran($kode_pelajaran,$nama_pelajaran);
+		redirect('c_master_data/show_pelajaran');
+	}
+	
+	public function update_pelajaran() {
+		$this->load->model('m_pelajaran');
+	
+		$kode_pelajaran = $this->input->post('kode_pelajaran');
+		$nama_pelajaran = $this->input->post('nama_pelajaran');
+		
+		$this->m_pelajaran->update($kode_pelajaran,$nama_pelajaran);	
+		redirect('c_master_data/show_pelajaran');
+	}
+	
+	public function tambah_pelajaran(){
+		/*if($this->client_logon)*/
+		//$this->data['result'] = $this->msg;
+		$this->data['title'] = "Tambah Data Kelas";
+		
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_tambah_pelajaran', $this->data);
+		$this->load->view('v_footer', $this->data);
+		/*}
+		else
+		{
+			redirect('login');
+		}*/
+	}
+	
+	public function delete_pelajaran($kode_pelajaran) {
+		$this->load->model('m_pelajaran');
+		$result = $this->m_pelajaran->delete_pelajaran($kode_pelajaran);
+		redirect('c_master_data/show_pelajaran');
+	}
+	
 	function redirectto($prev) {
 		switch ($prev) {
 			case 'absen' :
