@@ -16,8 +16,22 @@ class c_nilai extends CI_Controller {
 
 	public function index() {
 		$this->load->model('m_siswa');
-		$this->data['rows'] = $this->m_siswa->get_siswas();
 		$this->data['title'] = "Data Nilai";
+		
+		$key1 = $this->input->post('search_field1');
+		$key2 = $this->input->post('search_field2');
+			
+			if ($key1 == NULL && $key2 == NULL)
+			{
+				$this->data['rows'] = $this->m_siswa->get_siswas();
+			}
+				else if ($key1 != NULL){
+					$this->data['rows'] = $this->m_siswa->getSearchNISiswa($key1);
+				}
+					else{
+						$this->data['rows'] = $this->m_siswa->getSearchNamaSiswa($key2);
+					}
+		
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_data_nilai_siswa', $this->data);
 		$this->load->view('v_footer', $this->data);
