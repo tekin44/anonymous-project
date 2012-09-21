@@ -16,16 +16,77 @@ class c_nilai extends CI_Controller {
 
 	public function index() {
 		$this->load->model('m_siswa');
-		$this->data['siswa'] = $this->m_siswa->get_siswas();
+		$this->data['rows'] = $this->m_siswa->get_siswas();
 		$this->data['title'] = "Data Nilai";
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_data_nilai_siswa', $this->data);
 		$this->load->view('v_footer', $this->data);
 	}
 	
-	public function show_nilai($id){
-		
+	public function get_nilai($nis){
+		$this->load->model('m_nilai');
+		$this->data['rows'] = $this->m_nilai->get_nilai($nis);
+		$this->data['title'] = "Data Nilai";
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_nilai_siswa', $this->data);
+		$this->load->view('v_footer', $this->data);
 	}
+	
+	public function edit_nilai($nis,$nip,$id_kelas){
+		$this->load->model('m_nilai');
+		$this->data['rows'] = $this->m_nilai->edit_nilai($nis,$nip,$id_kelas);
+		$this->data['title'] = "Data Nilai";
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_edit_nilai', $this->data);
+		$this->load->view('v_footer', $this->data);
+	}
+	
+	public function update_nilai() {
+		$this->load->model('m_nilai');
+	
+		$nis = $this->input->post('nis');
+		$id_kelas = $this->input->post('id_kelas');
+		$nip = $this->input->post('nip');
+		$nilai = $this->input->post('nilai');
+		
+		$this->m_nilai->update($nis,$id_kelas,$nip,$nilai);	
+		redirect("c_nilai/get_nilai/".$nis);
+	}
+	
+	public function tambah_nilai($nis){
+		/*if($this->client_logon)*/
+		//$this->data['result'] = $this->msg;
+		$this->data['title'] = "Tambah Nilai Siswa";
+		$this->data['rows'] = $nis;
+		
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_tambah_nilai', $this->data);
+		$this->load->view('v_footer', $this->data);
+		/*}
+		else
+		{
+			redirect('login');
+		}*/
+	}
+	
+	public function submit_nilai() {
+		$this->load->model('m_nilai');
+		
+		$nis = $this->input->post('nis');
+		$id_kelas = $this->input->post('id_kelas');
+		$nip = $this->input->post('nip');
+		$nilai = $this->input->post('nilai');
+		
+		$this->m_nilai->tambah_nilai($nip,$id_kelas,$nis,$nilai);
+		redirect("c_nilai/get_nilai/".$nis);
+	}
+	
+	public function delete_nilai($nip,$id_kelas,$nis) {
+		$this->load->model('m_nilai');
+		$result = $this->m_nilai->delete_nilai($nip,$id_kelas,$nis);
+		redirect("c_nilai/get_nilai/".$nis);
+	}
+	
 
 	function redirectto($prev) {
 		switch ($prev) {

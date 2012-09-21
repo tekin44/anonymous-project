@@ -428,35 +428,6 @@ class c_master_data extends CI_Controller {
 		redirect('c_master_data/show_pengajar_kelas');
 	}
 	
-	public function show_siswa() {
-		//if($this->client_logon){
-			$this->data['result'] = $this->msg;
-			$this->data['title'] = "Data Siswa";
-			
-			$key1 = $this->input->post('search_field1');
-			$key2 = $this->input->post('search_field2');
-			
-			if ($key1 == NULL && $key2 == NULL)
-			{
-				$this->load->model('m_siswa');
-				$this->data['siswa'] = $this->m_siswa->get_siswas();
-			}
-				else if ($key1 != NULL){
-					$this->data['siswa'] = $this->m_siswa->getSearchNISiswa($key1);
-				}
-					else{
-						$this->data['siswa'] = $this->m_siswa->getSearchNamaSiswa($key2);
-					}
-			
-			$this->load->view('v_header', $this->data);
-			$this->load->view('v_siswa', $this->data);
-			$this->load->view('v_footer', $this->data);
-		//}else{
-			//redirect('login');
-		//}
-	}
-	
-	
 	function redirectto($prev) {
 		switch ($prev) {
 			case 'absen' :
