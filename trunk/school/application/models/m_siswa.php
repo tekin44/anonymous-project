@@ -75,17 +75,17 @@ class m_siswa extends CI_Model {
 	}
 	
 	public function getSearchNISiswa($key1) {
-		$query = $this->db->query("select * from siswa where no_induk LIKE '%$key1%' ORDER BY no_induk ASC");
+		$query = $this->db->query("select * from siswa where nomor_induk_siswa LIKE '%$key1%' ORDER BY nomor_induk_siswa ASC");
 		return $query->result();
 	}
 	
 	public function getSearchNamaSiswa($key2) {
 		$query = $this->db->query("select * from siswa 
 		where 
-		nama_person LIKE '%$key2%' OR 
-		upper(nama_person) LIKE '%$key2%' OR 
-		lower(nama_person) LIKE '%$key2%' 
-		ORDER BY nama_person ASC");
+		nama_siswa LIKE '%$key2%' OR 
+		upper(nama_siswa) LIKE '%$key2%' OR 
+		lower(nama_siswa) LIKE '%$key2%' 
+		ORDER BY nama_siswa ASC");
 		return $query->result();
 	}
 }
