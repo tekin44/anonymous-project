@@ -6,11 +6,11 @@
 					
 					<tr>
 						<?php echo form_open('c_master_data/show_data_siswa');?>
-						<td><input name="search_field" type="text" class="inp-form" /> <?php echo form_submit('submit', 'cari');?> </td>
+						<td><input name="search_field1" type="text" class="inp-form" /> <?php echo form_submit('submit', 'Cari');?> </td>
 						<?php echo form_close();?>
 						
 						<?php echo form_open('c_master_data/show_data_siswa');?>
-						<td><input name="search_fieldnama" type="text" class="inp-form" /> <?php echo form_submit('submit', 'cari');?></td>
+						<td><input name="search_field2" type="text" class="inp-form" /> <?php echo form_submit('submit', 'Cari');?></td>
 						<?php echo form_close();?>
 					</tr>
 			</table>
@@ -27,7 +27,7 @@
 				
 				<?php 
 					$i = 0;
-					foreach ($siswa as $item){
+					foreach ($rows as $item){
 				?>
 				
 				<tr class="alternate-row">
@@ -35,7 +35,7 @@
 					<td><?=$item->nomor_induk_siswa ?></td>
 					<td><?=$item->nama_siswa ?></td>
 					<td>
-					<?="<a href='".base_url()."c_nilai/form_siswa/2/$item->nomor_induk_siswa' title='Edit' class='icon-1 info-tooltip'>";?></a>
+					<?="<a href='".base_url()."c_nilai/get_nilai/$item->nomor_induk_siswa' title='Lihat' class='icon-5 info-tooltip'>";?></a>
 					</td>
 				</tr>
 				
