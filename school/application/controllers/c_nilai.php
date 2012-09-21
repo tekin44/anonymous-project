@@ -26,6 +26,7 @@ class c_nilai extends CI_Controller {
 	public function get_nilai($nis){
 		$this->load->model('m_nilai');
 		$this->data['rows'] = $this->m_nilai->get_nilai($nis);
+		$this->data['kelas'] = $this->m_nilai->get_kelas();
 		$this->data['title'] = "Data Nilai";
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_nilai_siswa', $this->data);

@@ -46,5 +46,13 @@ class m_nilai extends CI_Model {
 		$query = $this->db->delete("raport",array("nomor_induk_pengajar"=>$nip,"id_kelas"=>$id_kelas,"nomor_induk_siswa"=>$nis));
 		return $query;
 	}
+	
+	public function get_kelas() {
+		$this->load->database();
+		$query = $this->db->query("
+						select * from kelas
+						");
+		return $query->result();
+	}
 }
 ?>
