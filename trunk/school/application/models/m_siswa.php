@@ -97,8 +97,18 @@ class m_siswa extends CI_Model {
 		return $insert;
 	}
 	
+	public function insert_raport($data) {
+		$insert = $this->db->insert("raport",$data);
+		return $insert;
+	}
+	
 	public function edit_siswa($id,$data) {
 		$insert = $this->db->update('siswa', $data, "id_users = '".$id."'"); 
+		return $insert;
+	}
+	
+	public function update($id,$data) {
+		$insert = $this->db->update('siswa', $data, "nomor_induk_siswa = '".$id."'"); 
 		return $insert;
 	}
 	

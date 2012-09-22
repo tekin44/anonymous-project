@@ -47,14 +47,14 @@ class c_nilai extends CI_Controller {
 		$this->load->view('v_footer', $this->data);
 	}
 	
-	public function edit_nilai($nis,$nip,$id_kelas){
-		$this->load->model('m_nilai');
-		$this->data['rows'] = $this->m_nilai->edit_nilai($nis,$nip,$id_kelas);
-		$this->data['title'] = "Data Nilai";
-		$this->load->view('v_header', $this->data);
-		$this->load->view('v_edit_nilai', $this->data);
-		$this->load->view('v_footer', $this->data);
-	}
+	// public function edit_nilai($nis,$nip,$id_kelas){
+		// $this->load->model('m_nilai');
+		// $this->data['rows'] = $this->m_nilai->edit_nilai($nis,$nip,$id_kelas);
+		// $this->data['title'] = "Data Nilai";
+		// $this->load->view('v_header', $this->data);
+		// $this->load->view('v_edit_nilai', $this->data);
+		// $this->load->view('v_footer', $this->data);
+	// }
 	
 	public function update_nilai() {
 		$this->load->model('m_nilai');
@@ -108,5 +108,29 @@ class c_nilai extends CI_Controller {
 		redirect("c_nilai/get_nilai/".$nis);
 	}
 	
+	public function update_nilai_siswa() 
+	{
+				$this->load->model('m_nilai');
+		
+		$nip = $_REQUEST['nip'];
+		$nis = $_REQUEST['nis'];
+		$id_kelas = $_REQUEST['id_kelas'];
+		$nilai = $_REQUEST['nilai'];
+		
+		for ($i = 0; $i < count($nilai); $i++) {
+		
+			
+			//$value['nis'] = $nis[$i];
+			//$value['nip'] = $nip[$i];
+			//$value['id_kelas'] = $id_kelas[$i];
+			//$value['nilai'] = $nilai[$i];
+		
+			//$this->m_nilai->update($value);
+			
+			$this->m_nilai->update($nis[$i],$id_kelas[$i],$nip[$i],$nilai[$i]);
+		}
+		
+		redirect('c_nilai');
+	}
 
 }

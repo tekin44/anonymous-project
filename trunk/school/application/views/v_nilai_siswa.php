@@ -1,6 +1,8 @@
 				<?php
 				$nis = $rows[0]->nomor_induk_siswa;
 				$nama = $rows[0]->nama_siswa;
+				$nip = $rows[0]->nomor_induk_pengajar;
+				$id_kelas = $rows[0]->id_kelas;
 				?>
 				
 				
@@ -14,7 +16,7 @@
 				</table>
 				
 				<!--  start product-table ..................................................................................... -->
-				<form id="mainform" action="">
+				<form action='/school/c_nilai/update_nilai_siswa' method='post'>
 				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
 				<tr>
 					<th class="table-header-repeat line-left"><a href="">Nomor</a></th>
@@ -27,15 +29,26 @@
 				<?php 
 					$i = 0;
 					foreach ($rows as $item){
+					
+					$nis = $rows[$i]->nomor_induk_siswa;
+					$nip = $rows[$i]->nomor_induk_pengajar;
+					$id_kelas = $rows[$i]->id_kelas;
 				?>
 				
 				<tr class="alternate-row">
 					<td><?=++$i ?></td>
 					<td><?=$item->nama_pelajaran ?></td>
 					<td><?=$item->nama_kelas ?></td>
-					<td><?=$item->nilai_raport ?></td>
+					<td><input name='nilai[]' type="text" class="inp-nilai" value="<?=$item->nilai_raport?>" /></td>
+					
+					
+					
+					<input type="hidden" value="<?=$nis?>" name="nis[]"/>
+					<input type="hidden" value="<?=$nip?>" name="nip[]"/>
+					<input type="hidden" value="<?=$id_kelas?>" name="id_kelas[]"/>
+					
 					<td>
-					<?="<a href='" . base_url() . "c_nilai/edit_nilai/$item->nomor_induk_siswa/$item->nomor_induk_pengajar/$item->id_kelas' title='Edit' class='icon-1 info-tooltip'>"?></a>
+					<?//="<a href='" . base_url() . "c_nilai/edit_nilai/$item->nomor_induk_siswa/$item->nomor_induk_pengajar/$item->id_kelas' title='Edit' class='icon-1 info-tooltip'>"?></a>
 					<?="<a href='" . base_url() . "c_nilai/delete_nilai/$item->nomor_induk_pengajar/$item->id_kelas/$item->nomor_induk_siswa' title='Delete' class='icon-2 info-tooltip'>";?></a>
 					</td>
 				</tr>
@@ -43,13 +56,17 @@
 				<?}?>
 				</table>
 				<!--  end product-table................................... --> 
+				<input type="submit" value="" class="form-submit" />
 				</form>
-				<!--  start actions-box ............................................... -->
+				
+				
+				
+				<!--  start actions-box ...............................................
 				<div id="actions-box">
 					<a href="" class="action-slider"></a>
 					<div id="actions-box-slider">
-					<?="<a href='".base_url()."c_nilai/tambah_nilai/$item->nomor_induk_siswa' class='action-edit'>";?>Add</a>
+					<?//="<a href='".base_url()."c_nilai/tambah_nilai/$item->nomor_induk_siswa' class='action-edit'>";?>Add</a>
 					</div>
 					<div class="clear"></div>
 				</div>
-				<!-- end actions-box........... -->
+				end actions-box........... -->
