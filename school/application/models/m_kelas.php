@@ -39,6 +39,26 @@ class m_kelas extends CI_Model {
 			$query = $this->db->delete("kelas",array("id_kelas"=>$id_kelas));
 			return $query;
 		}
+		
+	public function edit_siswa_kelas($id_kelas) {
+		$this->load->database();
+		$query = $this->db->query("
+						select * from kelas where id_kelas = $id_kelas
+						");
+		return $query->result();
+	}
+	
+	public function get_siswa_kelas($id) {
+		$this->load->database();
+		$query = $this->db->query(
+		"select * from siswa a 
+		LEFT JOIN (select nomor_induk_siswa as checked from siswa 
+		where id_kelas = $id) b on a.nomor_induk_siswa = b.checked"
+		);
+		
+		
+		return $query->result();
+	}
 	
 }
 ?>

@@ -467,6 +467,59 @@ class c_master_data extends CI_Controller {
 		redirect('c_master_data/show_pengajar_kelas');
 	}
 	
+	public function edit_siswa_kelas($id_kelas) {
+		/*if($this->client_logon)*/
+		//$this->data['result'] = $this->msg;
+		$this->data['title'] = "Edit Siswa Kelas";
+		
+		$this->load->model('m_kelas');
+		$this->data['kelas'] = $this->m_kelas->edit_kelas($id_kelas);
+		$this->data['siswa'] = $this->m_kelas->get_siswa_kelas($id_kelas);
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_edit_siswa_kelas', $this->data);
+		$this->load->view('v_footer', $this->data);
+		/*}
+		else
+		{
+			redirect('login');
+		}*/
+	}
+	
+	public function update_siswa_kelas() {
+		
+		$this->load->model('m_siswa');
+		$this->load->model('m_pengajar_kelas');
+		
+		$nip = $_REQUEST['nip'];
+		$id_kelas = $_REQUEST['id_kelas'];
+		
+		for ($i = 0; $i < count($nip); $i++) {
+			$value['id_kelas'] = $id_kelas;
+			$id = $nip[$i];
+			$this->m_siswa->update($id,$value);
+			$pengajar = $this->m_pengajar_kelas->show_pengajar_kelas($id_kelas);
+			foreach ($pengajar as $peng)
+			{
+				$value['nomor_induk_siswa'] = $id;
+				$value['nomor_induk_pengajar'] = $peng->nomor_induk_pengajar;
+				$this->m_siswa->insert_raport($value);
+			}
+		}
+		
+		redirect('c_master_data/show_kelas');
+		
+		// $value['id_kelas'] = $id_kelas;
+		// $nip = $_REQUEST['nip'];
+		// $nilai = $_REQUEST['nilai'];
+		// $this->load->model('m_pengajar_kelas');
+		// $this->m_pengajar_kelas->delete($value);
+		// for ($i = 0; $i < count($nip); $i++) {
+			// $value['nilai_kelulusan'] = $nilai[$i];
+			// $value['nomor_induk_pengajar'] = $nip[$i];
+			// $this->m_pengajar_kelas->insert($value);
+		// }
+	}
+	
 	function redirectto($prev) {
 		switch ($prev) {
 			case 'absen' :
