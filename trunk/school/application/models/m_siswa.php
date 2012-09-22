@@ -131,5 +131,12 @@ class m_siswa extends CI_Model {
 		ORDER BY nama_siswa ASC");
 		return $query->result();
 	}
+	
+	public function getNamaSiswa($id) {
+		$query = $this->db->query("select * from siswa 
+		where 
+		nomor_induk_siswa = '$id'");
+		return $query->result();
+	}
 }
 ?>
