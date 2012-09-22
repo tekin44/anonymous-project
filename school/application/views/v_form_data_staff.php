@@ -1,41 +1,42 @@
 		<?php
 			$disable = $flag==2?"readonly='readonly'":'';
-			$no_induk = $flag==2?$staff[0]->no_induk:'';
-			$nama_person = $flag==2?$staff[0]->nama_person:'';
-			$tipe_staff = $flag==2?$staff[0]->tipe_staff:'';
-			$selected1 = $tipe_staff==1?"selected='selected'":'';
-			$selected2 = $tipe_staff==2?"selected='selected'":'';
+			$id_users = $flag==2?$staff[0]->id_users:'';
+			$nomor_induk_staff = $flag==2?$staff[0]->nomor_induk_staff:'';
+			$nama_staff = $flag==2?$staff[0]->nama_staff:'';
 		?>
 		<!-- start id-form -->
-		<form action='/school/c_master_data/edit_staff' method='post'>
+		<form action='/school/c_master_data/submit_staff' method='post'>
 		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
 		<tr>
-			<th valign="top">No Induk:</th>
-			<td><select name="no_induk" class="styledselect_form_1">
+			<th valign="top">ID:</th>
+			<td>
+				<?php if($flag == 1){ ?>
+				<select name="id_users" class="styledselect_form_1">
 				<option value="">Pilih ID</option>
 				<?php foreach($row as $item) {?>
-					<option value="<?=$item->no_induk?>"><?=$item->no_induk?></option>
-				<?php } ?>
+					<option value="<?=$item->id_users?>"><?=$item->id_users?></option>
+				<?php }?>
 				</select>
+				<?php }else{ ?>
+					<input name='id_users' <?=$disable?> type="text" class="inp-form" value="<?=$id_users?>" />
+				<?php } ?>
 			</td>
+		</tr>
+		<tr>
+			<th valign="top">NIS:</th>
+			<td><input name='nomor_induk_staff' type="text" class="inp-form" value="<?=$nomor_induk_staff?>" /></td>
 		</tr>
 		<tr>
 			<th valign="top">Nama:</th>
-			<td><input name='nama_person' type="text" class="inp-form" value="<?=$nama_person?>" /></td>
+			<td><input name='nama_staff' type="text" class="inp-form" value="<?=$nama_staff?>" /></td>
 		</tr>
 		<tr>
-			<th valign="top">Tipe:</th>
-			<td><select name="tipe_staff" class="styledselect_form_1">
-			<option <?=$selected2?> value="2">Staff</option>
-			<option <?=$selected1?> value="1">Guru</option></select></td>
-		</tr>
-		<tr>
-			<th>&nbsp;</th>
-			<td valign="top">
+			<td align="center">
 				<input type="submit" value="" class="form-submit" />
-				<input type="reset" value="" class="form-reset"  />
 			</td>
-			<td></td>
+			<td>
+				<a href="/school/c_master_data/show_data_staff">Kembali</a>
+			</td>
 		</tr>
 		</table>
 		<input name="flag" type="hidden" value="<?=$flag?>"/>

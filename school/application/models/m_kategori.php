@@ -12,13 +12,23 @@ class m_kategori extends CI_Model {
 		return $query->result();
 	}
 
-	public function tambahKategori($id, $nama) {
+	public function tambahKategori($nama) {
 		$this->load->database();
 
 		$query = $this->db->query("
 				insert into kategori
-				values ('$id', '$nama')
+				values (nextval('kategori_pk_seq'), '$nama')
 				");
+	}
+
+	public function update($id,$nama) {
+		$data['nama_kategori'] = $nama;
+		$query = $this->db->update("kategori",$data,"id_kategori = '".$id."'");
+	}
+
+	public function delete($id) {
+		$data['id_kategori'] = $id;
+		$query = $this->db->delete("kategori",$data);
 	}
 
 	public function getKategori($id) {

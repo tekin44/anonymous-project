@@ -7,6 +7,12 @@
  */
 	
 class m_date extends CI_Model {
+	
+	public function get_month() {
+		$d = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+		return $d;
+	}
+	
 	public function month($dt=0) {
 		$d = "<option value=''>Bulan</option>";
 		for($m = 1;$m<=12;$m++){

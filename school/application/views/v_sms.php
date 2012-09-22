@@ -20,9 +20,9 @@
 				</tr>
 				<?php foreach($items as $item){ ?>
 				<tr>
-					<td><?=$item['DestinationNumber']?></td>
-					<td><?=$item['TextDecode']?></td>
-					<td><?=$item['CreatorID']?></td>
+					<td><?=$item['destinationnumber']?></td>
+					<td><?=$item['textdecoded']?></td>
+					<td><?=$item['creatorid']?></td>
 				</tr>
 				<?php } ?>
 				</table>

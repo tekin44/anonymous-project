@@ -55,30 +55,12 @@
 			<td><input name='email_siswa' type="text" class="inp-form" value="<?=$email_siswa?>" /></td>
 		</tr>
 		<tr>
-			<th valign="top">Kategori:</th>
-			<td></td>
-		</tr>
-		</table>
-			<table border="0" align="center" width="45%" cellpadding="0" cellspacing="0" id="product-table">
-				<?php foreach($kats as $kat){ 
-					$check = "";
-					if($kat->checked)
-						$check = "checked"
-				?>
-				<tr>
-					<td width="25"><input name="kat[]" <?=$check?> value="<?=$kat->id_kategori?>" type="checkbox"/></td>
-					<td><?=$kat->nama_kategori?></td>
-				</tr>
-				<?php } ?>
-			</table>
-		<table>
-		<tr>
-			<th>&nbsp;</th>
-			<td valign="top">
+			<td align="center">
 				<input type="submit" value="" class="form-submit" />
-				<input type="reset" value="" class="form-reset"  />
 			</td>
-			<td></td>
+			<td>
+				<a href="/school/c_master_data/show_data_siswa">Kembali</a>
+			</td>
 		</tr>
 		</table>
 		<input name="flag" type="hidden" value="<?=$flag?>"/>

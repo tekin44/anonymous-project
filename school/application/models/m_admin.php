@@ -3,6 +3,12 @@ if (!defined('BASEPATH'))
 	exit ('No direct script access allowed');
 
 class m_admin extends CI_Model {
+	
+	function validate($username,$password){
+		$sql = "select * from admin where admin_username = '".$username."' and admin_password = md5('".$password."')";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 
 	public function displayUser() 
 		{

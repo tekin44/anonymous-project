@@ -4,8 +4,8 @@ if (!defined('BASEPATH'))
 
 class m_config extends CI_Model {
 
-	var $table = 'config';
-	var $pk = 'id_config';
+	var $table = 'smsgw_config';
+	var $pk = 'kode_smgw_config';
 
 	public function get_configs() {
 		$this->load->database();

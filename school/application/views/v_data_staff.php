@@ -20,19 +20,23 @@
 				<form id="mainform" action="">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
 				<tr>
-					<th class="table-header-repeat line-left"><a href="">Nomor Induk</a></th>
+					<th class="table-header-repeat line-left"><a href="">No</a></th>
+					<th class="table-header-repeat line-left"><a href="">NIS</a></th>
 					<th class="table-header-repeat line-left"><a href="">Nama</a></th>
 					<th class="table-header-repeat line-left"><a href="">Action</a></th>
 				</tr>
 				
-				<?php foreach ($staff as $item){?>
+				<?php
+					$i = 0; 
+					foreach ($staff as $item){?>
 				
 				<tr class="alternate-row">
-					<td><?=$item->no_induk ?></td>
-					<td><?=$item->nama_person ?></td>
+					<td><?=++$i ?></td>
+					<td><?=$item->nomor_induk_staff ?></td>
+					<td><?=$item->nama_staff ?></td>
 					<td>
-					<?="<a href='".base_url()."c_master_data/form_staff/2/$item->no_induk' title='Edit' class='icon-1 info-tooltip'>";?></a>
-					<?="<a href='".base_url()."c_master_data/delete/3/$item->no_induk' title='Delete' class='icon-2 info-tooltip'>";?></a>
+					<?="<a href='".base_url()."c_master_data/form_staff/2/$item->nomor_induk_staff' title='Edit' class='icon-1 info-tooltip'>";?></a>
+					<?="<a href='".base_url()."c_master_data/delete_staff/$item->nomor_induk_staff' title='Delete' class='icon-2 info-tooltip'>";?></a>
 					</td>
 				</tr>
 				

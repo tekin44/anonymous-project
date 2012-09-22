@@ -14,7 +14,7 @@ class m_kategori_pesan extends CI_Model {
 
 	public function add($id) {
 		$this->load->database();
-		$sql = "INSERT INTO kategori_pesan VALUES (currval('pesan_pk_seq'),'".$id."')";
+		$sql = "INSERT INTO kategori_pesan VALUES ('".$id."',currval('pesan_pk_seq'))";
 		$insert = $this->db->query($sql);
 		return $insert;
 	}

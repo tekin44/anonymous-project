@@ -3,7 +3,6 @@
 				<form id="mainform" action="">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
 				<tr>
-					<th class="table-header-repeat line-left"><a href="">ID Kelas</a></th>
 					<th class="table-header-repeat line-left"><a href="">Nama Kelas</a></th>
 					<th class="table-header-options line-left"><a href="">Action</a></th>
 				</tr>
@@ -11,10 +10,10 @@
 				<?php foreach ($rows as $item){?>
 				
 				<tr class="alternate-row">
-					<td><? echo $item->id_kelas ?></td>
-					<td><? echo $item->nama_kelas ?></td>
+					<td><a href='<?=base_url()."c_master_data/view_kelas/$item->id_kelas"?>'><?=$item->nama_kelas?></a></td>
 					<td>
 					<?="<a href='" . base_url() . "c_master_data/edit_kelas/$item->id_kelas' title='Edit' class='icon-1 info-tooltip'>"?></a>
+					<?="<a href='" . base_url() . "c_master_data/tambah_siswa_kelas/$item->id_kelas' title='Edit Siswa' class='icon-1 info-tooltip'>"?></a>
 					<?="<a href='" . base_url() . "c_master_data/delete_kelas/$item->id_kelas' title='Delete' class='icon-2 info-tooltip'>";?></a>
 					
 					</td>

@@ -13,11 +13,11 @@ class c_config extends CI_Controller {
 		$this->load->model('m_message');
 		$this->load->model('m_date');
 		$this->load->model('m_menu');
-		$this->client_logon = $this->session->userdata('login');
+		$this->client_logon = $this->session->userdata('login');/*
 		$this->data['menus'] = $this->m_menu->getAll($this->client_logon['id_prev']);
 		if($this->client_logon['id_prev']!="admin"){
 			$this->redirectto($this->client_logon['id_prev']);
-		}
+		}*/
 	}
 
 	public function show_hari_libur() {
@@ -71,8 +71,7 @@ class c_config extends CI_Controller {
 		$y = $_REQUEST['y'];
 		$value['tanggal_hari_libur'] = $this->m_date->merge($d, $m, $y);
 		if ($flag == 1) {
-			$value['id_hari_libur'] = substr(md5($value['ket_hari_libur']), 0, 10);
-			$result = $this->m_hari_libur->insert($value);
+			$result = $this->m_hari_libur->insert($_REQUEST['ket_hari_libur'],$value['tanggal_hari_libur']);
 		} else
 			$result = $this->m_hari_libur->edit($_REQUEST['id_hari_libur'], $value);
 		if ($result)
@@ -115,12 +114,10 @@ class c_config extends CI_Controller {
 		$value = array ();
 		$result = null;
 		$this->load->model('m_config');
-		$value['msg_telat'] = $_REQUEST['msg_telat'];
-		$value['msg_tidak_masuk'] = $_REQUEST['msg_tidak_masuk'];
+		$value['pesan_telat'] = $_REQUEST['msg_telat'];
+		$value['pesan_absen'] = $_REQUEST['msg_tidak_masuk'];
 		$value['no_kepsek'] = $_REQUEST['no_kepsek'];
-		$value['no_kepsek_2'] = $_REQUEST['no_kepsek_2'];
-		$value['tanggal_pel_baru'] = $_REQUEST['tanggal_pel_baru'];
-		$value['tanggal_pel_selesai'] = $_REQUEST['tanggal_pel_selesai'];
+		$value['no_kepsek2'] = $_REQUEST['no_kepsek_2'];
 		$result = $this->m_config->edit(1, $value);
 		if ($result)
 			$this->msg = $this->m_message->show_success("Data Berhasil Disimpan");

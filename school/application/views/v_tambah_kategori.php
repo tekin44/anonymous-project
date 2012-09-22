@@ -7,25 +7,17 @@
 		<?php echo form_open('c_kategori/tambahKategori'); ?>
 		<!-- start id-form -->
 		
-		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
-		<tr>
-			<th valign="top">ID Kategori:</th>
-			<td><input type="text" class="text" name="id_kategori" value="<?=$id?>" /></td>
-		</tr>
-		
+		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">		
 		<tr>
 			<th valign="top">Nama Kategori:</th>
-			<td><input type="text" class="text" name="nama_kategori" value="<?=$nama?>" /></td>
+			<td><input type="text" class="inp-form" name="nama_kategori" value="<?=$nama?>" /></td>
 		</tr>
-
+		<input type="hidden" class="inp-form" name="id_kategori" value="<?=$id?>" />
 		<tr>
-			<th>&nbsp;</th>
-			
 			<td valign="top">
 				<input type="submit" value="" class="form-submit" />
-				<input type="reset" value="" class="form-reset"  />
 			</td>
-			<td></td>
+			<td><a href="/school/c_kategori">Kembali</a></td>
 		</tr>
 		</table>
 		

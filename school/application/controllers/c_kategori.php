@@ -8,10 +8,6 @@ class c_kategori extends CI_Controller {
 		parent :: __construct();
 		$this->load->model('m_menu');
 		$this->client_logon = $this->session->userdata('login');
-		$this->data['menus'] = $this->m_menu->getAll($this->client_logon['id_prev']);
-		if($this->client_logon['id_prev']!="absen" && $this->client_logon['id_prev']!="admin"){
-			$this->redirectto($this->client_logon['id_prev']);
-		}
 	}
 
 	public function index() {
@@ -51,9 +47,15 @@ class c_kategori extends CI_Controller {
 		$this->load->model('m_kategori');
 		$id = $this->input->post('id_kategori');
 		$nama = $this->input->post('nama_kategori');
-
-		$this->m_kategori->tambahKategori($id, $nama);
-		
+		$flag = $this->input->post('flag');
+		if($flag==1) $this->m_kategori->tambahKategori($nama);
+		else $this->m_kategori->update($id,$nama);
+		redirect(index_kategori);
+	}
+	
+	public function delete($id) {
+		$this->load->model('m_kategori');
+		$this->m_kategori->delete($id);
 		redirect(index_kategori);
 	}
 	

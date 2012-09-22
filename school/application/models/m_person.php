@@ -10,22 +10,10 @@ class m_person extends CI_Model {
 	}
 
 	public function get_unregister() {
-		$query = $this->db->query("select * from users where status_user = '1'");
+		$query = $this->db->query("select * from users where status_users = '1'");
 		return $query->result();
 	}
-	
-	public function getAllStaff($tipe) {
-		$query = $this->db->query("select * from staff where tipe_staff = '".$tipe."'");
-		return $query->result();
-	}
-	
-	public function getStaff($id) {
-		$query = $this->db->query("select * from staff where no_induk = '".$id."'");
-		return $query->result();
-	}
-	
-	
-	
+		
 	public function insert_staff($data) {
 		$insert = $this->db->insert("staff",$data);
 		return $insert;

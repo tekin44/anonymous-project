@@ -30,7 +30,7 @@ class m_pelajaran extends CI_Model {
 	public function tambah_pelajaran($kode_pelajaran,$nama_pelajaran) {
 		$this->load->database();
 		$query = $this->db->query("
-						insert into pelajaran values ($kode_pelajaran, '$nama_pelajaran')
+						insert into pelajaran values ('$kode_pelajaran', '$nama_pelajaran')
 						");
 	}
 	
