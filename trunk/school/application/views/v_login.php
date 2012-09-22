@@ -36,18 +36,6 @@ $(document).pngFix( );
 	
 	<!--  start login-inner -->
 	<div id="login-inner">
-	
-				<!--  start message-red -->
-				
-				<div id="message-red">
-				<table border="0" width="100%" cellpadding="0" cellspacing="0">
-				<tr>
-					<td class="red-left"><?=isset($pesan) ? $pesan : ''?></td>
-					<td class="red-right"><a class="close-red"><img src="images/table/icon_close_red.gif"   alt="" /></a></td>
-				</tr>
-				</table>
-				</div>
-				<!--  end message-red -->
 	<form action="login" method="post">
 	<table border="0" cellpadding="0" cellspacing="0">
 		<tr>

@@ -16,9 +16,9 @@ class m_hari_libur extends CI_Model {
 		return $query->result();
 	}
 	
-	public function insert($data) {
+	public function insert($desc,$date) {
 		$this->load->database();
-		$query = $this->db->insert('hari_libur',$data);
+		$query = $this->db->query("INSERT INTO hari_libur (ket_hari_libur, tanggal_hari_libur, id_hari_libur) VALUES ('".$desc."', '".$date."', nextval('hari_libur_pk_seq'))");
 		return $query;
 	}
 	

@@ -6,61 +6,30 @@ class c_login extends CI_Controller {
 
 	function __construct() {
 		parent :: __construct();
-		$this->load->model('m_login');
-		$this->client_logon = $this->session->userdata('login');
-
+		$this->load->model('m_admin');
+		$this->client_logon = $this->session->userdata('admin');
 	}
 
 	public function index() {
 		if ($this->client_logon) {
-			$this->redirectto($this->client_logon['id_prev']);
+			redirect('siswa');
 		} else {
-			redirect('login');
+			$this->load->view('v_login');
 		}
 	}
 
 	public function login() {
-		if (!$this->client_logon) {
-			if ($_POST) {
-				$user = $this->m_login->validate($_POST['username'], $_POST['password']);
-				if ($user) {
-					$this->m_login->login($user);
-					$this->redirectto($user['id_prev']);
-				} else {
-					$data['pesan'] = 'Username atau Password salah';
-				}
-			} else {
-				$data['pesan'] = 'Isi username dan password anda';
-			}
-			$this->load->view('v_login', $data);
+		$admin = $this->m_admin->validate($_REQUEST['username'], $_REQUEST['password']);
+		if ($admin) {
+			$this->session->set_userdata('admin', $admin);
+			redirect('siswa');
 		} else {
 			redirect('index');
 		}
 	}
 
 	public function logout() {
-		$this->m_login->logout();
+		$this->session->destroy();
 		redirect('login');
 	}
-
-	public function redirectto($prev) {
-		switch ($prev) {
-			case 'absen' :
-				redirect('index_absensi');
-				break;
-			case 'smsgw' :
-				redirect('index_sms');
-				break;
-			case 'sppap' :
-				redirect('index_spp');
-				break;
-			case 'nilai' :
-				redirect('index_nilai');
-				break;
-			case 'admin' :
-				redirect('index_admin');
-				break;
-		}
-	}
-
 }

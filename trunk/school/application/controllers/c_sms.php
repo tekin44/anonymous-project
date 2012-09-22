@@ -13,25 +13,21 @@ class c_sms extends CI_Controller {
 		$this->load->model('m_menu');
 		$this->load->model('m_date');
 		$this->client_logon = $this->session->userdata('login');
-		$this->data['menus'] = $this->m_menu->getAll($this->client_logon['id_prev']);
-		if ($this->client_logon['id_prev'] != "smsgw" && $this->client_logon['id_prev'] != "admin") {
-			$this->redirectto($this->client_logon['id_prev']);
-		}
 	}
 
 	public function index() {
 		/*if($this->client_logon)
 		{*/
 
-		$conn = pg_connect("host=192.168.17.2 port=5432 dbname=sms user=postgres password=dbr4H4514");
+		$conn = pg_connect("host=localhost port=5432 dbname=sms user=postgres password=rahasia");
 		$sql = "SELECT * FROM sentitems";
 		$query = pg_query($sql);
 		$rows = array ();
 		$i = 0;
 		while ($row = pg_fetch_array($query)) {
-			$rows[$i]['DestinationNumber'] = $row['DestinationNumber'];
-			$rows[$i]['TextDecode'] = $row['TextDecoded'];
-			$rows[$i]['CreatorID'] = $row['CreatorID'];
+			$rows[$i]['destinationnumber'] = $row['destinationnumber'];
+			$rows[$i]['textdecoded'] = $row['textdecoded'];
+			$rows[$i]['creatorid'] = $row['creatorid'];
 			$i++;
 		}
 		$this->data['items'] = $rows;
@@ -62,9 +58,9 @@ class c_sms extends CI_Controller {
 		if (isset ($_REQUEST['kat'])) {
 			$rows = $this->m_siswa->get_pphone_by_kat($_REQUEST['kat']);
 			foreach ($rows as $row) {
-				$value['DestinationNumber'] = $row->no_hp_orang_tua;
-				$value['TextDecoded'] = $isi;
-				$value['CreatorID'] = "Broadcast";
+				$value['destinationnumber'] = $row->no_hp_orang_tua;
+				$value['textdecoded'] = $isi;
+				$value['creatorid'] = "Broadcast";
 				$this->insert_to_outbox($value);
 			}
 			$this->broadcast_form(true);
@@ -75,9 +71,9 @@ class c_sms extends CI_Controller {
 		$this->load->model('m_siswa');
 		$isi = $_REQUEST['msg'];
 			$row = $this->m_siswa->get_pphone_by_id($_REQUEST['no_induk']);
-			$value['DestinationNumber'] = $row[0]->no_hp_orang_tua;
-			$value['TextDecoded'] = $isi;
-			$value['CreatorID'] = "Single";
+			$value['destinationnumber'] = $row[0]->no_hp_orang_tua;
+			$value['textdecoded'] = $isi;
+			$value['creatorid'] = "Single";
 			$this->insert_to_outbox($value);
 			$this->show_single_sms_form(true);
 	}
@@ -102,8 +98,8 @@ class c_sms extends CI_Controller {
 
 	public function insert_to_outbox($value) {
 		$conn = pg_connect("host=localhost port=5432 dbname=sms user=postgres password=rahasia");
-		$insert = pg_query("INSERT INTO outbox (\"DestinationNumber\",\"TextDecoded\",\"CreatorID\") " .
-		"VALUES ('" . $value['DestinationNumber'] . "','" . $value['TextDecoded'] . "','" . $value['CreatorID'] . "')");
+		$insert = pg_query("INSERT INTO outbox (\"destinationnumber\",\"textdecoded\",\"creatorid\") " .
+		"VALUES ('" . $value['destinationnumber'] . "','" . $value['textdecoded'] . "','" . $value['creatorid'] . "')");
 		return $insert;
 	}
 
@@ -171,8 +167,10 @@ class c_sms extends CI_Controller {
 	}
 
 	public function delete($id) {
+		$this->load->model('m_kategori_pesan');
 		$value = array ();
 		$value['id_pesan'] = $id;
+		$this->m_kategori_pesan->delete($value);
 		$value['status_pengiriman'] = '1';
 		$this->load->model('m_pesan');
 		$result = $this->m_pesan->delete($value);

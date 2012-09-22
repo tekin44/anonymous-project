@@ -27,11 +27,10 @@ class m_kelas extends CI_Model {
 						");
 	}
 	
-	public function tambah_kelas($id_kelas,$nama_kelas) {
-		$this->load->database();
-		$query = $this->db->query("
-						insert into kelas values ($id_kelas, '$nama_kelas')
-						");
+	public function tambah_kelas($nama_kelas) {
+		$this->db->query("INSERT INTO kelas VALUES (nextval('kelas_pk_seq'),'$nama_kelas')");
+		$no = $this->db->query("select currval('kelas_pk_seq') as id_kelas");
+		return $no->result();
 	}
 	
 	public function delete_kelas($id_kelas) 

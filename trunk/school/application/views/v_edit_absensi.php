@@ -11,13 +11,14 @@
 		<?
 		$no = $item->no_absensi;
 		echo form_hidden('no_absensi', $no);
+		echo form_hidden('tipe', $tipe);
 		?>
 			<th valign="top">Nama :</th>
-			<td><? echo $item->nama_person ?></td>
+			<td><? echo $item->nama ?></td>
 		</tr>
 		<tr>
 			<th valign="top">Nomor Induk :</th>
-			<td><? echo $item->no_induk ?></td>
+			<td><? echo $item->nomor_induk ?></td>
 		</tr>
 		<tr>
 			<th valign="top">Keterangan</th><td>

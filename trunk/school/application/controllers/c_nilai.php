@@ -63,7 +63,13 @@ class c_nilai extends CI_Controller {
 		$id_kelas = $this->input->post('id_kelas');
 		$nip = $this->input->post('nip');
 		$nilai = $this->input->post('nilai');
-		
+		$this->load->model('m_raport');
+		$siswa = $this->m_raport->get_nilai($id);
+		$this->data['siswa'] = $siswa;
+		$this->data['title'] = $siswa[0]->nama_siswa;
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_detail_nilai_siswa', $this->data);
+		$this->load->view('v_footer', $this->data);
 		$this->m_nilai->update($nis,$id_kelas,$nip,$nilai);	
 		redirect("c_nilai/get_nilai/".$nis);
 	}
@@ -102,25 +108,5 @@ class c_nilai extends CI_Controller {
 		redirect("c_nilai/get_nilai/".$nis);
 	}
 	
-
-	function redirectto($prev) {
-		switch ($prev) {
-			case 'absen' :
-				redirect('index_absensi');
-				break;
-			case 'smsgw' :
-				redirect('index_sms');
-				break;
-			case 'sppap' :
-				redirect('index_spp');
-				break;
-			case 'nilai' :
-				redirect('index_nilai');
-				break;
-			case 'admin' :
-				redirect('index_admin');
-				break;
-		}
-	}
 
 }

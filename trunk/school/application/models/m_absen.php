@@ -4,34 +4,6 @@ if (!defined('BASEPATH'))
 
 class m_absen extends CI_Model {
 
-	public function display_absen_siswa($src=null) {
-		$this->load->database();
-		$where_clause = "where b.tanggal_absensi = '".$src['tanggal']."' ";
-		if($src['nama_person']) $where_clause .= "AND a.nama_person ILIKE '%".$src['nama_person']."%' ";
-		if($src['no_induk']) $where_clause .= "AND a.no_induk = '".$src['no_induk']."' ";
-		$query = $this->db->query("select b.*, a.no_induk, a.nama_person, d.waktu_absen as waktu_masuk, c.waktu_absen as waktu_keluar  
-						from siswa a inner join absen b on a.no_induk = b.no_induk 
-						inner join (select b.waktu_absen, b.no_absensi from absen a inner join keterangan_absen b on a.no_absensi = b.no_absensi where keterangan = '1') d on b.no_absensi = d.no_absensi
-						left join (select b.waktu_absen, b.no_absensi from absen a inner join keterangan_absen b on a.no_absensi = b.no_absensi where keterangan = '2') c on b.no_absensi = c.no_absensi
-						$where_clause ORDER BY a.nama_person
-						");
-		return $query->result();
-	}
-	
-	public function display_absen_guru($src=null) {
-		$this->load->database();
-		$where_clause = "where b.tanggal_absensi = '".$src['tanggal']."' ";
-		if($src['nama_person']) $where_clause .= "AND a.nama_person ILIKE '%".$src['nama_person']."%' ";
-		if($src['no_induk']) $where_clause .= "AND a.no_induk = '".$src['no_induk']."' ";
-		$query = $this->db->query("select b.*, a.no_induk, a.nama_person, d.waktu_absen as waktu_masuk, c.waktu_absen as waktu_keluar  
-						from staff a inner join absen b on a.no_induk = b.no_induk 
-						inner join (select b.waktu_absen, b.no_absensi from absen a inner join keterangan_absen b on a.no_absensi = b.no_absensi where keterangan = '1') d on b.no_absensi = d.no_absensi
-						left join (select b.waktu_absen, b.no_absensi from absen a inner join keterangan_absen b on a.no_absensi = b.no_absensi where keterangan = '2') c on b.no_absensi = c.no_absensi
-						$where_clause AND a.tipe_staff = '1' ORDER BY a.nama_person
-						");
-		return $query->result();
-	}
-
 	public function getTanggal() {
 		$this->load->database();
 		$query = $this->db->query("
@@ -56,7 +28,7 @@ class m_absen extends CI_Model {
 
 	public function editAbsensi($no_absensi) {
 		$this->load->database();
-		$query = $this->db->query("select b.no_absensi, a.no_induk, a.nama_person, d.waktu_absen as waktu_masuk, c.waktu_absen as waktu_keluar  
+		$query = $this->db->query("select b.no_absensi, a.id_users, a.nama_person, d.waktu_absen as waktu_masuk, c.waktu_absen as waktu_keluar  
 						from person a inner join absen b on a.no_induk = b.no_induk 
 						inner join keterangan_absen d on b.no_absensi = d.no_absensi
 						left join (select b.waktu_absen, b.no_absensi from absen a inner join keterangan_absen b on a.no_absensi = b.no_absensi where keterangan = '2') c on b.no_absensi = c.no_absensi

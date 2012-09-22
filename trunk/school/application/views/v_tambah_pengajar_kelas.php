@@ -6,11 +6,11 @@
 		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
 		
 		<tr>
-			<th valign="top">Nomor Induk Pengajar:</th>
+			<th valign="top">Pengajar:</th>
 			<td><input name='nomor_induk_pengajar' type="text" class="inp-form" value="" /></td>
 		</tr>
 		<tr>
-			<th valign="top">ID Kelas:</th>
+			<th valign="top">Kelas:</th>
 			<td><input name='id_kelas' type="text" class="inp-form" value="" /></td>
 		</tr>
 		<tr>

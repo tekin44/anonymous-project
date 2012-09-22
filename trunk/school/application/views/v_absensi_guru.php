@@ -39,9 +39,9 @@
 								</table>
 							</td>
 							<th valign="top">No Induk:</th>
-							<td><input name="nomor_induk_siswa" type="text" class="inp-form" /></td>
+							<td><input name="nomor_induk_pengajar" type="text" class="inp-form" /></td>
 							<th valign="top">Nama:</th>
-							<td><input name="nama_siswa" type="text" class="inp-form" /></td>
+							<td><input name="nama_pengajar" type="text" class="inp-form" /></td>
 							<td><input type="submit" value="Cari" name="search" /></td>
 						</tr>
 					</table>
@@ -73,13 +73,13 @@
 				
 				<tr class="alternate-row">
 					<td><? echo ++$i; ?></td>
-					<td><? echo $item->nomor_induk_siswa ?></td>
-					<td><? echo $item->nama_siswa ?></td>
+					<td><? echo $item->nomor_induk_pengajar ?></td>
+					<td><? echo $item->nama_pengajar ?></td>
 					<td><? echo $item->waktu_masuk ?></td>
 					<td><? echo $item->waktu_keluar ?></td>
 					<td><? echo $ket ?></td>
 					<td>
-					<?="<a href='" . base_url() . "c_absensi/editAbsensiSiswa/$item->no_absensi' title='Edit' class='icon-1 info-tooltip'>"?></a>
+					<?="<a href='" . base_url() . "c_absensi/editAbsensiPengajar/$item->no_absensi' title='Edit' class='icon-1 info-tooltip'>"?></a>
 					</td>
 				</tr>
 				

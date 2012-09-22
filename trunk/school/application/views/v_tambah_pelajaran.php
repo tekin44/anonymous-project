@@ -6,7 +6,7 @@
 		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
 
 		<tr>
-			<th valign="top">ID Pelajaran:</th>
+			<th valign="top">Kode Pelajaran:</th>
 			<td><input name='kode_pelajaran' type="text" class="inp-form" value="" /></td>
 		</tr>
 		<tr>

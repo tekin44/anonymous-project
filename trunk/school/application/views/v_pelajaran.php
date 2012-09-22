@@ -3,7 +3,7 @@
 				<form id="mainform" action="">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
 				<tr>
-					<th class="table-header-repeat line-left"><a href="">ID Pelajaran</a></th>
+					<th class="table-header-repeat line-left"><a href="">Kode Pelajaran</a></th>
 					<th class="table-header-repeat line-left"><a href="">Nama Pelajaran</a></th>
 					<th class="table-header-options line-left"><a href="">Action</a></th>
 				</tr>

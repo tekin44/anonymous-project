@@ -8,10 +8,6 @@ class c_absensi extends CI_Controller {
 		parent :: __construct();
 		$this->load->model('m_menu');
 		$this->client_logon = $this->session->userdata('login');
-		$this->data['menus'] = $this->m_menu->getAll($this->client_logon['id_prev']);
-		if ($this->client_logon['id_prev'] != "absen" && $this->client_logon['id_prev'] != "admin") {
-			$this->redirectto($this->client_logon['id_prev']);
-		}
 	}
 
 	public function index($src = null) {
@@ -20,32 +16,28 @@ class c_absensi extends CI_Controller {
 			$m = $_REQUEST['m'] ? $_REQUEST['m'] : null;
 			$y = $_REQUEST['y'] ? $_REQUEST['y'] : null;
 			$src['tanggal'] = $y . '-' . $m . '-' . $d;
-			$src['nama_person'] = $_REQUEST['nama_person'] ? $_REQUEST['nama_person'] : null;
-			$src['no_induk'] = $_REQUEST['no_induk'] ? $_REQUEST['no_induk'] : null;
+			$src['nama_siswa'] = $_REQUEST['nama_siswa'] ? $_REQUEST['nama_siswa'] : null;
+			$src['nomor_induk_siswa'] = $_REQUEST['nomor_induk_siswa'] ? $_REQUEST['nomor_induk_siswa'] : null;
 		}else{
 			$src['tanggal'] = date('Y-m-d');
-			$src['nama_person'] = null;
-			$src['no_induk'] = null;
+			$src['nama_siswa'] = null;
+			$src['nomor_induk_siswa'] = null;
 		}
-		if ($this->client_logon) {
-			$this->load->model('m_absen');
-			$this->data['rows'] = $this->m_absen->display_absen_siswa($src);
+			$this->load->model('m_siswa');
+			$this->data['rows'] = $this->m_siswa->display_absen_siswa($src);
 			$this->data['tanggal'] = $src['tanggal'];
 			$this->data['title'] = "Data Absensi";
 			$this->data['report'] = "report_siswa";
-			$this->data['action'] = "index";
+			$this->data['action'] = "/school/c_absensi/index";
 			$this->load->view('v_header', $this->data);
 			$this->load->view('v_absensi', $this->data);
 			$this->load->view('v_footer', $this->data);
-		} else {
-			redirect('login');
-		}
 	}
 	
 	public function report_siswa($tgl) {
 			$src['tanggal'] = $tgl;
-			$this->load->model('m_absen');
-			$this->data['rows'] = $this->m_absen->display_absen_siswa($src);
+			$this->load->model('m_siswa');
+			$this->data['rows'] = $this->m_siswa->display_absen_siswa($src);
 			$this->data['tanggal'] = $src['tanggal'];
 			$this->load->view('report', $this->data);
 	}
@@ -67,10 +59,31 @@ class c_absensi extends CI_Controller {
 		$this->load->view('v_footer', $this->data);
 	}
 
-	public function editAbsensi($no_absensi) {
-		$this->load->model('m_absen');
-		$this->data['rows'] = $this->m_absen->editAbsensi($no_absensi);
+	public function editAbsensiSiswa($no_absensi) {
+		$this->load->model('m_siswa');
+		$this->data['rows'] = $this->m_siswa->editAbsensi($no_absensi);
 		$this->data['title'] = "Edit Data Absensi";
+		$this->data['tipe'] = "1";
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_edit_absensi', $this->data);
+		$this->load->view('v_footer', $this->data);
+	}
+
+	public function editAbsensiPengajar($no_absensi) {
+		$this->load->model('m_pengajar');
+		$this->data['rows'] = $this->m_pengajar->editAbsensi($no_absensi);
+		$this->data['title'] = "Edit Data Absensi";
+		$this->data['tipe'] = "2";
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_edit_absensi', $this->data);
+		$this->load->view('v_footer', $this->data);
+	}
+
+	public function editAbsensiStaff($no_absensi) {
+		$this->load->model('m_staff');
+		$this->data['rows'] = $this->m_staff->editAbsensi($no_absensi);
+		$this->data['title'] = "Edit Data Absensi";
+		$this->data['tipe'] = "3";
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_edit_absensi', $this->data);
 		$this->load->view('v_footer', $this->data);
@@ -80,8 +93,9 @@ class c_absensi extends CI_Controller {
 		$this->load->model('m_absen');
 		$keterangan = $this->input->post('keterangan');
 		$no = $this->input->post('no_absensi');
+		$tipe = $this->input->post('tipe');
 		$this->m_absen->updateAbsensi($keterangan, $no);
-		redirect(index_absensi);
+		$this->redirectto($tipe);
 	}
 
 	public function show_absen_guru($src = null) {
@@ -90,26 +104,22 @@ class c_absensi extends CI_Controller {
 			$m = $_REQUEST['m'] ? $_REQUEST['m'] : null;
 			$y = $_REQUEST['y'] ? $_REQUEST['y'] : null;
 			$src['tanggal'] = $y . '-' . $m . '-' . $d;
-			$src['nama_person'] = $_REQUEST['nama_person'] ? $_REQUEST['nama_person'] : null;
-			$src['no_induk'] = $_REQUEST['no_induk'] ? $_REQUEST['no_induk'] : null;
+			$src['nama_pengajar'] = $_REQUEST['nama_pengajar'] ? $_REQUEST['nama_pengajar'] : null;
+			$src['nomor_induk_pengajar'] = $_REQUEST['nomor_induk_pengajar'] ? $_REQUEST['nomor_induk_pengajar'] : null;
 		}else{
 			$src['tanggal'] = date('Y-m-d');
-			$src['nama_person'] = null;
-			$src['no_induk'] = null;
+			$src['nama_pengajar'] = null;
+			$src['nomor_induk_pengajar'] = null;
 		}
-		if ($this->client_logon) {
-			$this->load->model('m_absen');
-			$this->data['rows'] = $this->m_absen->display_absen_guru($src);
+			$this->load->model('m_pengajar');
+			$this->data['rows'] = $this->m_pengajar->display_absen_guru($src);
 			$this->data['tanggal'] = $src['tanggal'];
 			$this->data['title'] = "Data Absensi";
 			$this->data['report'] = "report_guru";
 			$this->data['action'] = "show_absen_guru";
 			$this->load->view('v_header', $this->data);
-			$this->load->view('v_absensi', $this->data);
+			$this->load->view('v_absensi_guru', $this->data);
 			$this->load->view('v_footer', $this->data);
-		} else {
-			redirect('login');
-		}
 	}
 
 	public function submit_absen() {
@@ -131,20 +141,11 @@ class c_absensi extends CI_Controller {
 
 	function redirectto($prev) {
 		switch ($prev) {
-			case 'absen' :
-				redirect('index_absensi');
+			case '1' :
+				redirect('c_absensi/index');
 				break;
-			case 'smsgw' :
-				redirect('index_sms');
-				break;
-			case 'sppap' :
-				redirect('index_spp');
-				break;
-			case 'nilai' :
-				redirect('index_nilai');
-				break;
-			case 'admin' :
-				redirect('index_admin');
+			case '2' :
+				redirect('c_absensi/show_absen_guru');
 				break;
 		}
 	}
