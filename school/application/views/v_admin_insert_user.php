@@ -6,21 +6,17 @@
 		
 		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
 		<tr>
-			<th valign="top">No. Induk :</th>
-			<td><? echo form_input('no_induk', ''); ?></td>
-		</tr>
-		<tr>
-			<th valign="top">Previlege :</th>
-			<td><? echo form_input('id_prev', ''); ?></td>
+			<th valign="top">Username :</th>
+			<td><? echo form_input('admin_username', ''); ?></td>
 		</tr>
 		<tr>
 			<th valign="top">Password :</th>
-			<td><? echo form_input('user_pass', ''); ?></td>
+			<td><? echo form_input('admin_password', ''); ?></td>
 		</tr>
 		<tr>
 			<th>&nbsp;</th>
 			<td valign="top">
-				<?php echo form_submit('submit', 'update'); ?> 
+				<?php echo form_submit('submit', 'Add'); ?> 
 			</td>
 			<td></td>
 		</tr>
