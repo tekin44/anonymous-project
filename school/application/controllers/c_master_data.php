@@ -15,10 +15,7 @@ class c_master_data extends CI_Controller {
 		$this->load->model('m_menu');
 		$this->load->model('m_siswa');
 		$this->client_logon = $this->session->userdata('login');
-		//$this->data['menus'] = $this->m_menu->getAll($this->client_logon['id_prev']);
-		// if($this->client_logon['id_prev']!="admin"){
-		// $this->redirectto($this->client_logon['id_prev']);
-		// }
+		$this->data['menus'] = $this->m_menu->getAll($this->client_logon['id_prev']);
 	}
 
 	public function show_data_siswa() {

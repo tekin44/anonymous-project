@@ -4,13 +4,17 @@ if (!defined('BASEPATH'))
 
 class m_menu extends CI_Model {
 
-	public function getAll($id_prev) {
-		if ($id_prev != "admin")
-			$sql = "select * from menu where id_prev = '" . $id_prev . "'";
-		else
-			$sql = "select * from menu";
+	public function getAll() {
+		$sql = "select * from menu";
 		$query = $this->db->query($sql);
 		return $query->result();
+	}
+
+	public function insertMenu($parent=null,$nama,$action) {
+		if($parent)
+		$query = $this->db->query("INSERT INTO menu(id_menu,men_id_menu,nama_menu,action_menu) VALUES (nextval('menu_pk_seq'),'$parent','$nama','$action')");
+		else
+		$query = $this->db->query("INSERT INTO menu(id_menu,nama_menu,action_menu) VALUES (nextval('menu_pk_seq'),'$nama','$action')");
 	}
 
 }

@@ -8,23 +8,21 @@
 		
 		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
 		<tr>
-			<th valign="top">No. Induk :</th>
-			<td><? echo form_input('no_induk', $item->no_induk); ?></td>
-		</tr>
-		<tr>
-			<th valign="top">Previlege :</th>
-			<td><? echo form_input('id_prev', $item->id_prev); ?></td>
+			<th valign="top">Username :</th>
+			<td><input name='admin_username1' type="text" class="inp-form" value="<?=$item->admin_username?>" /></td>
 		</tr>
 		<tr>
 			<th valign="top">Password :</th>
-			<td><? echo form_input('user_pass', $item->user_pass); ?></td>
+			<td><input name='admin_password' type="password" class="inp-form" /></td>
 		</tr>
+		<input name='admin_username2' type="hidden" class="inp-form" value="<?=$item->admin_username?>" />
 		<tr>
-			<th>&nbsp;</th>
 			<td valign="top">
-				<?php echo form_submit('submit', 'update'); ?> 
+				<input type="submit" value="" class="form-submit" />
 			</td>
-			<td></td>
+			<td>
+				<a href="/school/c_admin">Kembali</a>
+			</td>
 		</tr>
 		</table>
 		<?}?>
