@@ -2,8 +2,6 @@
 				<form id="mainform" action="">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
 				<tr>
-					<th class="table-header-repeat line-left minwidth-1"><a href="">ID Menu</a>	</th>
-					<th class="table-header-repeat line-left minwidth-1"><a href="">ID Previlege</a></th>
 					<th class="table-header-repeat line-left"><a href="">ID Parent Menu</a></th>
 					<th class="table-header-repeat line-left"><a href="">Nama Menu</a></th>
 					<th class="table-header-repeat line-left"><a href="">Action Menu</a></th>
@@ -13,8 +11,6 @@
 				<?php foreach ($rows as $item){?>
 				
 				<tr class="alternate-row">
-					<td><? echo $item->id_menu ?></td>
-					<td><? echo $item->id_prev ?></td>
 					<td><? echo $item->parent ?></td>
 					<td><? echo $item->nama_menu ?></td>
 					<td><? echo $item->action_menu ?></td>

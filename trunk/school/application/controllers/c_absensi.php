@@ -8,6 +8,7 @@ class c_absensi extends CI_Controller {
 		parent :: __construct();
 		$this->load->model('m_menu');
 		$this->client_logon = $this->session->userdata('login');
+		$this->data['menus'] = $this->m_menu->getAll();
 	}
 
 	public function index($src = null) {

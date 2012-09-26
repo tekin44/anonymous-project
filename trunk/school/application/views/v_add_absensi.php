@@ -4,8 +4,9 @@
 		<tr>
 			<th valign="top">NIS :</th>
 			<td><select name="no_induk" class="styledselect_form_1">
+					<option value="0">-- NIS --</option>
 				<?php foreach($rows as $row){ ?>
-					<option value="<?=$row->no_induk?>"><?=$row->no_induk." - ".$row->nama_person?></option>
+					<option value="<?=$row->nomor_induk_siswa?>"><?=$row->nomor_induk_siswa." - ".$row->nama_siswa?></option>
 				<?php } ?>
 				</select></td>
 			<td></td>
@@ -21,12 +22,10 @@
 			<td></td>
 		</tr>
 		<tr>
-			<th>&nbsp;</th>
 			<td valign="top">
 				<input type="submit" value="" class="form-submit" />
-				<input type="reset" value="" class="form-reset"  />
 			</td>
-			<td></td>
+			<td><a href="data_absensi_siswa">Kembali</a></td>
 		</tr>
 		</table>
 		</form>		

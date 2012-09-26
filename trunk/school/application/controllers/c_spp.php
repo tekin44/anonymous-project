@@ -8,11 +8,8 @@ class c_spp extends CI_Controller {
 		parent :: __construct();
 		$this->load->model('m_menu');
 		$this->load->model('m_date');
-		$this->client_logon = $this->session->userdata('login'); /*
-				$this->data['menus'] = $this->m_menu->getAll($this->client_logon['id_prev']);
-				if ($this->client_logon['id_prev'] != "nilai" && $this->client_logon['id_prev'] != "admin") {
-					$this->redirectto($this->client_logon['id_prev']);
-				}*/
+		$this->client_logon = $this->session->userdata('login');
+		$this->data['menus'] = $this->m_menu->getAll();
 	}
 
 	public function index() {
@@ -57,8 +54,8 @@ class c_spp extends CI_Controller {
 		$nis = $_REQUEST['nomor_induk_siswa'];
 		$jml_dsp = $_REQUEST['jumlah_dsp'];
 		$jumlah_tahunan = $_REQUEST['jumlah_tahunan'];
-		$this->m_dsp->insert($nis,$jml_dsp);
-		$this->m_tahunan->insert($nis,$jumlah_tahunan);
+		$this->m_dsp->insert($nis, $jml_dsp);
+		$this->m_tahunan->insert($nis, $jumlah_tahunan);
 		redirect('c_spp');
 	}
 
@@ -102,7 +99,7 @@ class c_spp extends CI_Controller {
 		$this->m_tahunan->insert_bayar_tahunan($value);
 		redirect('c_spp');
 	}
-	
+
 	public function add_tahunan($id) {
 		$this->load->model('m_tahunan');
 		$d = 0;
@@ -140,7 +137,7 @@ class c_spp extends CI_Controller {
 		$this->data['nis'] = $_REQUEST['nomor_induk_siswa'];
 		$this->data['tahun'] = $_REQUEST['tahun_spp'];
 		$this->data['mon'] = $this->m_date->get_month();
-		$this->data['spp'] = $this->m_spp->get_data($_REQUEST['nomor_induk_siswa'],$_REQUEST['tahun_spp']);
+		$this->data['spp'] = $this->m_spp->get_data($_REQUEST['nomor_induk_siswa'], $_REQUEST['tahun_spp']);
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_form_spp_siswa', $this->data);
 		$this->load->view('v_footer', $this->data);
