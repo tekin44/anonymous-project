@@ -30,9 +30,9 @@ class c_master_data extends CI_Controller {
 			$this->data['siswa'] = $this->m_siswa->get_siswas();
 		} else
 			if ($key1 != NULL) {
-				$this->data['siswa'] = $this->m_person->getSearchNISiswa($key1);
+				$this->data['siswa'] = $this->m_siswa->getSearchNISiswa($key1);
 			} else {
-				$this->data['siswa'] = $this->m_person->getSearchNamaSiswa($key2);
+				$this->data['siswa'] = $this->m_siswa->getSearchNamaSiswa($key2);
 			}
 
 		$this->load->view('v_header', $this->data);

@@ -19,16 +19,23 @@ class c_admin extends CI_Controller {
 		$this->data['title'] = "Data User";
 
 		$key1 = $this->input->post('search_field1');
-		$key2 = $this->input->post('search_field2');
+		//$key2 = $this->input->post('search_field2');
 
-		if ($key1 == NULL && $key2 == NULL) {
+		// if ($key1 == NULL && $key2 == NULL) {
+			// $this->data['rows'] = $this->m_admin->displayUser();
+		// } else
+			// if ($key1 != NULL) {
+				// $this->data['rows'] = $this->m_admin->searchNamaUser($key1);
+			// } else {
+				// $this->data['rows'] = $this->m_admin->searchWewenangUser($key2);
+			// }
+			
+		if ($key1 == NULL) {
 			$this->data['rows'] = $this->m_admin->displayUser();
-		} else
-			if ($key1 != NULL) {
+		} else{
 				$this->data['rows'] = $this->m_admin->searchNamaUser($key1);
-			} else {
-				$this->data['rows'] = $this->m_admin->searchWewenangUser($key2);
 			}
+	
 
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_admin_display_user', $this->data);
@@ -50,11 +57,10 @@ class c_admin extends CI_Controller {
 
 	public function insertUser() {
 		$this->load->model('m_admin');
-		$no_induk = $this->input->post('no_induk');
-		$id_prev = $this->input->post('id_prev');
-		$user_pass = md5($this->input->post('user_pass'));
+		$admin_username = $this->input->post('admin_username');
+		$admin_password = md5($this->input->post('admin_password'));
 
-		$this->m_admin->insertUser($no_induk, $id_prev, $user_pass);
+		$this->m_admin->insertUser($admin_username, $admin_password);
 		redirect(index_admin);
 	}
 

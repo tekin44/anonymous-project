@@ -22,6 +22,7 @@
 					<th class="table-header-repeat line-left"><a href="">Nomor</a></th>
 					<th class="table-header-repeat line-left"><a href="">Mata Pelajaran</a></th>
 					<th class="table-header-repeat line-left"><a href="">Kelas</a></th>
+					<th class="table-header-repeat line-left"><a href="">Nama Pengajar</a></th>
 					<th class="table-header-repeat line-left minwidth-1"><a href="">Nilai</a></th>
 					<th class="table-header-options line-left"><a href="">Action</a></th>
 				</tr>
@@ -39,6 +40,7 @@
 					<td><?=++$i ?></td>
 					<td><?=$item->nama_pelajaran ?></td>
 					<td><?=$item->nama_kelas ?></td>
+					<td><?=$item->nama_pengajar?></td>
 					<td><input name='nilai[]' type="text" class="inp-nilai" value="<?=$item->nilai_raport?>" /></td>
 					
 					
