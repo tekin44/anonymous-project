@@ -20,7 +20,7 @@ class c_sms extends CI_Controller {
 		/*if($this->client_logon)
 		{*/
 
-		$conn = pg_connect("host=localhost port=5432 dbname=sms user=postgres password=rahasia");
+		$conn = pg_connect("host=192.168.17.2 port=5432 dbname=sms user=postgres password=dbr4H4514");
 		$sql = "SELECT * FROM sentitems";
 		$query = pg_query($sql);
 		$rows = array ();
@@ -71,12 +71,17 @@ class c_sms extends CI_Controller {
 	public function sent_single() {
 		$this->load->model('m_siswa');
 		$isi = $_REQUEST['msg'];
-			$row = $this->m_siswa->get_pphone_by_id($_REQUEST['no_induk']);
-			$value['destinationnumber'] = $row[0]->no_hp_orang_tua;
+		$row = $this->m_siswa->get_pphone_by_id($_REQUEST['no_induk']);
+		if($row->num_rows()>0){
+			$row = $row->row();
+			$value['destinationnumber'] = $row->no_hp_orang_tua;
 			$value['textdecoded'] = $isi;
 			$value['creatorid'] = "Single";
 			$this->insert_to_outbox($value);
 			$this->show_single_sms_form(true);
+		}else{
+			$this->show_single_sms_form(false);
+		}	
 	}
 
 	public function show_single_sms_form($rsl = false) {
@@ -98,7 +103,7 @@ class c_sms extends CI_Controller {
 	}
 
 	public function insert_to_outbox($value) {
-		$conn = pg_connect("host=localhost port=5432 dbname=sms user=postgres password=rahasia");
+		$conn = pg_connect("host=192.168.17.2 port=5432 dbname=sms user=postgres password=dbr4H4514");
 		$insert = pg_query("INSERT INTO outbox (\"destinationnumber\",\"textdecoded\",\"creatorid\") " .
 		"VALUES ('" . $value['destinationnumber'] . "','" . $value['textdecoded'] . "','" . $value['creatorid'] . "')");
 		return $insert;

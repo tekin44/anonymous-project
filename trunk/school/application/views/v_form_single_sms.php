@@ -1,15 +1,19 @@
-		<?php if($result){ ?>
+		<?php if($result){ 
+			$pesan = "Pesan telah berhasil dikirim";
+			}else{
+			$pesan = "Nomor induk tersebut belum terdaftar";
+			}
+		?>
 		<!--  start message-yellow -->
 				<div id="message-yellow">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0">
 				<tr>
-					<td class="yellow-left">Pesan telah berhasil dikirim</td>
+					<td class="yellow-left"><?=$pesan?></td>
 					<td class="yellow-right"><a class="close-yellow"><img src="/school/images/table/icon_close_yellow.gif"   alt="" /></a></td>
 				</tr>
 				</table>
 				</div>
-				<!--  end message-yellow -->	
-		<?php } ?>
+				<!--  end message-yellow -->
 		<!-- start id-form -->
 		<form action="sent_single" method="post">
 		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
