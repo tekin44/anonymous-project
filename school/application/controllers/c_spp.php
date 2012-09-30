@@ -119,14 +119,14 @@ class c_spp extends CI_Controller {
 		$value['id_dsp'] = $_REQUEST['id_dsp'];
 		$value['jumlah_bayar_dsp'] = $_REQUEST['jumlah_bayar_dsp'];
 		$this->m_dsp->insert_bayar_dsp($value);
-		$row = $this->m_dsp->get_detail_nota($value['id_dsp']);
+		/*$row = $this->m_dsp->get_detail_nota($value['id_dsp']);
 		$data['spp'] = false;
 		$data['dsp'] = true;
 		$data['tahunan'] = false;
 		$data['kelas'] = $row->nama_kelas;
 		$data['nama'] = $row->nama_siswa;
 		$data['jumlah'] = $value['jumlah_bayar_dsp'];
-		$this->print_note($data);
+		$this->print_note($data);*/
 	}
 
 	public function submit_tahunan() {
@@ -138,14 +138,14 @@ class c_spp extends CI_Controller {
 		$value['id_tahunan'] = $_REQUEST['id_tahunan'];
 		$value['jumlah_bayar_tahunan'] = $_REQUEST['jumlah_bayar_tahunan'];
 		$this->m_tahunan->insert_bayar_tahunan($value);
-		$row = $this->m_tahunan->get_detail_nota($value['id_tahunan']);
+		/*$row = $this->m_tahunan->get_detail_nota($value['id_tahunan']);
 		$data['spp'] = false;
 		$data['dsp'] = false;
 		$data['tahunan'] = true;
 		$data['kelas'] = $row->nama_kelas;
 		$data['nama'] = $row->nama_siswa;
 		$data['jumlah'] = $value['jumlah_bayar_tahunan'];
-		$this->print_note($data);
+		$this->print_note($data);*/
 	}
 
 	public function add_tahunan($id) {
@@ -160,6 +160,23 @@ class c_spp extends CI_Controller {
 		$this->data['title'] = "Keuangan Siswa";
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_form_tahunan_siswa', $this->data);
+		$this->load->view('v_footer', $this->data);
+
+	}
+
+	public function add_print_note($id) {
+		$this->load->model('m_tahunan');
+		$this->load->model('m_date');
+		$d = 0;
+		$m = 0;
+		$y = 0;
+		$this->data['d'] = $this->m_date->day($d);
+		$this->data['m'] = $this->m_date->month($m);
+		$this->data['y'] = $this->m_date->year($y);
+		$this->data['nis'] = $id;
+		$this->data['title'] = "Keuangan Siswa";
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_form_print_note', $this->data);
 		$this->load->view('v_footer', $this->data);
 
 	}
@@ -215,15 +232,55 @@ class c_spp extends CI_Controller {
 			}
 			$this->m_spp->insert_bayar($value);
 		}
-		$row = $this->m_spp->get_detail_nota($value['id_spp']);
+		/*$row = $this->m_spp->get_detail_nota($value['id_spp']);
 		$data['spp'] = true;
 		$data['dsp'] = false;
 		$data['tahunan'] = false;
 		$data['kelas'] = $row->nama_kelas;
 		$data['nama'] = $row->nama_siswa;
 		$data['jumlah'] = $i * $row->jumlah_spp;
+		$this->print_note($data);*/
+	}
+	
+	public function submit_note(){
+		$this->load->model('m_siswa');
+		$d = $_REQUEST['d'];
+		$m = $_REQUEST['m'];
+		$y = $_REQUEST['y'];
+		$tgl = $this->m_date->merge($d, $m, $y);
+		$nis = $_REQUEST['id'];
+		$row = $this->m_siswa->get_nota($tgl,$nis);
+		$data['kelas'] = $row->nama_kelas;
+		$data['nama'] = $row->nama_siswa;
+		$data['spp'] = $row->spp?$row->spp:0;
+		$data['dsp'] = $row->dsp?$row->dsp:0;
+		$data['tahunan'] = $row->thn?$row->thn:0;
+		$data['terbilang'] = ucwords($this->Terbilang($data['spp']+$data['dsp']+$data['tahunan']));
 		$this->print_note($data);
 	}
+	
+	function Terbilang($x)
+	{
+	  $abil = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
+	  if ($x < 12)
+	    return " " . $abil[$x];
+	  elseif ($x < 20)
+	    return $this->Terbilang($x - 10) . "belas";
+	  elseif ($x < 100)
+	    return $this->Terbilang($x / 10) . " puluh" . $this->Terbilang($x % 10);
+	  elseif ($x < 200)
+	    return " seratus" . $this->Terbilang($x - 100);
+	  elseif ($x < 1000)
+	    return $this->Terbilang($x / 100) . " ratus" . $this->Terbilang($x % 100);
+	  elseif ($x < 2000)
+	    return " seribu" . $this->Terbilang($x - 1000);
+	  elseif ($x < 1000000)
+	    return $this->Terbilang($x / 1000) . " ribu" . $this->Terbilang($x % 1000);
+	  elseif ($x < 1000000000)
+	    return $this->Terbilang($x / 1000000) . " juta" . $this->Terbilang($x % 1000000);	
+	}
+	
+	
 	
 	public function print_note($data)
 	{
@@ -246,6 +303,5 @@ class c_spp extends CI_Controller {
         // Load view "pdf_report" untuk menampilkan hasilnya   
 
 		$this->load->view('pdf_report', $data);
-		redirect('c_spp');
 	}
 }
