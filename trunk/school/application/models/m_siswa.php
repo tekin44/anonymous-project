@@ -21,6 +21,21 @@ class m_siswa extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
+	
+	public function get_nota($tgl,$nis){
+		$sql = "select a.nama_siswa, h.nama_kelas, count(e.*)*b.jumlah_spp as spp, f.jumlah_bayar_dsp as dsp, g.jumlah_bayar_tahunan as thn from siswa a
+				inner join kelas h on a.id_kelas = h.id_kelas
+				inner join spp b on a.nomor_induk_siswa = b.nomor_induk_siswa
+				inner join dsp c on a.nomor_induk_siswa = c.nomor_induk_siswa
+				inner join tahunan d on a.nomor_induk_siswa = d.nomor_induk_siswa
+				left join (select * from bayar_spp where tanggal_bayar_spp = '$tgl') e on b.id_spp = e.id_spp
+				left join (select * from bayar_dsp where tanggal_bayar_dsp = '$tgl') f on c.id_dsp = f.id_dsp
+				left join (select * from bayar_tahunan where tanggal_bayar_tahunan = '$tgl') g on d.id_tahunan = g.id_tahunan
+				where a.nomor_induk_siswa = '".$nis."'		
+				group by b.jumlah_spp,f.jumlah_bayar_dsp,g.jumlah_bayar_tahunan,a.nama_siswa, h.nama_kelas";
+		$query = $this->db->query($sql);
+		return $query->row();
+	}
 
 	public function display_absen_siswa($src=null) {
 		$this->load->database();
