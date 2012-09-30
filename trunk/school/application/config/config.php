@@ -92,6 +92,7 @@ $config['charset'] = 'UTF-8';
 |
 */
 $config['enable_hooks'] = FALSE;
+$config['fonts_path'] = 'system/fonts/';
 
 
 /*

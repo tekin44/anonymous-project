@@ -119,7 +119,14 @@ class c_spp extends CI_Controller {
 		$value['id_dsp'] = $_REQUEST['id_dsp'];
 		$value['jumlah_bayar_dsp'] = $_REQUEST['jumlah_bayar_dsp'];
 		$this->m_dsp->insert_bayar_dsp($value);
-		redirect('c_spp');
+		$row = $this->m_dsp->get_detail_nota($value['id_dsp']);
+		$data['spp'] = false;
+		$data['dsp'] = true;
+		$data['tahunan'] = false;
+		$data['kelas'] = $row->nama_kelas;
+		$data['nama'] = $row->nama_siswa;
+		$data['jumlah'] = $value['jumlah_bayar_dsp'];
+		$this->print_note($data);
 	}
 
 	public function submit_tahunan() {
@@ -131,7 +138,14 @@ class c_spp extends CI_Controller {
 		$value['id_tahunan'] = $_REQUEST['id_tahunan'];
 		$value['jumlah_bayar_tahunan'] = $_REQUEST['jumlah_bayar_tahunan'];
 		$this->m_tahunan->insert_bayar_tahunan($value);
-		redirect('c_spp');
+		$row = $this->m_tahunan->get_detail_nota($value['id_tahunan']);
+		$data['spp'] = false;
+		$data['dsp'] = false;
+		$data['tahunan'] = true;
+		$data['kelas'] = $row->nama_kelas;
+		$data['nama'] = $row->nama_siswa;
+		$data['jumlah'] = $value['jumlah_bayar_tahunan'];
+		$this->print_note($data);
 	}
 
 	public function add_tahunan($id) {
@@ -189,7 +203,8 @@ class c_spp extends CI_Controller {
 		$value['id_spp'] = $_REQUEST['id_spp'];
 		$value['tahun_spp'] = $_REQUEST['tahun_spp'];
 		$value['tanggal_bayar_spp'] = $this->m_date->merge($d, $m, $y);
-		for ($i = 0; $i < count($bulan); $i++) {
+		$i = 0;
+		for ($i; $i < count($bulan); $i++) {
 			$value['bulan_spp'] = $bulan[$i];
 			$check = $this->m_spp->count($value);
 			echo $check;
@@ -200,6 +215,37 @@ class c_spp extends CI_Controller {
 			}
 			$this->m_spp->insert_bayar($value);
 		}
-		redirect('c_spp');
+		$row = $this->m_spp->get_detail_nota($value['id_spp']);
+		$data['spp'] = true;
+		$data['dsp'] = false;
+		$data['tahunan'] = false;
+		$data['kelas'] = $row->nama_kelas;
+		$data['nama'] = $row->nama_siswa;
+		$data['jumlah'] = $i * $row->jumlah_spp;
+		$this->print_note($data);
+	}
+	
+	public function print_note($data)
+	{
+	    // Load library FPDF 
+	    $this->load->library('fpdf');		
+        // Load Database
+        
+        /* buat konstanta dengan nama FPDF_FONTPATH, kemudian kita isi value-nya
+           dengan alamat penyimpanan FONTS yang sudah kita definisikan sebelumnya.
+           perhatikan baris $config['fonts_path']= 'system/fonts/'; 
+           didalam file application/config/config.php
+        */            
+        define('FPDF_FONTPATH',$this->config->item('fonts_path'));
+                
+        /* Kita akses function get_all didalam karyawan_model
+           function get_all merupakan fungsi yang dibuat untuk mengambil
+           seluruh data karyawan didalam database.
+        */
+        
+        // Load view "pdf_report" untuk menampilkan hasilnya   
+
+		$this->load->view('pdf_report', $data);
+		//redirect('c_spp');
 	}
 }
