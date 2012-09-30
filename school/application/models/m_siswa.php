@@ -72,8 +72,9 @@ class m_siswa extends CI_Model {
 	}
 	
 	public function get_pphone_by_id($id) {
-		$query = $this->db->query("select no_hp_orang_tua from siswa where nomor_induk_siswa = '" . $id . "'");
-		return $query->result();
+		$sql = "select no_hp_orang_tua from siswa where nomor_induk_siswa = '" . $id . "'";
+		$query = $this->db->query($sql);
+		return $query;
 	}
 	
 	public function check($id){

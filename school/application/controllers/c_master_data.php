@@ -502,9 +502,10 @@ class c_master_data extends CI_Controller {
 			$pengajar = $this->m_pengajar_kelas->show_pengajar_kelas($id_kelas);
 			foreach ($pengajar as $peng)
 			{
-				$value['nomor_induk_siswa'] = $id;
-				$value['nomor_induk_pengajar'] = $peng->nomor_induk_pengajar;
-				$this->m_siswa->insert_raport($value);
+				$data['id_kelas'] = $id_kelas;
+				$data['nomor_induk_siswa'] = $id;
+				$data['nomor_induk_pengajar'] = $peng->nomor_induk_pengajar;
+				$this->m_siswa->insert_raport($data);
 			}
 		}
 		
