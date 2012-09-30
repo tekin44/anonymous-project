@@ -1,42 +1,72 @@
 /*  This template was created by Mantis-a [http://www.mantisa.cz/]. For more templates visit Free website templates [http://www.mantisatemplates.com/]. */
+/* CSS Document */
+/* General */
 
+* {
+margin: 0;
+padding: 0;
+}
 
-
-/* CSS Document - print style sheet */
-
+html {
+height: 100%;
+font-size: 62.5%;
+}
 
 body {
-font-family: "Times New Roman", Times, serif;
-line-height: 1.3;
+height: 100%;
+text-align: center;
+font: 1.2em Verdana, Arial, Helvetica, sans-serif;
+min-width: 950px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-font-family: Verdana, Arial, Helvetica, sans-serif;
-color: #595959;
-}
+#main {
+width: 100%;
 
-h1 {
-font-size: 16pt;
+min-height: 100%;
+height: 100%;
+position: relative;
 }
-
-h2 {
-font-size: 14pt;
-}
-
-h3, h4, h5, h6 {
-font-size: 11pt;
+ 
+body>#main {
+height: auto;
 }
 
 a:link, a:visited {
+color: #2E6400;
 text-decoration: underline;
-font-weight: bolder;
+font-weight: bold;
 }
 
-a img {
-border: 1px solid #595959;
+a:hover {
+text-decoration: none;
 }
 
-.hidden {
+.cleaner {
+clear: both;
+height: 0;
+font-size: 0;
+visibility: hidden;
+content: ' ';
+}
+
+.cleaning-box { 
+min-height: 1px;
+}
+
+.cleaning-box:after {
+display: block; 
+clear: both; 
+visibility: hidden; 
+height: 0; 
+font-size: 0; 
+content: ' ';
+}
+
+.noscreen {
+display: none;
+}
+
+.hidden { /* Skip menu */
 position: absolute;
 top: -10000px;
 left: 0;
@@ -45,10 +75,500 @@ height: 1px;
 overflow: hidden;
 }
 
-#content-box-in-right-in dl {
-margin-bottom: 60px;
+
+/* Paragraphs, headings, ... */
+
+p {
+line-height: 170%;
+margin-bottom: 10px;
+color: #163000;
 }
 
-#menu, form.searching, #navigation {
+h1 {
+font-size: 2.8em;
+font-weight: normal;
+color: black;
+text-align: left;
+padding: 49px 0 0 42px;
+
+}
+
+h1 a:link, h1 a:visited {
+font-weight: normal;
+text-decoration: none;
+color: #FFFFFF;
+}
+
+h2 {
+font-size: 1.6em;
+font-family: Georgia, "Times New Roman", Times, serif;
+font-weight: normal;
+color: black;
+text-align: left;
+margin: 3px 0 0 2px;
+}
+
+h3 {
+font-size: 1.4em;
+font-family: Georgia, "Times New Roman", Times, serif;
+font-weight: normal;
+color: #295B00;
+letter-spacing: 1px;
+padding-bottom: 3px;
+border-bottom: 1px solid #295B00;
+margin-bottom: 7px;
+}
+
+address {
+font-style: normal;
+line-height: 180%;
+margin-left: 7px;
+}
+
+/* Images */
+
+img.float {
+float: left;
+border: 1px solid #295B00;
+margin: 0.5em 0.8em 0.5em 0;
+}
+
+
+/* Header */
+
+#header {
+height: 198px;
+position: relative;
+background: #285800 url('../img/hd-bg.gif') repeat-x 0 0;
+}
+
+#header-in {
+width: 1024px;
+height: 198px;
+position: relative;
+margin: 0 auto;
+}
+
+
+ul#navigation {
+float: right;
+margin: 8px 1px 0 0;
+display: inline;
+color: #FFFFFF;
+}
+
+ul#navigation li {
+float: left;
+display: inline;
+list-style-type: none;
+text-align: center;
+font-size: 0.9em;
+}
+
+ul#navigation li a, ul#navigation li a:visited {
+text-decoration: none;
+color: #FFFFFF;
+font-weight: normal;
+}
+
+ul#navigation li a:hover {
+text-decoration: underline;
+}
+
+li#house {
+background: url('../img/house.gif') no-repeat 0 1px;
+padding-left: 24px;
+}
+
+li#house a {
+margin-right: 16px;
+}
+
+li#sitemap {
+background: url('../img/sitemap.gif') no-repeat 0 2px;
+padding-left: 24px;
+margin-left: 16px;
+}
+
+li#sitemap a {
+margin-right: 16px;
+}
+
+li#envelope {
+background: url('../img/envelope.gif') no-repeat 0 2px;
+padding-left: 23px;
+margin-left: 16px;
+}
+
+
+/* Search form */
+
+form.searching {
+width: 210px;
+position: absolute;
+top: 47px;
+right: 0;
+}
+
+form.searching fieldset {
+border: 0;
+}
+
+form.searching input.search {
+letter-spacing: 1px;
+float: left;
+padding: 2px 0 2px 6px;
+width: 139px;
+border: 1px solid gray;
+}
+
+form.searching input.hledat {
+letter-spacing: 1px;
+padding-left: 0;
+margin-left: 4px;
+font-weight: bold;
+color: #FFFFFF;
+float: left;
+}
+
+form.searching label {
 display: none;
+}
+
+
+/* Menu */
+
+#menu-box {
+background: #4A4A4A url('../img/menu-bg.gif') repeat-x 0 0;
+border-bottom: 3px solid black;
+}
+
+#menu {
+width: 950px;
+margin: 0 auto;
+}
+
+#menu li {
+display: inline;
+list-style-type: none;
+text-align: center;
+}
+
+#menu li.first a {
+margin-left: 1.6em;
+display: inline;
+}
+
+#menu li a {
+float: left;
+color: #FFFFFF;
+font-weight: bold;
+font-size: 1.1em;
+display: block;
+padding: 0.9em 1.4em 0.7em 1.4em;
+}
+
+#menu li a:hover, #menu li a.active {
+color: #000000;
+background-color: #DFF300;
+font-weight: bold;
+font-size: 1.1em;
+}
+
+
+/* Content box */
+
+#content {
+min-height: 624px;
+}
+
+#content-box {
+width: 950px;
+margin: 0 auto;
+background-color: #FFFFFF;
+text-align: left;
+
+min-height: 544px;
+}
+
+#content-box-in-left {
+width: 80%;
+float: right;
+background-color: #FFFFFF;
+}
+
+#content-box-in-left-in {
+margin: 1.8em 1em 7em 1.8em;
+}
+
+#content-box-in-right {
+width: 20%;
+float: left;
+background-color: #FFFFFF;
+}
+
+#content-box-in-right h3 {
+border: 0;
+background-color: #252525;
+color: #FFFFFF;
+padding: 3px 0 4px 10px;
+font-size: 1.3em;
+}
+
+#content-box-in-right-in {
+margin: 1.8em 0 7em 1.5em;
+}
+
+#content-box-in-right-in dl {
+margin: 0 0 40px 2px;
+}
+
+#content-box-in-right-in dt {
+margin-bottom: 3px;
+font-weight: bold;
+background-color: #E8FFC8;
+color: #204300;
+line-height: 140%;
+padding: 1px 0 1px 5px;
+}
+
+#content-box-in-right-in dd {
+margin: 0 5px 18px 2px;
+line-height: 140%;
+}
+
+#name{
+padding-right: 90%;
+white-space:nowrap;
+}
+
+#name table
+{
+border : none;
+white-space:nowrap;
+ border-spacing:0;
+  border-collapse:collapse;
+
+}
+
+#name table .noborder, #name .noborder tr, #name .noborder th, #name .noborder td
+{
+border: none;
+text-align:end;
+white-space:nowrap;
+width:auto;
+}
+
+/* Table */
+
+table {
+font-size: 1.1em;
+border-collapse: collapse;
+border: 2px solid #2C5D00;
+margin: 15px 0 20px 0;
+table-layout: fixed;
+width: 100%;
+word-wrap: break-word;
+}
+
+th, td {
+padding: 3px 3px;
+border: 1px solid #2C5D00;
+}
+
+th {
+text-align: center;
+font-weight: bold;
+}
+
+td {
+text-align: center;
+}
+
+.first-row {
+background: #F4FF7C;
+}
+
+.first-row th {
+text-align: center;
+font-weight: bold;
+border-bottom: 2px solid #2C5D00;
+}
+
+.first-column {
+background: #FFD162;
+border-right: 1px solid #2C5D00;
+}
+
+.last-column {
+background-color: #FFD162;
+border-left: 1px solid #2C5D00;
+}
+
+#footer {
+width: 100%;
+height: 60px;
+background: #285800 url('../img/footer-bg.gif') repeat-x 0 0;
+position: absolute;
+bottom: 0;
+left: 0;
+}
+
+#footer-in {
+width: 950px;
+margin: 0 auto;
+}
+
+p.footer-left {
+float: left;
+width: 450px;
+color: #FFFFFF;
+text-align: left;
+margin: 9px 0 0 15px;
+display: inline;
+}
+
+p.footer-left a, p.footer-left a:visited {
+color: #FFFFFF;
+padding: 1px 2px;
+}
+
+p.footer-left a:hover {
+background-color: #FFFFFF;
+color: #2E6600;
+}
+
+p.footer-right {
+float: right;
+width: 450px;
+color: #FFFFFF;
+text-align: right;
+margin: 9px 15px 0 0;
+display: inline;
+}
+
+p.footer-right a, p.footer-right a:visited {
+color: #FFFFFF;
+padding: 1px 2px;
+}
+
+p.footer-right a:hover {
+background-color: #FFFFFF;
+color: #2E6600;
+}
+
+p.footer-right a, p.footer-right a:visited  {
+font-weight: normal;
+}
+
+
+#nav {
+	float:left;
+	margin:0px;
+	font-size:13px;
+	text-transform:uppercase;
+}
+
+#nav li {
+	float:left;
+	list-style-type:none;
+	position:relative;
+	cursor:pointer; 
+	border-bottom:1px  dotted #CCC;
+	width : 90%;
+
+}
+
+#nav li ul.nav {
+	position:absolute;
+	top:-10px;
+	left:100%;
+	text-align:left;
+	padding:10px 10px 10px 0px;
+		background: #101010;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#101010), to(#333333));
+	background: -webkit-linear-gradient(#101010, #333333);
+	background: -moz-linear-gradient(#101010, #333333);
+	background: -ms-linear-gradient(#101010, #333333);
+	background: -o-linear-gradient(#101010, #333333);
+	background: linear-gradient(#101010, #333333);
+	-pie-background: linear-gradient(#101010, #333333);
+	
+	behavior: url(http://office.travelairpng.com/modules/cms/templates/Newtemplate/css/PIE.htc);
+	z-index:9999;
+}
+
+#nav li ul.first {
+	position:absolute;
+	top:2.0em;
+	white-space:nowrap;
+	left:80%;
+	top:-30px;
+		background: #101010;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#101010), to(#333333));
+	background: -webkit-linear-gradient(#101010, #333333);
+	background: -moz-linear-gradient(#101010, #333333);
+	background: -ms-linear-gradient(#101010, #333333);
+	background: -o-linear-gradient(#101010, #333333);
+	background: linear-gradient(#101010, #333333);
+	-pie-background: linear-gradient(#101010, #333333);
+	
+	behavior: url(http://office.travelairpng.com/modules/cms/templates/Newtemplate/css/PIE.htc);
+	padding:10px 10px 10px 0px;
+	margin:0px;
+	text-align:left;
+	z-index:9999;
+
+}
+
+#nav li a{
+	width : 150px;
+	padding:5px 10px;
+	margin-left:10px;
+	color:black;
+	display:block;
+	text-decoration:none;
+	text-shadow: rgba(0,0,0,.4) 0 1px 0;
+	border:0px;
+}
+
+#nav li a:hover {
+	color:#333;
+	background-color:#f2f2f2;
+	text-shadow: rgb(255,255,255) 0 1px 0;
+}
+
+#nav .nav li {
+	display:block;
+	clear:both;
+	position:relative;
+	width:200px;
+}
+
+#nav .first li{
+	float:left;
+	clear:left;
+	width:100%;
+}
+
+#nav .first li {
+	display:block;
+	position:relative;
+}
+
+ul.first {
+	display:none;
+}
+
+ul.nav {
+	display:none;
+	
+}
+
+li:hover > .nav { display:block;} 
+li:hover > .first { display:block;}
+
+#hapus
+{
+display : none;
 }

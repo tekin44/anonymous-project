@@ -68,6 +68,7 @@
 	Nomor induk siswa <input type="text" name="myid" id="myid">
 	Password <input type="password" name="mypassword" id="mypassword">
 	<input type="submit" name="Submit" value="Login">
+	<input type="hidden" name="id_periode" value="0">
 </form>
 </div>
 
