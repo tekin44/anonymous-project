@@ -23,15 +23,20 @@ header("Pragma: public");
 				</tr>
 				
 				<?php
-
+foreach($kelas as $class){?>
+				<tr>
+					<td colspan="5"><b>Kelas : <?=$class->nama_kelas?></b></td>
+				</tr>
+<?php
 foreach ($dates as $date) {
 ?>
 				<tr>
 					<td colspan="5">Tanggal : <?=$date->c?></td>
+				</tr>
 				<?php
 
 	foreach ($rows as $item) {
-		if ($item->tanggal_absensi == $date->c) {
+		if ($item->tanggal_absensi == $date->c && $item->id_kelas == $class->id_kelas){
 			switch ($item->status_absen) {
 				case '1' :
 					$ket = 'Masuk';
@@ -49,14 +54,14 @@ foreach ($dates as $date) {
 ?>
 				
 				<tr>
-					<td width="150"><? echo $item->nomor_induk_pengajar ?></td>
-					<td width="300"><? echo $item->nama_pengajar ?></td>
+					<td width="150"><? echo $item->nomor_induk_siswa ?></td>
+					<td width="300"><? echo $item->nama_siswa ?></td>
 					<td width="100"><? echo $item->waktu_masuk ?></td>
 					<td width="100"><? echo $item->waktu_keluar ?></td>
 					<td width="100"><? echo $ket ?></td>
 				</tr>
 				
-				<?}}}?>
+				<?}}}}?>
 				</table>
 	</table></body></html>
 <?php

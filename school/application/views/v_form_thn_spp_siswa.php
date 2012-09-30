@@ -3,12 +3,16 @@
 		
 		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
 		<tr>
+			<th valign="top">Jumlah:</th>
+			<td><?=$spp[0]->jumlah_spp?></td>
+		</tr>
+		<tr>
 			<th valign="top">Tahun ke:</th>
 			<td>
 				<input type="text" class="inp-form" name="tahun_spp" />
-				<input type="hidden" readonly class="inp-form" name="nomor_induk_siswa" value="<?=$nomor_induk_siswa?>" />
 			</td>
 		</tr>
+		<input type="hidden" readonly class="inp-form" name="id_spp" value="<?=$spp[0]->id_spp?>" />
 		<tr>
 			<td valign="top">
 				<input type="submit" value="" class="form-submit" />

@@ -12,10 +12,11 @@ class m_siswa extends CI_Model {
 	public function get_spp($id=""){
 		$where = "";
 		if($id)	$where = "WHERE a.nomor_induk_siswa = '".$id."'";
-		$sql = "select a.*,b.jumlah_dsp,b.id_dsp,c.jumlah_tahunan,c.id_tahunan from siswa a " .
-				"LEFT JOIN dsp b on a.nomor_induk_siswa = b.nomor_induk_siswa " .
-				"LEFT JOIN tahunan c on a.nomor_induk_siswa = c.nomor_induk_siswa " .
-				" $where ORDER BY nama_siswa";
+		$sql = "select a.*,b.jumlah_dsp,b.id_dsp,c.jumlah_tahunan,c.id_tahunan,d.id_spp,d.jumlah_spp from siswa a 
+				LEFT JOIN dsp b on a.nomor_induk_siswa = b.nomor_induk_siswa 
+				LEFT JOIN tahunan c on a.nomor_induk_siswa = c.nomor_induk_siswa 
+				LEFT JOIN spp d on a.nomor_induk_siswa = d.nomor_induk_siswa 
+				 $where ORDER BY nama_siswa";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
@@ -56,6 +57,16 @@ class m_siswa extends CI_Model {
 	public function getByKategori($kategori) {
 		$query = $this->db->query("select * from kategori_siswa a inner join 
 				siswa b on a.no_induk = b.no_induk where a.id_kategori = '" . $kategori . "'");
+		return $query->result();
+	}
+	
+	public function get_by($from,$to){
+		$sql = "select b.*, a.nomor_induk_siswa, a.nama_siswa, a.id_kelas, d.waktu_absen as waktu_masuk, c.waktu_absen as waktu_keluar  
+						from siswa a inner join absen b on a.id_users = b.id_users 
+						inner join (select b.waktu_absen, b.no_absensi from absen a inner join keterangan_absen b on a.no_absensi = b.no_absensi where keterangan = '1') d on b.no_absensi = d.no_absensi
+						left join (select b.waktu_absen, b.no_absensi from absen a inner join keterangan_absen b on a.no_absensi = b.no_absensi where keterangan = '2') c on b.no_absensi = c.no_absensi
+						where b.tanggal_absensi >= '$from' and b.tanggal_absensi <= '$to'";
+		$query = $this->db->query($sql);
 		return $query->result();
 	}
 	

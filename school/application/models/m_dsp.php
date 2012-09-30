@@ -31,5 +31,9 @@ class m_dsp extends CI_Model {
 	public function insert_bayar_dsp($value) {
 		$this->db->insert('bayar_dsp', $value);
 	}
+
+	public function delete_bayar($value) {
+		$this->db->delete('bayar_dsp', $value);
+	}
 }
 ?>

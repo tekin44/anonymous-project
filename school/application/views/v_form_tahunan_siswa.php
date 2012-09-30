@@ -4,7 +4,7 @@
 		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
 		<tr>
 			<th valign="top">Tahunan:</th>
-			<td><?=$siswa[0]->jumlah_tahunan?></td>
+			<td><?=$siswa[0]->jumlah_tahunan?$siswa[0]->jumlah_tahunan:""?></td>
 		</tr>
 		<tr>
 			<th valign="top">Tanggal Bayar:</th>
@@ -30,10 +30,6 @@
 			</table></td>
 		</tr>
 		<tr>
-			<th valign="top">Tahun ke:</th>
-			<td><input type="text" class="inp-form" name="tahun_bayar_tahunan" /></td>
-		</tr>
-		<tr>
 			<th valign="top">Jumlah Bayar:</th>
 			<td><input type="text" class="inp-form" name="jumlah_bayar_tahunan" /></td>
 		</tr>
@@ -50,13 +46,13 @@
 		
 				<table border="0" width="50%" cellpadding="0" cellspacing="0" id="product-table">
 				<tr>
-					<th class="table-header-repeat line-left"><a href="">Tahun ke</a></th>
-					<th class="table-header-repeat line-left minwidth-1"><a href="">Sisa</a></th>
+					<th class="table-header-repeat line-left"><a href="">Tanggal</a></th>
+					<th class="table-header-repeat line-left minwidth-1"><a href="">Jumlah</a></th>
 				</tr>
 				<?php foreach($siswa as $item){ ?>
 				<tr>
-					<td><?=$item->tahun_bayar_tahunan?></td>
-					<td><?=$item->sisa?$item->sisa:'Lunas'?></td>
+					<td><?=$item->tanggal_bayar_tahunan?$item->tanggal_bayar_tahunan:''?></td>
+					<td><?=$item->sisa?$item->sisa:''?></td>
 				</tr>
 				<?php } ?>
 				</table>

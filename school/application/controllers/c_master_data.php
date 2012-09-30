@@ -15,7 +15,10 @@ class c_master_data extends CI_Controller {
 		$this->load->model('m_menu');
 		$this->load->model('m_siswa');
 		$this->client_logon = $this->session->userdata('login');
-		$this->data['menus'] = $this->m_menu->getAll($this->client_logon['id_prev']);
+		$this->data['menus'] = $this->m_menu->getAll($this->client_logon[0]->admin_username);
+		if(!$this->client_logon){
+			redirect('login');
+		}
 	}
 
 	public function show_data_siswa() {
@@ -517,24 +520,57 @@ class c_master_data extends CI_Controller {
 		// }
 	}
 	
-	function redirectto($prev) {
-		switch ($prev) {
-			case 'absen' :
-				redirect('index_absensi');
-				break;
-			case 'smsgw' :
-				redirect('index_sms');
-				break;
-			case 'sppap' :
-				redirect('index_spp');
-				break;
-			case 'nilai' :
-				redirect('index_nilai');
-				break;
-			case 'admin' :
-				redirect('index_admin');
-				break;
-		}
+	function show_periode(){		
+		$this->load->model('m_periode');
+		$this->data['periodes'] = $this->m_periode->get_all();
+		$this->data['title'] = "Periode";
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_periode', $this->data);
+		$this->load->view('v_footer', $this->data);
 	}
+
+	public function form_periode($flag, $id = 0) {
+		$this->load->model('m_periode');
+		$this->load->model('m_date');
+		$d = 0;
+		$m = 0;
+		$y = 0;
+		$this->data['d'] = $this->m_date->day($d);
+		$this->data['m'] = $this->m_date->month($m);
+		$this->data['y'] = $this->m_date->year($y);
+		$this->data['title'] = "Periode";
+		if ($flag == 2){
+			$this->data['periode'] = $this->m_periode->get_one($id);
+		}
+		$this->data['flag'] = $flag;
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_form_periode', $this->data);
+		$this->load->view('v_footer', $this->data);
+	}
+
+	public function submit_periode() {
+		$this->load->model('m_periode');
+		$this->load->model('m_date');
+		$d1 = $_REQUEST['d1'];
+		$m1 = $_REQUEST['m1'];
+		$y1 = $_REQUEST['y1'];
+		$value['awal_periode'] = $this->m_date->merge($d1,$m1,$y1);
+		$d2 = $_REQUEST['d2'];
+		$m2 = $_REQUEST['m2'];
+		$y2 = $_REQUEST['y2'];
+		$value['akhir_periode'] = $this->m_date->merge($d2,$m2,$y2);
+		$flag = $_REQUEST['flag'];
+		$value['tahun_periode'] = $_REQUEST['tahun_periode'];
+		$value['periode_semester'] = $_REQUEST['periode_semester'];
+		if ($flag == 2){
+			$id = $_REQUEST['id_periode'];
+			$this->m_periode->update($id,$value);
+		}else{
+			$this->m_periode->insert($value);
+		}
+		redirect('c_master_data/show_periode');
+	}
+	
+	
 }
 ?>

@@ -1,5 +1,8 @@
-		<?php echo form_open('c_spp/submit_spp'); ?>
+		<?php
+			echo form_open('c_spp/submit_spp'); ?>
 		<!-- start id-form -->
+		
+		<?php	if($alert) echo "<script>alert('".$alert."');</script>"; ?>
 		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
 		<tr>
 			<th valign="top">Tanggal Bayar:</th>
@@ -24,25 +27,27 @@
 			</tr>
 			</table></td>
 		</tr>
+		<tr>
+			<th valign="top">Tahun ke:</th>
+			<td>
+				<input type="text" class="inp-form" name="tahun_spp" />
+			</td>
+		</tr>
 		</table>
-		<table border="0" width="50%" cellpadding="0" cellspacing="0" id="product-table">
+		<table border="0" width="30%" cellpadding="0" cellspacing="0" id="product-table">
 				<tr>
 					<th class="table-header-check"><a id="toggle-all" ></a> </th>
-					<th class="table-header-repeat line-left"><a href="">Bulan</a></th>
+					<th class="table-header-repeat line-left minwidth-1"><a href="">Bulan</a></th>
 				</tr>
-			<?php
-				$checked = ""; 
-				for($i=0;$i<12;$i++){
-					 if($spp[$i]->bulan_spp!="") $checked = "checked";
-					 else $checked = ""; ?>
+			<?php for($i=0;$i<12;$i++){ ?>
 					<tr>
-						<td><input name="bulan[]" <?=$checked?> type="checkbox" value="<?=$i+1?>"/></th>
+						<td><input name="bulan[]" type="checkbox" value="<?=$i+1?>"/></td>
 						<td><?=$mon[$i]?></td>
 					</tr>
 			<?php } ?>
 		</table>
-		<input type="hidden" readonly class="inp-form" name="tahun_spp" value="<?=$tahun?>" />
-		<input type="hidden" readonly class="inp-form" name="nomor_induk_siswa" value="<?=$nis?>" />
+				<input type="hidden" class="inp-form" name="id_spp" value="<?=$id[0]->id_spp?>" />
+				<input type="hidden" class="inp-form" name="nis" value="<?=$nis?>" />
 		<table>
 		<tr>
 			<td valign="top">

@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Internet Dreams</title>
 <link rel="stylesheet" href="/school/css/screen.css" type="text/css" media="screen" title="default" />
+<link rel="stylesheet" href="/school/css/date_pick.css" type="text/css" media="screen" title="default" />
 <!--[if IE]>
 <link rel="stylesheet" media="all" type="text/css" href="/school/css/pro_dropline_ie.css" />
 <![endif]-->
@@ -15,6 +16,7 @@
 <script src="/school/js/jquery/ui.core.js" type="text/javascript"></script>
 <script src="/school/js/jquery/ui.checkbox.js" type="text/javascript"></script>
 <script src="/school/js/jquery/jquery.bind.js" type="text/javascript"></script>
+<script src="/school/js/jquery/DatePick.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function(){
 	$('input').checkBox();
@@ -191,7 +193,7 @@ $(document).pngFix( );
 			<div class="showhide-account"><img src="/school/images/shared/nav/nav_myaccount.gif" width="93" height="14" alt="" /></div>
 			-->
 			<div class="nav-divider">&nbsp;</div>
-			<a href="http://192.168.17.2/school/logout" id="logout"><img src="/school/images/shared/nav/nav_logout.gif" width="64" height="14" alt="" /></a>
+			<a href="/school/logout" id="logout"><img src="/school/images/shared/nav/nav_logout.gif" width="64" height="14" alt="" /></a>
 			<div class="clear">&nbsp;</div>
 		
 			<!--  start account-content -->	
@@ -224,7 +226,7 @@ $(document).pngFix( );
 		        
 		<?php foreach($menus as $menu){ 
 			if(!$menu->men_id_menu){?>            
-		<ul class="select"><li><a href="<?=$menu->action_menu?>"><b><?=$menu->nama_menu?></b><!--[if IE 7]><!--></a><!--<![endif]-->
+		<ul class="select"><li><a href=""><b><?=$menu->nama_menu?></b><!--[if IE 7]><!--></a><!--<![endif]-->
 		<!--[if lte IE 6]><table><tr><td><![endif]-->
 		<div class="select_sub show">
 			<ul class="sub">

@@ -24,6 +24,7 @@
 					<th class="table-header-repeat line-left minwidth-1"><a href="">Nama</a></th>
 					<th class="table-header-repeat line-left"><a href="">DSP</a></th>
 					<th class="table-header-repeat line-left"><a href="">Tahunan</a></th>
+					<th class="table-header-repeat line-left"><a href="">SPP</a></th>
 					<th class="table-header-options line-left"><a href="">Action</a></th>
 				</tr>
 				
@@ -38,6 +39,7 @@
 					<td><a href="/school/c_spp/view_detail/<?=$item->nomor_induk_siswa?>"><?=$item->nama_siswa ?></a></td>
 					<td><?=$item->jumlah_dsp ?></td>
 					<td><?=$item->jumlah_tahunan ?></td>
+					<td><?=$item->jumlah_spp ?></td>
 					<td>
 					<?="<a href='".base_url()."c_spp/edit_keu/$item->nomor_induk_siswa' title='Edit Keuangan' class='icon-1 info-tooltip'>";?></a>
 					<?="<a href='".base_url()."c_spp/add_dsp/$item->nomor_induk_siswa' title='Bayar DSP' class='icon-1 info-tooltip'>";?></a>

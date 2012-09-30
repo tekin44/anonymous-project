@@ -49,8 +49,8 @@ foreach ($dates as $date) {
 ?>
 				
 				<tr>
-					<td width="150"><? echo $item->nomor_induk_pengajar ?></td>
-					<td width="300"><? echo $item->nama_pengajar ?></td>
+					<td width="150"><? echo $item->nomor_induk_staff ?></td>
+					<td width="300"><? echo $item->nama_staff ?></td>
 					<td width="100"><? echo $item->waktu_masuk ?></td>
 					<td width="100"><? echo $item->waktu_keluar ?></td>
 					<td width="100"><? echo $ket ?></td>

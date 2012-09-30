@@ -14,7 +14,7 @@ class c_config extends CI_Controller {
 		$this->load->model('m_date');
 		$this->load->model('m_menu');
 		$this->client_logon = $this->session->userdata('login');
-		$this->data['menus'] = $this->m_menu->getAll($this->client_logon['id_prev']);
+		$this->data['menus'] = $this->m_menu->getAll($this->client_logon[0]->admin_username);
 	}
 
 	public function show_hari_libur() {

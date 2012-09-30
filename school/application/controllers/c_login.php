@@ -7,7 +7,7 @@ class c_login extends CI_Controller {
 	function __construct() {
 		parent :: __construct();
 		$this->load->model('m_admin');
-		$this->client_logon = $this->session->userdata('admin');
+		$this->client_logon = $this->session->userdata('login');
 	}
 
 	public function index() {
@@ -21,7 +21,7 @@ class c_login extends CI_Controller {
 	public function login() {
 		$admin = $this->m_admin->validate($_REQUEST['username'], $_REQUEST['password']);
 		if ($admin) {
-			$this->session->set_userdata('admin', $admin);
+			$this->session->set_userdata('login', $admin);
 			redirect('siswa');
 		} else {
 			redirect('index');
@@ -29,7 +29,7 @@ class c_login extends CI_Controller {
 	}
 
 	public function logout() {
-		$this->session->destroy();
+		$this->session->sess_destroy();
 		redirect('login');
 	}
 }

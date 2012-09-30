@@ -8,47 +8,29 @@ class c_admin extends CI_Controller {
 		parent :: __construct();
 		$this->load->model('m_menu');
 		$this->client_logon = $this->session->userdata('login');
-		$this->data['menus'] = $this->m_menu->getAll();
+		$this->data['menus'] = $this->m_menu->getAll($this->client_logon[0]->admin_username);
+		if (!$this->client_logon) {
+			redirect('login');
+		}
 	}
 
 	public function index() {
-
-		//if ($this->client_logon) {
-		//$this->redirectto($this->client_logon['id_prev']);
 		$this->load->model('m_admin');
-		$this->data['title'] = "Data User";
-
 		$key1 = $this->input->post('search_field1');
-		//$key2 = $this->input->post('search_field2');
-
-		// if ($key1 == NULL && $key2 == NULL) {
-			// $this->data['rows'] = $this->m_admin->displayUser();
-		// } else
-			// if ($key1 != NULL) {
-				// $this->data['rows'] = $this->m_admin->searchNamaUser($key1);
-			// } else {
-				// $this->data['rows'] = $this->m_admin->searchWewenangUser($key2);
-			// }
-			
 		if ($key1 == NULL) {
 			$this->data['rows'] = $this->m_admin->displayUser();
-		} else{
-				$this->data['rows'] = $this->m_admin->searchNamaUser($key1);
-			}
-	
-
+		} else {
+			$this->data['rows'] = $this->m_admin->searchNamaUser($key1);
+		}
+		$this->data['title'] = "Data User";
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_admin_display_user', $this->data);
 		$this->load->view('v_footer', $this->data);
-
-		//} else {
-		//	redirect('login');
-		//}
-
 	}
 
 	public function viewInsertUser() {
-		$this->load->model('m_admin');
+		$this->load->model('m_menu');
+		$this->data['menu'] = $this->m_menu->get_menu();
 		$this->data['title'] = "Tambah Data User";
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_admin_insert_user', $this->data);
@@ -57,16 +39,23 @@ class c_admin extends CI_Controller {
 
 	public function insertUser() {
 		$this->load->model('m_admin');
+		$this->load->model('m_menu_admin');
 		$admin_username = $this->input->post('admin_username');
 		$admin_password = md5($this->input->post('admin_password'));
-
 		$this->m_admin->insertUser($admin_username, $admin_password);
+		$id_menu = $this->input->post('id_menu');
+		for($i=0;$i<count($id_menu);$i++){
+			$value['id_menu'] = $id_menu[$i];
+			$value['admin_username'] = $admin_username;
+			$this->m_menu_admin->insert($value);
+		}
 		redirect(index_admin);
 	}
 
-	public function editUser($no_induk) {
-		$this->load->model('m_admin');
-		$this->data['rows'] = $this->m_admin->editUser($no_induk);
+	public function editUser($admin) {
+		$this->load->model('m_menu');
+		$this->data['admin'] = $admin;
+		$this->data['menu'] = $this->m_menu->get_menu_admin($admin);
 		$this->data['title'] = "Edit Data User";
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_admin_edit_user', $this->data);
@@ -81,12 +70,18 @@ class c_admin extends CI_Controller {
 
 	public function updateUser() {
 		$this->load->model('m_admin');
+		$this->load->model('m_menu_admin');
 		$value['admin_username'] = $this->input->post('admin_username1');
 		$admin_username = $this->input->post('admin_username2');
+		$this->m_menu_admin->delete($value);
 		$value['admin_password'] = md5($this->input->post('admin_password'));
-
 		$this->m_admin->updateUser($admin_username, $value);
-
+		$id_menu = $this->input->post('id_menu');
+		for($i=0;$i<count($id_menu);$i++){
+			$data['id_menu'] = $id_menu[$i];
+			$data['admin_username'] = $value['admin_username'];
+			$this->m_menu_admin->insert($data);
+		}
 		redirect(index_admin);
 	}
 
@@ -115,7 +110,7 @@ class c_admin extends CI_Controller {
 			$this->m_menu->insertMenu($this->input->post('men_id_menu'), $this->input->post('nama_menu'), "/school/" .
 			$this->input->post('action_menu'));
 		else
-			$this->m_menu->insertMenu(null,$this->input->post('nama_menu'), "/school/" .
+			$this->m_menu->insertMenu(null, $this->input->post('nama_menu'), "/school/" .
 			$this->input->post('action_menu'));
 		redirect(index_admin_menu);
 	}
