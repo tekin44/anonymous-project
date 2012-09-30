@@ -14,7 +14,15 @@ class c_spp extends CI_Controller {
 
 	public function index() {
 		$this->load->model('m_siswa');
-		$this->data['siswa'] = $this->m_siswa->get_spp();
+
+		$key1 = $this->input->post('search_field1')?$this->input->post('search_field1'):null;
+		$key2 = $this->input->post('search_field2')?$this->input->post('search_field2'):null;
+
+		if ($key1 == NULL && $key2 == NULL) {
+			$this->data['siswa'] = $this->m_siswa->get_spp();
+		} else if ($key1 != NULL || $key2 != NULL) {
+			$this->data['siswa'] = $this->m_siswa->get_spp($key1,$key2);
+		}
 		$this->data['title'] = "Keuangan Siswa";
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_data_keu_siswa', $this->data);

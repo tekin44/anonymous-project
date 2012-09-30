@@ -9,9 +9,10 @@ class m_siswa extends CI_Model {
 		$this->load->database();
 	}
 	
-	public function get_spp($id=""){
+	public function get_spp($key1=null,$key2=null){
 		$where = "";
-		if($id)	$where = "WHERE a.nomor_induk_siswa = '".$id."'";
+		if($key1)$where = "WHERE a.nomor_induk_siswa = '".$key1."'";
+		if($key2)$where = "WHERE a.nama_siswa ILIKE '%".$key2."%'";
 		$sql = "select a.*,b.jumlah_dsp,b.id_dsp,c.jumlah_tahunan,c.id_tahunan,d.id_spp,d.jumlah_spp from siswa a 
 				LEFT JOIN dsp b on a.nomor_induk_siswa = b.nomor_induk_siswa 
 				LEFT JOIN tahunan c on a.nomor_induk_siswa = c.nomor_induk_siswa 

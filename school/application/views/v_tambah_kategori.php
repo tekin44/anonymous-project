@@ -13,6 +13,7 @@
 			<td><input type="text" class="inp-form" name="nama_kategori" value="<?=$nama?>" /></td>
 		</tr>
 		<input type="hidden" class="inp-form" name="id_kategori" value="<?=$id?>" />
+		<input type="hidden" class="inp-form" name="flag" value="<?=$flag?>" />
 		<tr>
 			<td valign="top">
 				<input type="submit" value="" class="form-submit" />
