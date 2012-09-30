@@ -246,6 +246,6 @@ class c_spp extends CI_Controller {
         // Load view "pdf_report" untuk menampilkan hasilnya   
 
 		$this->load->view('pdf_report', $data);
-		//redirect('c_spp');
+		redirect('c_spp');
 	}
 }
