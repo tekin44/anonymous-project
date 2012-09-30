@@ -1,6 +1,4 @@
 		<?php echo form_open('c_spp/submit_keuangan'); ?>
-		<!-- start id-form -->
-		
 		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
 		<tr>
 			<th valign="top">Nomor Induk Siswa:</th>
@@ -18,7 +16,10 @@
 			<th valign="top">Besar Tahunan:</th>
 			<td><input type="text" class="inp-form" name="jumlah_tahunan" value="<?=$siswa[0]->jumlah_tahunan?>" /></td>
 		</tr>
-
+		<tr>
+			<th valign="top">Besar SPP:</th>
+			<td><input type="text" class="inp-form" name="jumlah_spp" value="<?=$siswa[0]->jumlah_spp?>" /></td>
+		</tr>
 		<tr>
 			<td valign="top">
 				<input type="submit" value="" class="form-submit" />
@@ -28,6 +29,4 @@
 			</td>
 		</tr>
 		</table>
-		
-		<?php echo form_close(); ?>	
-		<!-- end id-form  -->		
+		<?php echo form_close(); ?>

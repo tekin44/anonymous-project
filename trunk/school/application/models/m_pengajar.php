@@ -29,6 +29,16 @@ class m_pengajar extends CI_Model {
 						");
 		return $query->result();
 	}
+	
+	public function get_by($from,$to){
+		$sql = "select b.*, a.nomor_induk_pengajar, a.nama_pengajar, d.waktu_absen as waktu_masuk, c.waktu_absen as waktu_keluar  
+						from pengajar a inner join absen b on a.id_users = b.id_users 
+						inner join (select b.waktu_absen, b.no_absensi from absen a inner join keterangan_absen b on a.no_absensi = b.no_absensi where keterangan = '1') d on b.no_absensi = d.no_absensi
+						left join (select b.waktu_absen, b.no_absensi from absen a inner join keterangan_absen b on a.no_absensi = b.no_absensi where keterangan = '2') c on b.no_absensi = c.no_absensi
+						where b.tanggal_absensi >= '$from' and b.tanggal_absensi <= '$to'";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 
 	public function get_all() {
 		$sql = "select * from pengajar a INNER JOIN pelajaran b on a.kode_pelajaran = b.kode_pelajaran";

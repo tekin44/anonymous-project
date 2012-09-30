@@ -8,7 +8,7 @@ class c_nilai extends CI_Controller {
 		parent :: __construct();
 		$this->load->model('m_menu');
 		$this->client_logon = $this->session->userdata('login');
-		$this->data['menus'] = $this->m_menu->getAll();
+		$this->data['menus'] = $this->m_menu->getAll($this->client_logon[0]->admin_username);
 	}
 	
 	public function index() {

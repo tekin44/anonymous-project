@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 class m_tahunan extends CI_Model {
 
 	public function get_sisa($id) {
-		$sql = "select (b.jumlah_tahunan - sum(jumlah_bayar_tahunan)) as sisa, tahun_bayar_tahunan,  b.* from bayar_tahunan a inner join tahunan b on a.id_tahunan = b.id_tahunan where b.nomor_induk_siswa = '".$id."' group by tahun_bayar_tahunan, b.jumlah_tahunan, b.id_tahunan, b.nomor_induk_siswa";
+		$sql = "select jumlah_bayar_tahunan as sisa, a.tanggal_bayar_tahunan, b.* from bayar_tahunan a right join tahunan b on a.id_tahunan = b.id_tahunan where b.nomor_induk_siswa = '$id'";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
@@ -30,6 +30,10 @@ class m_tahunan extends CI_Model {
 
 	public function insert_bayar_tahunan($value) {
 		$this->db->insert('bayar_tahunan', $value);
+	}
+
+	public function delete_bayar($value) {
+		$this->db->delete('bayar_tahunan', $value);
 	}
 }
 ?>

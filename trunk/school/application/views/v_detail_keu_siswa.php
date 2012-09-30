@@ -16,6 +16,7 @@
 				<tr>
 					<th class="table-header-repeat line-left"><a href="">Tanggal Pembayaran</a></th>
 					<th class="table-header-repeat line-left minwidth-1"><a href="">Jumlah</a></th>
+					<th class="table-header-options line-left"><a href="">Options</a></th>
 				</tr>
 				
 				<?php 
@@ -27,6 +28,9 @@
 				<tr class="alternate-row">
 					<td><?=$item->tanggal_bayar_dsp ?></td>
 					<td><?=$item->jumlah_bayar_dsp ?></td>
+					<td class="options-width">
+					<a href="/school/c_spp/delete_bayar_dsp/<?=$item->id_dsp?>/<?=$item->tanggal_bayar_dsp?>/<?=$siswa[0]->nomor_induk_siswa?>" title="Delete" class="icon-2 info-tooltip"></a>
+					</td>
 				</tr>
 				
 				<?}?>
@@ -46,8 +50,8 @@
 			<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
 				<tr>
 					<th class="table-header-repeat line-left"><a href="">Tanggal</a></th>
-					<th class="table-header-repeat line-left"><a href="">Tahun ke</a></th>
 					<th class="table-header-repeat line-left"><a href="">Jumlah</a></th>
+					<th class="table-header-options line-left"><a href="">Options</a></th>
 				</tr>
 				
 				<?php 
@@ -56,8 +60,10 @@
 				
 				<tr class="alternate-row">
 					<td><?=$item->tanggal_bayar_tahunan ?></td>
-					<td><?=$item->tahun_bayar_tahunan ?></td>
 					<td><?=$item->jumlah_bayar_tahunan ?></td>
+					<td class="options-width">
+					<a href="/school/c_spp/delete_bayar_tahunan/<?=$item->id_tahunan?>/<?=$item->tanggal_bayar_tahunan?>/<?=$siswa[0]->nomor_induk_siswa?>" title="Delete" class="icon-2 info-tooltip"></a>
+					</td>
 				</tr>
 				
 				<?}?>
@@ -72,6 +78,7 @@
 					<th class="table-header-repeat line-left"><a href="">Tanggal Pembayaran</a></th>
 					<th class="table-header-repeat line-left"><a href="">Bulan</a></th>
 					<th class="table-header-repeat line-left"><a href="">Tahun ke</a></th>
+					<th class="table-header-options line-left"><a href="">Options</a></th>
 				</tr>
 				
 				<?php 
@@ -82,6 +89,9 @@
 					<td><?=$item->tanggal_bayar_spp ?></td>
 					<td><?=date('F',strtotime('2000-'.$item->bulan_spp.'-02')) ?></td>
 					<td><?=$item->tahun_spp ?></td>
+					<td class="options-width">
+					<a href="/school/c_spp/delete_bayar_spp/<?=$item->bulan_spp?>/<?=$item->tahun_spp ?>/<?=$siswa[0]->nomor_induk_siswa?>" title="Delete" class="icon-2 info-tooltip"></a>
+					</td>
 				</tr>
 				
 				<?}?>

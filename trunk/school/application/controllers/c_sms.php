@@ -13,7 +13,7 @@ class c_sms extends CI_Controller {
 		$this->load->model('m_menu');
 		$this->load->model('m_date');
 		$this->client_logon = $this->session->userdata('login');
-		$this->data['menus'] = $this->m_menu->getAll();
+		$this->data['menus'] = $this->m_menu->getAll($this->client_logon[0]->admin_username);
 	}
 
 	public function index() {

@@ -8,6 +8,12 @@
 	
 class m_date extends CI_Model {
 	
+	public function get_serial($from,$to){
+		$sql = "select c::date from generate_series('$from'::date,'$to'::date,'1 day') c";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
 	public function get_month() {
 		$d = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
 		return $d;
