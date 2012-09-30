@@ -116,6 +116,7 @@ class c_master_data extends CI_Controller {
 	}	
 
 	public function form_staff($flag, $id = 0) {
+		$id = str_replace("%20"," ",$id);
 		if ($flag == 1)
 			$this->data['title'] = "Tambah Data Staff";
 		else {
@@ -184,6 +185,7 @@ class c_master_data extends CI_Controller {
 	public function form_pengajar($flag, $id = 0) {
 		$this->load->model('m_pengajar');
 		$this->load->model('m_pelajaran');
+		$id = str_replace("%20"," ",$id);
 		if ($flag == 1)
 			$this->data['title'] = "Tambah Data Pengajar";
 		else {

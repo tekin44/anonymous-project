@@ -1,8 +1,8 @@
 				<?php
-				$nis = $rows[0]->nomor_induk_siswa;
-				$nama = $rows[0]->nama_siswa;
-				$nip = $rows[0]->nomor_induk_pengajar;
-				$id_kelas = $rows[0]->id_kelas;
+				$nis = $rows[0]->nomor_induk_siswa?$rows[0]->nomor_induk_siswa:"";
+				$nama = $rows[0]->nama_siswa?$rows[0]->nama_siswa:"";
+				$nip = $rows[0]->nomor_induk_pengajar?$rows[0]->nomor_induk_pengajar:"";
+				$id_kelas = $rows[0]->id_kelas?$rows[0]->id_kelas:"";
 				?>
 				
 				
@@ -59,6 +59,7 @@
 				</table>
 				<!--  end product-table................................... --> 
 				<input type="submit" value="" class="form-submit" />
+				<a href="/school/c_nilai/index">Kembali</a>
 				</form>
 				
 				

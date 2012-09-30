@@ -17,7 +17,7 @@ class m_kategori extends CI_Model {
 
 		$query = $this->db->query("
 				insert into kategori
-				values (nextval('kategori_pk_seq'), '$nama')
+				values ('$nama',nextval('kategori_pk_seq'))
 				");
 	}
 
