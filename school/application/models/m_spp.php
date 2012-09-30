@@ -16,6 +16,15 @@ class m_spp extends CI_Model {
 		return $query->result();
 	}
 
+	public function get_detail_nota($id) {
+		$sql = "select * from spp a " .
+				"inner join siswa b on a.nomor_induk_siswa = b.nomor_induk_siswa " .
+				"inner join kelas c on b.id_kelas = c.id_kelas " .
+				"where a.id_spp = '".$id."'";
+		$query = $this->db->query($sql);
+		return $query->row();
+	}
+
 	public function insert($nis,$jml) {
 		$sql = "INSERT INTO spp VALUES (nextval('spp_pk_seq'),'$nis',$jml)";
 		$this->db->query($sql);

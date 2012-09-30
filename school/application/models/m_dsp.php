@@ -28,6 +28,15 @@ class m_dsp extends CI_Model {
 		}
 	}
 
+	public function get_detail_nota($id) {
+		$sql = "select * from dsp a " .
+				"inner join siswa b on a.nomor_induk_siswa = b.nomor_induk_siswa " .
+				"inner join kelas c on b.id_kelas = c.id_kelas " .
+				"where a.id_dsp = '".$id."'";
+		$query = $this->db->query($sql);
+		return $query->row();
+	}
+
 	public function insert_bayar_dsp($value) {
 		$this->db->insert('bayar_dsp', $value);
 	}

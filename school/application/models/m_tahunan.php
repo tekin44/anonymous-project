@@ -16,6 +16,15 @@ class m_tahunan extends CI_Model {
 		return $query->result();
 	}
 
+	public function get_detail_nota($id) {
+		$sql = "select * from tahunan a " .
+				"inner join siswa b on a.nomor_induk_siswa = b.nomor_induk_siswa " .
+				"inner join kelas c on b.id_kelas = c.id_kelas " .
+				"where a.id_tahunan = '".$id."'";
+		$query = $this->db->query($sql);
+		return $query->row();
+	}
+
 	public function insert($nis, $jml_dsp) {
 		$sql = "select count(*) as count from tahunan where nomor_induk_siswa = '" . $nis . "'";
 		$query = $this->db->query($sql)->result();
