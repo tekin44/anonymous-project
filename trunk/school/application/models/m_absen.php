@@ -37,12 +37,10 @@ class m_absen extends CI_Model {
 		return $query->result();
 	}
 
-	public function updateAbsensi($keterangan, $no) {
+	public function updateAbsensi($data, $no) {
 
 		$this->load->database();
-		$query = $this->db->query("
-			update absen set status_absen = $keterangan	where no_absensi = $no"
-		);
+		$query = $this->db->update("absen",$data,"no_absensi = $no");
 	}
 
 	public function displayBelumAbsen($tanggal) {

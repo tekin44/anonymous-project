@@ -21,7 +21,7 @@
 			<td><? echo $item->nomor_induk ?></td>
 		</tr>
 		<tr>
-			<th valign="top">Keterangan</th><td>
+			<th valign="top">Dengan Alasan :</th><td>
 				<?php 
 				$options = array(
                   '0'  	=> 'keterangan',
@@ -33,6 +33,11 @@
 				
 				?> 
 			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<th valign="top">Keterangan :</th>
+			<td><textarea rows="" cols="" class="form-textarea" name="ket"></textarea></td>
 			<td></td>
 		</tr>
 		<tr>

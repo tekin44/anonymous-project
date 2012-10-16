@@ -18,8 +18,8 @@ class m_dsp extends CI_Model {
 
 	public function insert($nis, $jml_dsp) {
 		$sql = "select count(*) as count from dsp where nomor_induk_siswa = '" . $nis . "'";
-		$query = $this->db->query($sql)->result();
-		if ($query[0]->count < 1) {
+		$query = $this->db->query($sql);
+		if ($query->num_rows()<1) {
 			$sql = "INSERT into dsp values (nextval('dsp_pk_seq'),'$nis','$jml_dsp')";
 			$this->db->query($sql);
 		} else {
@@ -43,6 +43,17 @@ class m_dsp extends CI_Model {
 
 	public function delete_bayar($value) {
 		$this->db->delete('bayar_dsp', $value);
+	}
+
+	public function update($nis,$jml) {
+		$data['jumlah_dsp'] = $jml;
+		$this->db->update("dsp",$data,"nomor_induk_siswa = '$nis'");
+	}
+	
+	public function check($nis){
+		$sql = "SELECT * FROM dsp WHERE nomor_induk_siswa = '$nis'";
+		$query = $this->db->query($sql);
+		return $query->num_rows();
 	}
 }
 ?>

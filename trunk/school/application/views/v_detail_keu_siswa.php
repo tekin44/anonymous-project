@@ -77,7 +77,7 @@
 				<tr>
 					<th class="table-header-repeat line-left"><a href="">Tanggal Pembayaran</a></th>
 					<th class="table-header-repeat line-left"><a href="">Bulan</a></th>
-					<th class="table-header-repeat line-left"><a href="">Tahun ke</a></th>
+					<th class="table-header-repeat line-left"><a href="">Periode</a></th>
 					<th class="table-header-options line-left"><a href="">Options</a></th>
 				</tr>
 				
@@ -88,9 +88,9 @@
 				<tr class="alternate-row">
 					<td><?=$item->tanggal_bayar_spp ?></td>
 					<td><?=date('F',strtotime('2000-'.$item->bulan_spp.'-02')) ?></td>
-					<td><?=$item->tahun_spp ?></td>
+					<td><?=$item->tahun_periode."/".$item->periode_semester ?></td>
 					<td class="options-width">
-					<a href="/school/c_spp/delete_bayar_spp/<?=$item->bulan_spp?>/<?=$item->tahun_spp ?>/<?=$siswa[0]->nomor_induk_siswa?>" title="Delete" class="icon-2 info-tooltip"></a>
+					<a href="/school/c_spp/delete_bayar_spp/<?=$item->bulan_spp?>/<?=$item->id_periode ?>/<?=$siswa[0]->nomor_induk_siswa?>" title="Delete" class="icon-2 info-tooltip"></a>
 					</td>
 				</tr>
 				

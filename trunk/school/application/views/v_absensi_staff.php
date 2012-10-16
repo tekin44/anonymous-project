@@ -55,6 +55,7 @@
 					<th class="table-header-repeat line-left minwidth-1"><a href="">Nama</a></th>
 					<th class="table-header-repeat line-left"><a href="">Waktu Masuk</a></th>
 					<th class="table-header-repeat line-left"><a href="">Waktu Keluar</a></th>
+					<th class="table-header-repeat line-left"><a href="">Status</a></th>
 					<th class="table-header-repeat line-left"><a href="">Keterangan</a></th>
 					<th class="table-header-options line-left"><a href="">Options</a></th>
 				</tr>
@@ -78,6 +79,7 @@
 					<td><? echo $item->waktu_masuk ?></td>
 					<td><? echo $item->waktu_keluar ?></td>
 					<td><? echo $ket ?></td>
+					<td><? echo $item->keterangan_absen ?></td>
 					<td>
 					<?="<a href='" . base_url() . "c_absensi/editAbsensistaff/$item->no_absensi' title='Edit' class='icon-1 info-tooltip'>"?></a>
 					</td>

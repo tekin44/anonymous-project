@@ -11,7 +11,7 @@ class m_spp extends CI_Model {
 	}
 
 	public function get_one($id) {
-		$sql = "select * from bayar_spp a right join spp b on a.id_spp = b.id_spp where nomor_induk_siswa = '".$id."' order by tahun_spp,bulan_spp";
+		$sql = "select * from bayar_spp a right join spp b on a.id_spp = b.id_spp inner join periode c on a.id_periode = c.id_periode where nomor_induk_siswa = '".$id."' order by bulan_spp";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
@@ -26,8 +26,20 @@ class m_spp extends CI_Model {
 	}
 
 	public function insert($nis,$jml) {
-		$sql = "INSERT INTO spp VALUES (nextval('spp_pk_seq'),'$nis',$jml)";
-		$this->db->query($sql);
+		$sql = "select count(*) as count from spp where nomor_induk_siswa = '" . $nis . "'";
+		$query = $this->db->query($sql);
+		if ($query->num_rows()<1) {
+			$sql = "INSERT into spp values (nextval('spp_pk_seq'),'$nis','$jml')";
+			$this->db->query($sql);
+		} else {
+			$value['jumlah_spp'] = $jml;
+			$this->db->update('spp', $value, "nomor_induk_siswa = '" . $nis . "'");
+		}
+	}
+
+	public function update($nis,$jml) {
+		$data['jumlah_spp'] = $jml;
+		$this->db->update("spp",$data,"nomor_induk_siswa = '$nis'");
 	}
 
 	public function insert_bayar($value) {
@@ -40,6 +52,12 @@ class m_spp extends CI_Model {
 
 	public function delete($value) {
 		$this->db->delete('spp', $value);
+	}
+	
+	public function check($nis){
+		$sql = "SELECT * FROM spp WHERE nomor_induk_siswa = '$nis'";
+		$query = $this->db->query($sql);
+		return $query->num_rows();
 	}
 	
 	public function count($value){
