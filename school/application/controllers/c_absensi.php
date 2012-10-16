@@ -124,10 +124,11 @@ class c_absensi extends CI_Controller {
 
 	public function updateAbsensi() {
 		$this->load->model('m_absen');
-		$keterangan = $this->input->post('keterangan');
+		$data['status_absen'] = $this->input->post('keterangan');
+		$data['keterangan_absen'] = $this->input->post('ket');
 		$no = $this->input->post('no_absensi');
 		$tipe = $this->input->post('tipe');
-		$this->m_absen->updateAbsensi($keterangan, $no);
+		$this->m_absen->updateAbsensi($data, $no);
 		$this->redirectto($tipe);
 	}
 

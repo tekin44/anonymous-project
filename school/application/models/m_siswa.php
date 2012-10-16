@@ -9,6 +9,15 @@ class m_siswa extends CI_Model {
 		$this->load->database();
 	}
 	
+	public function get_id_keu($nis){
+		$sql = "select a.nomor_induk_siswa, id_spp, id_dsp, id_tahunan from siswa a " .
+				"inner join spp b on a.nomor_induk_siswa = b.nomor_induk_siswa " .
+				"inner join dsp c on a.nomor_induk_siswa = c.nomor_induk_siswa " .
+				"inner join tahunan d on a.nomor_induk_siswa = d.nomor_induk_siswa";
+		$query = $this->db->query($sql);
+		return $query->row();
+	}
+	
 	public function get_spp($key1=null,$key2=null){
 		$where = "";
 		if($key1)$where = "WHERE a.nomor_induk_siswa = '".$key1."'";
@@ -82,6 +91,26 @@ class m_siswa extends CI_Model {
 						inner join (select b.waktu_absen, b.no_absensi from absen a inner join keterangan_absen b on a.no_absensi = b.no_absensi where keterangan = '1') d on b.no_absensi = d.no_absensi
 						left join (select b.waktu_absen, b.no_absensi from absen a inner join keterangan_absen b on a.no_absensi = b.no_absensi where keterangan = '2') c on b.no_absensi = c.no_absensi
 						where b.tanggal_absensi >= '$from' and b.tanggal_absensi <= '$to'";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
+	public function get_keu_all(){
+		$sql = "select * from siswa a 
+				inner join (
+					select nomor_induk_siswa as nis, jumlah_dsp - sum(jumlah_bayar_dsp) as sisa_dsp from bayar_dsp a 
+					inner join dsp b on a.id_dsp = b.id_dsp group by jumlah_dsp,nomor_induk_siswa
+				) b on a.nomor_induk_siswa = b.nis 
+				inner join (
+					select nomor_induk_siswa as nis, jumlah_tahunan - sum(jumlah_bayar_tahunan) as sisa_tahunan from bayar_tahunan a 
+					inner join tahunan b on a.id_tahunan = b.id_tahunan group by jumlah_tahunan,nomor_induk_siswa
+				) c on a.nomor_induk_siswa = c.nis ";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
+	public function get_spp_all($id){
+		$sql = "select * from bayar_spp a inner join spp b on a.id_spp = b.id_spp where a.id_periode = $id";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}

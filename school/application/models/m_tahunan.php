@@ -37,6 +37,17 @@ class m_tahunan extends CI_Model {
 		}
 	}
 
+	public function update($nis,$jml) {
+		$data['jumlah_tahunan'] = $jml;
+		$this->db->update("tahunan",$data,"nomor_induk_siswa = '$nis'");
+	}
+	
+	public function check($nis){
+		$sql = "SELECT * FROM tahunan WHERE nomor_induk_siswa = '$nis'";
+		$query = $this->db->query($sql);
+		return $query->num_rows();
+	}
+
 	public function insert_bayar_tahunan($value) {
 		$this->db->insert('bayar_tahunan', $value);
 	}

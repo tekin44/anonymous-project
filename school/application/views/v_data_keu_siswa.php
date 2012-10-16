@@ -42,9 +42,7 @@
 					<td><?=$item->jumlah_spp ?></td>
 					<td>
 					<?="<a href='".base_url()."c_spp/edit_keu/$item->nomor_induk_siswa' title='Edit Keuangan' class='icon-1 info-tooltip'>";?></a>
-					<?="<a href='".base_url()."c_spp/add_dsp/$item->nomor_induk_siswa' title='Bayar DSP' class='icon-1 info-tooltip'>";?></a>
-					<?="<a href='".base_url()."c_spp/add_tahunan/$item->nomor_induk_siswa' title='Bayar Tahunan' class='icon-1 info-tooltip'>";?></a>
-					<?="<a href='".base_url()."c_spp/add_spp/$item->nomor_induk_siswa' title='Bayar SPP' class='icon-1 info-tooltip'>";?></a>
+					<?="<a href='".base_url()."c_spp/bayar/$item->nomor_induk_siswa' title='Pembayaran' class='icon-1 info-tooltip'>";?></a>
 					<?="<a href='".base_url()."c_spp/add_print_note/$item->nomor_induk_siswa' title='Print Note' class='icon-1 info-tooltip'>";?></a>
 					</td>
 				</tr>

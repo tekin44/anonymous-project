@@ -19,6 +19,7 @@ header("Pragma: public");
 					<th>Nama</th>
 					<th>Waktu Masuk</th>
 					<th>Waktu Keluar</th>
+					<th>Status</th>
 					<th>Keterangan</th>
 				</tr>
 				
@@ -54,6 +55,7 @@ foreach ($dates as $date) {
 					<td width="100"><? echo $item->waktu_masuk ?></td>
 					<td width="100"><? echo $item->waktu_keluar ?></td>
 					<td width="100"><? echo $ket ?></td>
+					<td width="100"><? echo $item->keterangan_absen ?></td>
 				</tr>
 				
 				<?}}}?>
