@@ -98,11 +98,11 @@ class m_siswa extends CI_Model {
 	public function get_keu_all(){
 		$sql = "select * from siswa a 
 				inner join (
-					select nomor_induk_siswa as nis, jumlah_dsp - sum(jumlah_bayar_dsp) as sisa_dsp from bayar_dsp a 
+					select b.jumlah_dsp as dsp, nomor_induk_siswa as nis, jumlah_dsp - sum(jumlah_bayar_dsp) as sisa_dsp from bayar_dsp a 
 					inner join dsp b on a.id_dsp = b.id_dsp group by jumlah_dsp,nomor_induk_siswa
 				) b on a.nomor_induk_siswa = b.nis 
 				inner join (
-					select nomor_induk_siswa as nis, jumlah_tahunan - sum(jumlah_bayar_tahunan) as sisa_tahunan from bayar_tahunan a 
+					select b.jumlah_tahunan as tahunan, nomor_induk_siswa as nis, jumlah_tahunan - sum(jumlah_bayar_tahunan) as sisa_tahunan from bayar_tahunan a 
 					inner join tahunan b on a.id_tahunan = b.id_tahunan group by jumlah_tahunan,nomor_induk_siswa
 				) c on a.nomor_induk_siswa = c.nis ";
 		$query = $this->db->query($sql);
@@ -194,6 +194,20 @@ class m_siswa extends CI_Model {
 		where 
 		nomor_induk_siswa = '$id'");
 		return $query->result();
+	}
+	
+	public function get_sisa_dsp($id){
+		$sql = "select b.jumlah_dsp as dsp, jumlah_dsp - sum(jumlah_bayar_dsp) as sisa_dsp from bayar_dsp a 
+					inner join dsp b on a.id_dsp = b.id_dsp where nomor_induk_siswa = '$id' group by jumlah_dsp,nomor_induk_siswa";
+		$query = $this->db->query($sql);
+		return $query->rows();
+	}
+	
+	public function get_sisa_tahunan($id){
+		$sql = "select b.jumlah_tahunan as tahunan, jumlah_tahunan - sum(jumlah_bayar_tahunan) as sisa_tahunan from bayar_tahunan a 
+					inner join tahunan b on a.id_tahunan = b.id_tahunan where nomor_induk_siswa = '$id' group by jumlah_dsp,nomor_induk_siswa";
+		$query = $this->db->query($sql);
+		return $query->rows();
 	}
 }
 ?>

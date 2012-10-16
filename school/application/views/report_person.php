@@ -11,12 +11,14 @@ header("Pragma: public");
 				</head>
 			<body>
 			<table>
-				<tr align="center"><th colspan="16">Laporan Keuangan</th></tr>
+				<tr align="center"><th colspan="18">Laporan Keuangan</th></tr>
 			</table>
 			<table border="1">
 				<tr>
 					<td rowspan='2'>Nomor Induk</td>
 					<td rowspan='2'>Nama</td>
+					<td rowspan='2'>DSP</td>
+					<td rowspan='2'>Tahunan</td>
 					<td rowspan='2'>Sisa DSP</td>
 					<td rowspan='2'>Sisa Tahunan</td>
 					<td colspan="12">SPP</td>
@@ -31,7 +33,7 @@ header("Pragma: public");
 				<?php
 foreach($kelas as $class){?>
 				<tr>
-					<td colspan="16"><b>Kelas : <?=$class->nama_kelas?></b></td>
+					<td colspan="18"><b>Kelas : <?=$class->nama_kelas?></b></td>
 				</tr>
 				<?php
 
@@ -42,6 +44,8 @@ foreach($kelas as $class){?>
 				<tr>
 					<td width="150"><?=$item->nomor_induk_siswa ?></td>
 					<td width="300"><?=$item->nama_siswa ?></td>
+					<td width="100"><?=$item->dsp ?></td>
+					<td width="100"><?=$item->tahunan ?></td>
 					<td width="100"><?=$item->sisa_dsp ?></td>
 					<td width="100"><?=$item->sisa_tahunan ?></td>
 					<?php

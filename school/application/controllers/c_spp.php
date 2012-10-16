@@ -335,11 +335,15 @@ class c_spp extends CI_Controller {
 		$tgl = $this->m_date->merge($d, $m, $y);
 		$nis = $_REQUEST['id'];
 		$row = $this->m_siswa->get_nota($tgl, $nis);
+		$dsp = $this->m_siswa->get_sisa_dsp($nis);
+		$tahunan = $this->m_siswa->get_sisa_tahunan($nis);
 		$data['kelas'] = $row->nama_kelas;
 		$data['nama'] = $row->nama_siswa;
 		$data['spp'] = $row->spp ? $row->spp : 0;
 		$data['dsp'] = $row->dsp ? $row->dsp : 0;
 		$data['tahunan'] = $row->thn ? $row->thn : 0;
+		$data['rows_tahunan'] = $tahunan;
+		$data['rows_dsp'] = $dsp;
 		$data['terbilang'] = ucwords($this->Terbilang($data['spp'] + $data['dsp'] + $data['tahunan']));
 		$this->print_note($data);
 	}
