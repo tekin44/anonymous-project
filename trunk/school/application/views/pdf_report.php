@@ -45,14 +45,31 @@ $this->fpdf->Line(15,8.4,20,8.4); // garis total
 $this->fpdf->Ln();
 
 // tanda tangan
-$this->fpdf->Cell(14,0.8,	'',0,0,'L');
+$this->fpdf->Cell(5,1,'SISA DSP' ,0,0,'L');
+$this->fpdf->Cell(9,1,'Rp. '.$rows_dsp.'' ,0,0,'L');
 $this->fpdf->Cell(5,0.8,	'Cirebon, '.date('d/m/Y').'',0,1,'L');
-$this->fpdf->Cell(14,0.8,	'',0,0,'L');
+$this->fpdf->Cell(5,1,'SISA Tahunan' ,0,0,'L');
+$this->fpdf->Cell(9,1,'Rp. '.$rows_tahunan.'' ,0,0,'L');
 $this->fpdf->Cell(5,0.8,	'Petugas',0,1,'L');
 $this->fpdf->Line(15,14.6,20,14.6); // garis tandatangan
 
-$this->fpdf->Cell(5,1,'JUMLAH' ,0,0,'L');
-$this->fpdf->Cell(5,1,'Rp. '.$spp+$dsp+$tahunan.'' ,1,1,'L');
+$rows = array();
+$rows2 = array();
+$i = 0;
+foreach($rows_spp as $row){
+	if($i = 6){
+		$rows2[] = date('F',strtotime('2000-'.$row->bulan_spp.'-01'));
+	}else{
+		$rows[] = date('F',strtotime('2000-'.$row->bulan_spp.'-01'));
+	}
+	$i++;
+}
+
+$this->fpdf->Cell(5,1,'SPP' ,0,0,'L');
+$this->fpdf->Cell(5,1,implode(',',$rows),0,1,'L');
+if(count($rows2)>0){
+	$this->fpdf->Cell(5,1,implode(',',$rows2),0,1,'L');
+}
 
 $this->fpdf->Cell(14,0.8,	'',0,0,'L');
 $this->fpdf->Cell(5,4,		'NIP.',0,1,'L');

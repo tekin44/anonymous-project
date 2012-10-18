@@ -198,16 +198,16 @@ class m_siswa extends CI_Model {
 	
 	public function get_sisa_dsp($id){
 		$sql = "select b.jumlah_dsp as dsp, jumlah_dsp - sum(jumlah_bayar_dsp) as sisa_dsp from bayar_dsp a 
-					inner join dsp b on a.id_dsp = b.id_dsp where nomor_induk_siswa = '$id' group by jumlah_dsp,nomor_induk_siswa";
+					inner join dsp b on a.id_dsp = b.id_dsp where nomor_induk_siswa = '$id' group by b.jumlah_dsp,nomor_induk_siswa";
 		$query = $this->db->query($sql);
-		return $query->rows();
+		return $query->row();
 	}
 	
 	public function get_sisa_tahunan($id){
 		$sql = "select b.jumlah_tahunan as tahunan, jumlah_tahunan - sum(jumlah_bayar_tahunan) as sisa_tahunan from bayar_tahunan a 
-					inner join tahunan b on a.id_tahunan = b.id_tahunan where nomor_induk_siswa = '$id' group by jumlah_dsp,nomor_induk_siswa";
+					inner join tahunan b on a.id_tahunan = b.id_tahunan where nomor_induk_siswa = '$id' group by b.jumlah_tahunan,nomor_induk_siswa";
 		$query = $this->db->query($sql);
-		return $query->rows();
+		return $query->row();
 	}
 }
 ?>

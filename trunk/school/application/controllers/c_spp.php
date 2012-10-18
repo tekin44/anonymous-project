@@ -329,6 +329,7 @@ class c_spp extends CI_Controller {
 
 	public function submit_note() {
 		$this->load->model('m_siswa');
+		$this->load->model('m_spp');
 		$d = $_REQUEST['d'];
 		$m = $_REQUEST['m'];
 		$y = $_REQUEST['y'];
@@ -342,8 +343,9 @@ class c_spp extends CI_Controller {
 		$data['spp'] = $row->spp ? $row->spp : 0;
 		$data['dsp'] = $row->dsp ? $row->dsp : 0;
 		$data['tahunan'] = $row->thn ? $row->thn : 0;
-		$data['rows_tahunan'] = $tahunan;
-		$data['rows_dsp'] = $dsp;
+		$data['rows_tahunan'] = $tahunan->sisa_tahunan;
+		$data['rows_dsp'] = $dsp->sisa_dsp;
+		$data['rows_spp'] = $this->m_spp->get_one($nis);
 		$data['terbilang'] = ucwords($this->Terbilang($data['spp'] + $data['dsp'] + $data['tahunan']));
 		$this->print_note($data);
 	}
