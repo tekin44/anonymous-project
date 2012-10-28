@@ -115,9 +115,9 @@ class c_spp extends CI_Controller {
 		$this->m_tahunan->insert($nis, $jumlah_tahunan);
 		$this->m_spp->insert($nis, $jumlah_spp);
 		redirect('c_spp');
-	} /*
+	}
 		
-		public function submit_dsp($nis,$dsp){
+		/* public function submit_dsp($nis,$dsp){
 			$this->load->model('m_dsp');
 			if($this->m_dsp->check())
 				$this->m_dsp->update($nis, $dsp);
@@ -139,7 +139,7 @@ class c_spp extends CI_Controller {
 				$this->m_tahunan->update($nis, $tahunan);
 			else
 				$this->m_tahunan->insert($nis, $tahunan);
-		}*/
+		} */
 
 	public function bayar($id,$alert=null) {
 		$d = 0;

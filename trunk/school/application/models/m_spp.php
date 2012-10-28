@@ -27,8 +27,8 @@ class m_spp extends CI_Model {
 
 	public function insert($nis,$jml) {
 		$sql = "select count(*) as count from spp where nomor_induk_siswa = '" . $nis . "'";
-		$query = $this->db->query($sql);
-		if ($query->num_rows()<1) {
+		$query = $this->db->query($sql)->row();
+		if ($query->count<1) {
 			$sql = "INSERT into spp values (nextval('spp_pk_seq'),'$nis','$jml')";
 			$this->db->query($sql);
 		} else {
