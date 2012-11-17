@@ -31,21 +31,12 @@
 			</table></td>
 		</tr>
 		<tr>
-			<td>Bayar DSP :<input type="checkbox" class="checkbox" name="chk_dsp" value="1" /></td>
-		</tr>
-		<tr>
-			<td>Jumlah Pembayaran :</td>
+			<td>Jumlah Bayar DSP :</td>
 			<td><input type="text" class="inp-form" name="jumlah_bayar_dsp" /></td>
 		</tr>
 		<tr>
-			<td>Bayar Tahunan :<input type="checkbox" class="checkbox" name="chk_tahunan" value="1" /></td>
-		</tr>
-		<tr>
-			<td>Jumlah Pembayaran :</td>
+			<td>Jumlah Bayar Tahunan :</td>
 			<td><input type="text" class="inp-form" name="jumlah_bayar_tahunan" /></td>
-		</tr>
-		<tr>
-			<td>Bayar SPP : <input type="checkbox" class="checkbox" name="chk_spp" value="1" /></td>
 		</tr>
 		<tr>
 			<td>Periode :</td>

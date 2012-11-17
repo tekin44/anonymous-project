@@ -3,27 +3,14 @@
 		
 		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
 		<tr>
-			<th valign="top">Tanggal Bayar:</th>
-			<td><table border="0" cellpadding="0" cellspacing="0">
-			<tr  valign="top">
-				<td>
-				<select name="d" id="d" class="styledselect-day">
-					<?=$d?>
-				</select>
-				</td>
-				<td>
-					<select name="m" id="m" class="styledselect-month">
-					<?=$m?>
-					</select>
-				</td>
-				<td>
-					<select name="y" id="y"  class="styledselect-year">
-					<?=$y?>
-					</select>
-				</td>
-				<td><a href="" id="date-pick"><img src="/school/images/forms/icon_calendar.jpg"   alt="" /></a></td>
-			</tr>
-			</table></td>
+			<th valign="top">No Pembayaran :</th>
+			<td><select name="no_pembayaran">
+				<option value="0">No Pembayaran</option>
+				<?php foreach ($no_pembayaran as $row){
+					echo "<option value=\"".$row->no_pembayaran."\">".$row->no_pembayaran."</option>";
+				}
+				?> 
+			</select></td>
 		</tr>
 		<input type="hidden" readonly class="inp-form" name="id" value="<?=$nis?>" />
 		<tr>
