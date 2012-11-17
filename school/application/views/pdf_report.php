@@ -16,7 +16,7 @@ $this->fpdf->Cell(19,0.7,'KWITANSI PEMBAYARAN',0,0,'C');
     $this->fpdf->SetFont('Times','',12);
 	
 	$this->fpdf->Cell(5,1,'Nomor'			 ,0,0,'L'); // nomor
-	$this->fpdf->Cell(5,1,'_______',0,1,'L'); // isi nomor
+	$this->fpdf->Cell(5,1,$no_pembayaran,0,1,'L'); // isi nomor
 	$this->fpdf->Cell(5,1,'Sudah terima dari',0,0,'L'); // sudah terima dari
 	$this->fpdf->Cell(8.9,1,$nama  	 ,0,0,'L'); // isi sudah terima dari
 	$this->fpdf->Cell(2.8,1,'Kelas : ',0,0,'L'); //no. panggilan

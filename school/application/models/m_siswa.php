@@ -13,7 +13,14 @@ class m_siswa extends CI_Model {
 		$sql = "select a.nomor_induk_siswa, id_spp, id_dsp, id_tahunan from siswa a " .
 				"inner join spp b on a.nomor_induk_siswa = b.nomor_induk_siswa " .
 				"inner join dsp c on a.nomor_induk_siswa = c.nomor_induk_siswa " .
-				"inner join tahunan d on a.nomor_induk_siswa = d.nomor_induk_siswa";
+				"inner join tahunan d on a.nomor_induk_siswa = d.nomor_induk_siswa
+						where a.nomor_induk_siswa = '$nis'";
+		$query = $this->db->query($sql);
+		return $query->row();
+	}
+	
+	public function get_data_spp($nis){
+		$sql = "select * from spp where nomor_induk_siswa = '$nis'";
 		$query = $this->db->query($sql);
 		return $query->row();
 	}
@@ -148,6 +155,12 @@ class m_siswa extends CI_Model {
 		$query = $this->db->query("select * from siswa where nomor_induk_siswa = '".$id."'");
 		return $query->result();
 	}
+
+	public function get_one_siswa($id) {
+		$query = $this->db->query("select * from siswa a inner join kelas b on a.id_kelas = b.id_kelas
+				where nomor_induk_siswa  = '".$id."'");
+		return $query->row();
+	}
 	
 	public function insert_siswa($data) {
 		$insert = $this->db->insert("siswa",$data);
@@ -197,17 +210,27 @@ class m_siswa extends CI_Model {
 	}
 	
 	public function get_sisa_dsp($id){
+		$sql = "select jumlah_dsp as dsp, 0 as sisa_dsp from dsp where nomor_induk_siswa = '$id'";
+		$row = $this->db->query($sql);
 		$sql = "select b.jumlah_dsp as dsp, jumlah_dsp - sum(jumlah_bayar_dsp) as sisa_dsp from bayar_dsp a 
 					inner join dsp b on a.id_dsp = b.id_dsp where nomor_induk_siswa = '$id' group by b.jumlah_dsp,nomor_induk_siswa";
 		$query = $this->db->query($sql);
-		return $query->row();
+		if($query->num_rows()>0)
+			return $query->row();
+		else
+			return $row->row();
 	}
 	
 	public function get_sisa_tahunan($id){
+		$sql = "select jumlah_tahunan as tahunan, 0 as sisa_tahunan from tahunan where nomor_induk_siswa = '$id'";
+		$row = $this->db->query($sql);
 		$sql = "select b.jumlah_tahunan as tahunan, jumlah_tahunan - sum(jumlah_bayar_tahunan) as sisa_tahunan from bayar_tahunan a 
 					inner join tahunan b on a.id_tahunan = b.id_tahunan where nomor_induk_siswa = '$id' group by b.jumlah_tahunan,nomor_induk_siswa";
 		$query = $this->db->query($sql);
-		return $query->row();
+		if($query->num_rows()>0)
+			return $query->row();
+		else
+			return $row->row();
 	}
 }
 ?>

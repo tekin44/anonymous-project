@@ -8,13 +8,14 @@ class m_pengajar extends CI_Model {
 		$this->load->database();
 		$where_clause = "where b.tanggal_absensi = '".$src['tanggal']."' ";
 		if($src['nama_pengajar']) $where_clause .= "AND a.nama_pengajar ILIKE '%".$src['nama_pengajar']."%' ";
-		if($src['nomor_induk_pengajar']) $where_clause .= "AND a.nomor_induk_pengajar = '".$src['nomor_induk_pengajar']."' ";
-		$query = $this->db->query("select b.*, a.nomor_induk_pengajar, a.nama_pengajar, d.waktu_absen as waktu_masuk, c.waktu_absen as waktu_keluar  
+		if($src['nomor_induk_pengajar']) $where_clause .= "AND a.nomor_induk_pengajar ILIKE '%".$src['nomor_induk_pengajar']."%' ";
+		$sql = "select b.*, a.nomor_induk_pengajar, a.nama_pengajar, d.waktu_absen as waktu_masuk, c.waktu_absen as waktu_keluar  
 						from pengajar a inner join absen b on a.id_users = b.id_users 
 						inner join (select b.waktu_absen, b.no_absensi from absen a inner join keterangan_absen b on a.no_absensi = b.no_absensi where keterangan = '1') d on b.no_absensi = d.no_absensi
 						left join (select b.waktu_absen, b.no_absensi from absen a inner join keterangan_absen b on a.no_absensi = b.no_absensi where keterangan = '2') c on b.no_absensi = c.no_absensi
 						$where_clause ORDER BY a.nama_pengajar
-						");
+						";
+		$query = $this->db->query($sql);
 		return $query->result();
 	}
 

@@ -166,52 +166,72 @@ class c_spp extends CI_Controller {
 		$m = $_REQUEST['m'];
 		$y = $_REQUEST['y'];
 		$tgl = $this->m_date->merge($d, $m, $y);
-		$c_spp = $_POST['chk_spp']?$_POST['chk_spp']:null;
-		$c_dsp = $_POST['chk_dsp']?$_POST['chk_dsp']:null;
-		$c_tahunan = $_POST['chk_tahunan']?$_POST['chk_tahunan']:null;
-		if ($c_spp) {
-			$this->load->model('m_spp');
-			$bulan = $_REQUEST['bulan'];
-			$value['id_periode'] = $_REQUEST['id_periode'];
-			$value['id_spp'] = $_REQUEST['id_spp'];
-			$nis = $_REQUEST['nis'];
-			$i = 0;
-			for ($i; $i < count($bulan); $i++) {
-				$value['bulan_spp'] = $bulan[$i];
-				$check = $this->m_spp->count($value);
-				echo $check;
-				if ($check > 0) {
-					$alert = "Bulan " . date('F',strtotime('01-'.$bulan[$i].'-2001')) . " sudah dibayar sebelumnya";
-					redirect("c_spp/bayar/$nis/$alert");
-					return;
-				}
-				$value['tanggal_bayar_spp'] = $this->m_date->merge($d, $m, $y);
-				$this->m_spp->insert_bayar($value);
-			}
+		$data['nomor_induk_siswa'] = $_REQUEST['nis'];
+		if ($_REQUEST['bulan']) {
+			$data['jml_spp'] = $this->bayar_spp($_REQUEST['bulan'], $tgl,$data['nomor_induk_siswa']);
 		}
-		if ($c_dsp) {
-			$this->load->model('m_dsp');
-			$data['id_dsp'] = $_REQUEST['id_dsp'];
-			$data['tanggal_bayar_dsp'] = $tgl;
-			$data['jumlah_bayar_dsp'] = $_REQUEST['jumlah_bayar_dsp'];
-			$this->m_dsp->insert_bayar_dsp($data);
+		if ($_REQUEST['jumlah_bayar_dsp']) {
+			$data['jml_dsp'] = $this->bayar_dsp($_REQUEST['jumlah_bayar_dsp'], $tgl);
 		}
-		if ($c_tahunan) {
-			$this->load->model('m_tahunan');
-			$nilai['tanggal_bayar_tahunan'] = $tgl;
-			$nilai['id_tahunan'] = $_REQUEST['id_tahunan'];
-			$nilai['jumlah_bayar_tahunan'] = $_REQUEST['jumlah_bayar_tahunan'];
-			$this->m_tahunan->insert_bayar_tahunan($nilai);
+		if ($_REQUEST['jumlah_bayar_tahunan']) {
+			$data['jml_tahunan'] = $this->bayar_tahunan($_REQUEST['jumlah_bayar_tahunan'], $tgl);
 		}
+		$data['no_pembayaran'] = $_REQUEST['nomor_bayar'];
+		$data['tgl_pembayaran'] = $tgl;
+		$this->load->model('m_pembayaran');
+		$this->m_pembayaran->insert_pembayaran($data);
 		redirect('c_spp/index');
-		/*$row = $this->m_dsp->get_detail_nota($value['id_dsp']);
+		$row = $this->m_dsp->get_detail_nota($value['id_dsp']);
 		$data['spp'] = false;
 		$data['dsp'] = true;
 		$data['tahunan'] = false;
 		$data['kelas'] = $row->nama_kelas;
 		$data['nama'] = $row->nama_siswa;
 		$data['jumlah'] = $value['jumlah_bayar_dsp'];
-		$this->print_note($data);*/
+		$this->print_note($data);
+	}
+	
+	public function bayar_spp($bulan, $tgl, $nis){
+		$this->load->model('m_spp');
+		$value['id_periode'] = $_REQUEST['id_periode'];
+		$value['id_spp'] = $_REQUEST['id_spp'];
+		$i = 0;
+		for ($i; $i < count($bulan); $i++) {
+			$value['bulan_spp'] = $bulan[$i];
+			$check = $this->m_spp->count($value);
+			if ($check > 0) {
+				$alert = "Bulan " . date('F',strtotime('01-'.$bulan[$i].'-2001')) . " sudah dibayar sebelumnya";
+				redirect("c_spp/bayar/$nis/$alert");
+				return;
+			}
+			$value['tanggal_bayar_spp'] = $tgl;
+			$this->m_spp->insert_bayar($value);
+		}
+		return $this->get_spp_siswa($nis) * $i;
+	}
+	
+	public function get_spp_siswa($nis){
+		$this->load->model('m_siswa');
+		$row = $this->m_siswa->get_data_spp($nis);
+		return $row->jumlah_spp;
+	}
+	
+	public function bayar_dsp($jml, $tgl){
+		$this->load->model('m_dsp');
+		$data['id_dsp'] = $_REQUEST['id_dsp'];
+		$data['tanggal_bayar_dsp'] = $tgl;
+		$data['jumlah_bayar_dsp'] = $jml;
+		$this->m_dsp->insert_bayar_dsp($data);
+		return $jml;
+	}
+	
+	public function bayar_tahunan($jml, $tgl){
+		$this->load->model('m_tahunan');
+		$nilai['tanggal_bayar_tahunan'] = $tgl;
+		$nilai['id_tahunan'] = $_REQUEST['id_tahunan'];
+		$nilai['jumlah_bayar_tahunan'] = $jml;
+		$this->m_tahunan->insert_bayar_tahunan($nilai);
+		return $jml;
 	}
 
 	public function submit_tahunan() {
@@ -249,17 +269,11 @@ class c_spp extends CI_Controller {
 
 	}
 
-	public function add_print_note($id) {
-		$this->load->model('m_tahunan');
-		$this->load->model('m_date');
-		$d = 0;
-		$m = 0;
-		$y = 0;
-		$this->data['d'] = $this->m_date->day($d);
-		$this->data['m'] = $this->m_date->month($m);
-		$this->data['y'] = $this->m_date->year($y);
-		$this->data['nis'] = $id;
-		$this->data['title'] = "Keuangan Siswa";
+	public function add_print_note($nis) {
+		$this->load->model('m_pembayaran');
+		$this->data['no_pembayaran'] = $this->m_pembayaran->get_data_pembayaran($nis);
+		$this->data['nis'] = $nis;
+		$this->data['title'] = "Print Note";
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_form_print_note', $this->data);
 		$this->load->view('v_footer', $this->data);
@@ -330,21 +344,22 @@ class c_spp extends CI_Controller {
 	public function submit_note() {
 		$this->load->model('m_siswa');
 		$this->load->model('m_spp');
-		$d = $_REQUEST['d'];
-		$m = $_REQUEST['m'];
-		$y = $_REQUEST['y'];
-		$tgl = $this->m_date->merge($d, $m, $y);
+		$this->load->model('m_pembayaran');
+		$no = $_REQUEST['no_pembayaran'];
 		$nis = $_REQUEST['id'];
-		$row = $this->m_siswa->get_nota($tgl, $nis);
+		$byr = $this->m_pembayaran->get_pembayaran($no);
+		$this->m_pembayaran->printed($no);
+		$row = $this->m_siswa->get_one_siswa($nis);
 		$dsp = $this->m_siswa->get_sisa_dsp($nis);
 		$tahunan = $this->m_siswa->get_sisa_tahunan($nis);
+		$data['no_pembayaran'] = $no;
 		$data['kelas'] = $row->nama_kelas;
 		$data['nama'] = $row->nama_siswa;
-		$data['spp'] = $row->spp ? $row->spp : 0;
-		$data['dsp'] = $row->dsp ? $row->dsp : 0;
-		$data['tahunan'] = $row->thn ? $row->thn : 0;
-		$data['rows_tahunan'] = $tahunan->sisa_tahunan;
-		$data['rows_dsp'] = $dsp->sisa_dsp;
+		$data['spp'] = $byr->jml_spp ? $byr->jml_spp : 0;
+		$data['dsp'] = $byr->jml_dsp ? $byr->jml_dsp : 0;
+		$data['tahunan'] = $byr->jml_tahunan ? $byr->jml_tahunan : 0;
+		$data['rows_tahunan'] = $tahunan->sisa_tahunan ? $tahunan->sisa_tahunan : $tahunan->tahunan;
+		$data['rows_dsp'] = $dsp->sisa_dsp ? $dsp->sisa_dsp : $dsp->dsp;
 		$data['rows_spp'] = $this->m_spp->get_one($nis);
 		$data['terbilang'] = ucwords($this->Terbilang($data['spp'] + $data['dsp'] + $data['tahunan']));
 		$this->print_note($data);
