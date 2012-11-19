@@ -52,36 +52,34 @@ class m_person extends CI_Model {
 
 	
 	public function getSearchNIGuru($key1) {
-		$query = $this->db->query("select * from staff where no_induk LIKE '%$key1%' AND tipe_staff = '1' ORDER BY no_induk ASC");
+		$query = $this->db->query("select * from pengajar where nomor_induk_pengajar ILIKE '%$key1%' ORDER BY nama_pengajar ASC");
 		return $query->result();
 	}
 	
 	public function getSearchNIStaff($key1) {
-		$query = $this->db->query("select * from staff where no_induk LIKE '%$key1%' AND tipe_staff = '2' ORDER BY no_induk ASC");
+		$query = $this->db->query("select * from staff where nomor_induk_staff ILIKE '%$key1%' ORDER BY nama_staff ASC");
 		return $query->result();
 	}
 	
 	
 	
 	public function getSearchNamaGuru($key2) {
-		$query = $this->db->query("select * from staff 
+		$query = $this->db->query("select * from pengajar 
 		where 
-		nama_person LIKE '%$key2%' OR 
-		upper(nama_person) LIKE '%$key2%' OR 
-		lower(nama_person) LIKE '%$key2%' 
-		AND tipe_staff = '1'
-		ORDER BY nama_person ASC");
+		nama_pengajar ILIKE '%$key2%' OR 
+		upper(nama_pengajar) ILIKE '%$key2%' OR 
+		lower(nama_pengajar) ILIKE '%$key2%' 
+		ORDER BY nama_pengajar ASC");
 		return $query->result();
 	}
 	
 	public function getSearchNamaStaff($key2) {
 		$query = $this->db->query("select * from staff 
 		where 
-		nama_person LIKE '%$key2%' OR 
-		upper(nama_person) LIKE '%$key2%' OR 
-		lower(nama_person) LIKE '%$key2%' 
-		AND tipe_staff = '2'
-		ORDER BY nama_person ASC");
+		nama_staff ILIKE '%$key2%' OR 
+		upper(nama_staff) ILIKE '%$key2%' OR 
+		lower(nama_staff) ILIKE '%$key2%' 
+		ORDER BY nama_staff ASC");
 		return $query->result();
 	}
 }
