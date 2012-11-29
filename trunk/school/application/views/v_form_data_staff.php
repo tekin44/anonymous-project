@@ -23,7 +23,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th valign="top">NIS:</th>
+			<th valign="top">NIP:</th>
 			<td><input name='nomor_induk_staff' type="text" class="inp-form" value="<?=$nomor_induk_staff?>" /></td>
 		</tr>
 		<tr>
