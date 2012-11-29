@@ -21,7 +21,7 @@
 				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
 				<tr>
 					<th class="table-header-repeat line-left"><a href="">No</a></th>
-					<th class="table-header-repeat line-left"><a href="">NIS</a></th>
+					<th class="table-header-repeat line-left"><a href="">NIP</a></th>
 					<th class="table-header-repeat line-left"><a href="">Nama</a></th>
 					<th class="table-header-repeat line-left"><a href="">Action</a></th>
 				</tr>
