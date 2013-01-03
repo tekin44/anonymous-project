@@ -322,10 +322,14 @@ class c_master_data extends CI_Controller {
 		$nilai = $_REQUEST['nilai'];
 		$this->load->model('m_pengajar_kelas');
 		$this->m_pengajar_kelas->delete($value);
-		for ($i = 0; $i < count($nip); $i++) {
-			$value['nilai_kelulusan'] = $nilai[$i];
-			$value['nomor_induk_pengajar'] = $nip[$i];
-			$this->m_pengajar_kelas->insert($value);
+		$j = 0;
+		for ($i = 0; $i < count($nilai); $i++) {
+			if($nilai[$i] && $nip[$j]){
+				$value['nilai_kelulusan'] = $nilai[$i];
+				$value['nomor_induk_pengajar'] = $nip[$j];
+				$this->m_pengajar_kelas->insert($value);
+				$j++;
+			}
 		}
 	}	
 
