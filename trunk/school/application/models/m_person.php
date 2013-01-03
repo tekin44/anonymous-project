@@ -61,8 +61,6 @@ class m_person extends CI_Model {
 		return $query->result();
 	}
 	
-	
-	
 	public function getSearchNamaGuru($key2) {
 		$query = $this->db->query("select * from pengajar 
 		where 
