@@ -26,29 +26,6 @@
         width: 100%;
         height: 900px;        
     }
-    
-    #amount-number1{
-        background-color: white;
-        padding-top: 10px;
-        float: left;
-        font-size: 20px;
-        width: 32%;
-        height: 300px;        
-    }    
-    #amount-number2{
-        background-color: white;       
-        font-size: 20px;
-        width: 35%;
-        height: 300px;        
-    }
-    #amount-number3{
-        background-color: white;
-        padding-top: 10px;
-        float: right;
-        font-size: 20px;
-        width: 32%;
-        height: 300px;        
-    }
     .leftcolumn {
     background-color: blueviolet;
     position: absolute;
@@ -75,6 +52,11 @@
     text-align: justify;}
     #amount-wrapper{
         padding-top: 20px;
+    }
+    #textwrap{
+      font-size: 18px;
+      hegiht: 20px;
+      width: 100%;
     }
 </style>
 
@@ -156,71 +138,71 @@ $(function() {
 <script src="/school/js/jquery/date.js" type="text/javascript"></script>
 <script src="/school/js/jquery/jquery.datePicker.js" type="text/javascript"></script>
 <script type="text/javascript" charset="utf-8">
-//$(function()
-//{
-//
-//// initialise the "Select date" link
-//$('#date-pick')
-//	.datePicker(
-//		// associate the link with a date picker
-//		{
-//			createButton:false,
-//			startDate:'01/01/2005',
-//			endDate:'31/12/2020'
-//		}
-//	).bind(
-//		// when the link is clicked display the date picker
-//		'click',
-//		function()
-//		{
-//			updateSelects($(this).dpGetSelected()[0]);
-//			$(this).dpDisplay();
-//			return false;
-//		}
-//	).bind(
-//		// when a date is selected update the SELECTs
-//		'dateSelected',
-//		function(e, selectedDate, $td, state)
-//		{
-//			updateSelects(selectedDate);
-//		}
-//	).bind(
-//		'dpClosed',
-//		function(e, selected)
-//		{
-//			updateSelects(selected[0]);
-//		}
-//	);
-//	
-//var updateSelects = function (selectedDate)
-//{
-//	var selectedDate = new Date(selectedDate);
-//	$('#d option[value=' + selectedDate.getDate() + ']').attr('selected', 'selected');
-//	$('#m option[value=' + (selectedDate.getMonth()+1) + ']').attr('selected', 'selected');
-//	$('#y option[value=' + (selectedDate.getFullYear()) + ']').attr('selected', 'selected');
-//}
-//// listen for when the selects are changed and update the picker
-//$('#d, #m, #y')
-//	.bind(
-//		'change',
-//		function()
-//		{
-//			var d = new Date(
-//						$('#y').val(),
-//						$('#m').val()-1,
-//						$('#d').val()
-//					);
-//			$('#date-pick').dpSetSelected(d.asString());
-//		}
-//	);
-//
-//// default the position of the selects to today
-//var today = new Date();
-//updateSelects(today.getTime());
-//
-//// and update the datePicker to reflect it...
-//$('#d').trigger('change');
-//});
+$(function()
+{
+
+// initialise the "Select date" link
+$('#date-pick')
+	.datePicker(
+		// associate the link with a date picker
+		{
+			createButton:false,
+			startDate:'01/01/2005',
+			endDate:'31/12/2020'
+		}
+	).bind(
+		// when the link is clicked display the date picker
+		'click',
+		function()
+		{
+			updateSelects($(this).dpGetSelected()[0]);
+			$(this).dpDisplay();
+			return false;
+		}
+	).bind(
+		// when a date is selected update the SELECTs
+		'dateSelected',
+		function(e, selectedDate, $td, state)
+		{
+			updateSelects(selectedDate);
+		}
+	).bind(
+		'dpClosed',
+		function(e, selected)
+		{
+			updateSelects(selected[0]);
+		}
+	);
+	
+var updateSelects = function (selectedDate)
+{
+	var selectedDate = new Date(selectedDate);
+	$('#d option[value=' + selectedDate.getDate() + ']').attr('selected', 'selected');
+	$('#m option[value=' + (selectedDate.getMonth()+1) + ']').attr('selected', 'selected');
+	$('#y option[value=' + (selectedDate.getFullYear()) + ']').attr('selected', 'selected');
+}
+// listen for when the selects are changed and update the picker
+$('#d, #m, #y')
+	.bind(
+		'change',
+		function()
+		{
+			var d = new Date(
+						$('#y').val(),
+						$('#m').val()-1,
+						$('#d').val()
+					);
+			$('#date-pick').dpSetSelected(d.asString());
+		}
+	);
+
+// default the position of the selects to today
+var today = new Date();
+updateSelects(today.getTime());
+
+// and update the datePicker to reflect it...
+$('#d').trigger('change');
+});
 </script>
 
 <!-- MUST BE THE LAST SCRIPT IN <HEAD></HEAD></HEAD> png fix -->
@@ -299,8 +281,9 @@ $(document).pngFix( );
                 <form action="<?=$action?>" method="post">
 					<table border="0" cellpadding="0" cellspacing="0"  id="id-form" width="100%">
 						<tr>
-							<td valign="top">Tanggal:</td>
-							<td class="noheight">
+							<td valign="top" width="70">Tanggal:</td>
+                                                        <td valign="top"><?php echo $tanggal;?></td>
+							<td valign="top">                                                            
 								<table border="0" cellpadding="0" cellspacing="0">
 									<tr  valign="top">
 										<td>			
