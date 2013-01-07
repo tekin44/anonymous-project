@@ -23,6 +23,7 @@ class c_log_absen extends CI_Controller{
         ** di index, belum nampilin/ fetching data apa apa, cuma buat nampilin view doang
         */        
         
+        $this->data['tanggal'] = "none";
         $this->data['jum_server'] = 0;
         $this->data['jum_fingerprint'] = 0;
         $this->data['jum_selisih'] = 0;
@@ -59,7 +60,7 @@ class c_log_absen extends CI_Controller{
 //        $rec_server = $this->m_log_absen->get_rec_server($date);
 //        $rec_fp = $this->m_log_absen->get_rec_fingerprint($date);
 //        $rec_selisih = $this->m_log_absen->get_rec_excluded($date);                
-        
+        $this->data['tanggal'] = $date;
         $this->data['jum_server'] = $jum_server[0]->count;
         $this->data['jum_fingerprint'] = $jum_fp[0]->count;
         $this->data['jum_selisih'] = $jum_selisih[0]->count;
