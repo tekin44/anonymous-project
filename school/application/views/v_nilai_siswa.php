@@ -50,12 +50,11 @@
 					<input type="hidden" value="<?=$id_kelas?>" name="id_kelas[]"/>
 					
 					<td>
-					<?//="<a href='" . base_url() . "c_nilai/edit_nilai/$item->nomor_induk_siswa/$item->nomor_induk_pengajar/$item->id_kelas' title='Edit' class='icon-1 info-tooltip'>"?></a>
 					<?="<a href='" . base_url() . "c_nilai/delete_nilai/$item->nomor_induk_pengajar/$item->id_kelas/$item->nomor_induk_siswa' title='Delete' class='icon-2 info-tooltip'>";?></a>
 					</td>
 				</tr>
 				
-				<?}?>
+				<?php } ?>
 				</table>
 				<!--  end product-table................................... --> 
 				<input type="submit" value="" class="form-submit" />

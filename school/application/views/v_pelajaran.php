@@ -11,15 +11,15 @@
 				<?php foreach ($rows as $item){?>
 				
 				<tr class="alternate-row">
-					<td><? echo $item->kode_pelajaran ?></td>
-					<td><? echo $item->nama_pelajaran ?></td>
+					<td><?=$item->kode_pelajaran ?></td>
+					<td><?=$item->nama_pelajaran ?></td>
 					<td>
 					<?="<a href='" . base_url() . "c_master_data/edit_pelajaran/$item->kode_pelajaran' title='Edit' class='icon-1 info-tooltip'>"?></a>
 					<?="<a href='" . base_url() . "c_master_data/delete_pelajaran/$item->kode_pelajaran' title='Delete' class='icon-2 info-tooltip'>";?></a>
 					</td>
 				</tr>
 				
-				<?}?>
+				<?php } ?>
 				</table>
 				<!--  end product-table................................... --> 
 				</form>				

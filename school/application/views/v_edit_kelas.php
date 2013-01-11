@@ -20,15 +20,12 @@
 					<th class="table-header-repeat line-left"><a href="">Nama Pelajaran</a></th>
 					<th class="table-header-repeat line-left"><a href="">Nilai Kelulusan</a></th>
 				</tr>
-			<?php foreach($pes as $pe){ 
-					$check = "";
-					if($pe->checked) $check = "checked";
-				?>
+			<?php foreach($pes as $pe){ ?>
 		<tr>
-			<td><input name="nip[]" <?=$check?> type="checkbox" value="<?=$pe->nomor_induk_pengajar?>"/></th>
+			<td><input name="nip[]" type="checkbox" value="<?=$pe->nomor_induk_pengajar?>"/></th>
 			<td><?=$pe->nama_pengajar?></td>
 			<td><?=$pe->nama_pelajaran?></td>
-			<td><input name='nilai[]' type="text" class="inp-nilai" value="<?=$pe->nilai_kelulusan?>" /></td>
+			<td><input name='nilai[]' type="text" class="inp-nilai" /></td>
 		</tr>
 			<?php } ?>
 		</table>
