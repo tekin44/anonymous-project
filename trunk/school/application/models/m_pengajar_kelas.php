@@ -12,7 +12,7 @@ class m_pengajar_kelas extends CI_Model {
 	
 	public function get_data($id) {
 		$this->load->database();
-		$query = $this->db->query("select * from pengajar a INNER JOIN pelajaran c on a.kode_pelajaran = c.kode_pelajaran LEFT JOIN (select nomor_induk_pengajar as checked, nilai_kelulusan from pengajar_kelas where id_kelas = ".$id.") b on a.nomor_induk_pengajar = b.checked");
+		$query = $this->db->query("select * from pengajar a INNER JOIN pelajaran c on a.kode_pelajaran = c.kode_pelajaran WHERE nomor_induk_pengajar not in (select nomor_induk_pengajar from pengajar_kelas where id_kelas = $id)");
 		return $query->result();
 	}
 	

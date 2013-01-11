@@ -232,5 +232,19 @@ class m_siswa extends CI_Model {
 		else
 			return $row->row();
 	}
+	
+	public function get_data_kelas($id){
+		$sql = "SELECT * FROM siswa a WHERE a.id_kelas = $id ORDER BY nama_siswa";
+		$row = $this->db->query($sql);
+		return $row->result();
+	}
+	
+	public function get_siswa_kelas($id) {
+		$this->load->database();
+		$query = $this->db->query(
+			"select * from siswa WHERE id_kelas != $id ORDER BY nama_siswa"
+		);
+		return $query->result();
+	}
 }
 ?>

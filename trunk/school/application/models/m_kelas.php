@@ -7,7 +7,7 @@ class m_kelas extends CI_Model {
 	public function show_kelas() {
 		$this->load->database();
 		$query = $this->db->query("
-						select * from kelas
+						select * from kelas order by nama_kelas
 						");
 		return $query->result();
 	}
@@ -45,18 +45,6 @@ class m_kelas extends CI_Model {
 		$query = $this->db->query("
 						select * from kelas where id_kelas = $id_kelas
 						");
-		return $query->result();
-	}
-	
-	public function get_siswa_kelas($id) {
-		$this->load->database();
-		$query = $this->db->query(
-		"select * from siswa a 
-		LEFT JOIN (select nomor_induk_siswa as checked from siswa 
-		where id_kelas = $id) b on a.nomor_induk_siswa = b.checked"
-		);
-		
-		
 		return $query->result();
 	}
 	

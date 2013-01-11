@@ -33,10 +33,10 @@ class c_master_data extends CI_Controller {
 			$this->data['siswa'] = $this->m_siswa->get_siswas();
 		} else
 			if ($key1 != NULL) {
-				$this->data['siswa'] = $this->m_siswa->getSearchNISiswa($key1);
-			} else {
-				$this->data['siswa'] = $this->m_siswa->getSearchNamaSiswa($key2);
-			}
+			$this->data['siswa'] = $this->m_siswa->getSearchNISiswa($key1);
+		} else {
+			$this->data['siswa'] = $this->m_siswa->getSearchNamaSiswa($key2);
+		}
 
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_data_siswa', $this->data);
@@ -58,13 +58,13 @@ class c_master_data extends CI_Controller {
 		$this->load->view('v_form_data_siswa', $this->data);
 		$this->load->view('v_footer', $this->data);
 	}
-	
+
 	public function submit() {
 		$flag = $_REQUEST['flag'];
 		$this->update_person();
 		$this->insert_siswa($flag);
 		redirect('c_master_data/show_data_siswa');
-	}	
+	}
 
 	public function insert_siswa($flag) {
 		$value['nomor_induk_siswa'] = $_REQUEST['nomor_induk_siswa'];
@@ -81,18 +81,18 @@ class c_master_data extends CI_Controller {
 		} else
 			$result = $this->m_siswa->edit_siswa($_REQUEST['id_users'], $value);
 	}
-	
+
 	public function delete_siswa($id) {
 		$this->load->model('m_siswa');
 		$value['nomor_induk_siswa'] = $id;
 		$this->m_siswa->delete($value);
 		redirect('c_master_data/show_data_guru');
 	}
-	
+
 	/** ================================================== */
 	/** 					STAFF 					   	   */
 	/** ================================================== */
-	
+
 	public function show_data_staff() {
 		$this->data['result'] = $this->msg;
 		$this->data['title'] = "Data Staff";
@@ -105,15 +105,15 @@ class c_master_data extends CI_Controller {
 			$this->data['staff'] = $this->m_staff->get_all();
 		} else
 			if ($key1 != NULL) {
-				$this->data['staff'] = $this->m_person->getSearchNIStaff($key1);
-			} else {
-				$this->data['staff'] = $this->m_person->getSearchNamaStaff($key2);
-			}
+			$this->data['staff'] = $this->m_person->getSearchNIStaff($key1);
+		} else {
+			$this->data['staff'] = $this->m_person->getSearchNamaStaff($key2);
+		}
 
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_data_staff', $this->data);
 		$this->load->view('v_footer', $this->data);
-	}	
+	}
 
 	public function form_staff($flag, $id = 0) {
 		$id = str_replace("%20"," ",$id);
@@ -129,7 +129,7 @@ class c_master_data extends CI_Controller {
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_form_data_staff', $this->data);
 		$this->load->view('v_footer', $this->data);
-	}		
+	}
 
 	public function submit_staff() {
 		$flag = $_REQUEST['flag'];
@@ -137,8 +137,8 @@ class c_master_data extends CI_Controller {
 		$this->edit_staff($flag);
 		redirect('c_master_data/show_data_staff');
 	}
-	
-	public function edit_staff($flag) {	
+
+	public function edit_staff($flag) {
 		$row['id_users'] = $_REQUEST['id_users'];
 		$row['nama_staff'] = $_REQUEST['nama_staff'];
 		$row['nomor_induk_staff'] = $_REQUEST['nomor_induk_staff'];
@@ -147,15 +147,15 @@ class c_master_data extends CI_Controller {
 			$result = $this->m_staff->insert($row);
 		else
 			$result = $this->m_staff->update($_REQUEST['id_users'], $row);
-	}	
-	
+	}
+
 	public function delete_staff($id) {
 		$this->load->model('m_staff');
 		$value['nomor_induk_staff'] = $id;
 		$this->m_staff->delete($value);
 		redirect('c_master_data/show_data_staff');
 	}
-	
+
 	/** ================================================== */
 	/** 					PENGAJAR 					   */
 	/** ================================================== */
@@ -172,10 +172,10 @@ class c_master_data extends CI_Controller {
 			$this->data['guru'] = $this->m_pengajar->get_all();
 		} else
 			if ($key1 != NULL) {
-				$this->data['guru'] = $this->m_person->getSearchNIGuru($key1);
-			} else {
-				$this->data['guru'] = $this->m_person->getSearchNamaGuru($key2);
-			}
+			$this->data['guru'] = $this->m_person->getSearchNIGuru($key1);
+		} else {
+			$this->data['guru'] = $this->m_person->getSearchNamaGuru($key2);
+		}
 
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_data_guru', $this->data);
@@ -206,8 +206,8 @@ class c_master_data extends CI_Controller {
 		$this->edit_pengajar($flag);
 		redirect('c_master_data/show_data_guru');
 	}
-	
-	public function edit_pengajar($flag) {	
+
+	public function edit_pengajar($flag) {
 		$row['id_users'] = $_REQUEST['id_users'];
 		$row['nama_pengajar'] = $_REQUEST['nama_pengajar'];
 		$row['kode_pelajaran'] = $_REQUEST['kode_pelajaran'];
@@ -217,29 +217,29 @@ class c_master_data extends CI_Controller {
 			$result = $this->m_pengajar->insert($row);
 		else
 			$result = $this->m_pengajar->update($_REQUEST['id_users'], $row);
-	}	
-	
+	}
+
 	public function delete_pengajar($id) {
 		$this->load->model('m_pengajar');
 		$value['nomor_induk_pengajar'] = $id;
 		$this->m_pengajar->delete($value);
 		redirect('c_master_data/show_data_guru');
 	}
-	
-	/** ================================================== */	
+
+	/** ================================================== */
 
 	public function update_person() {
 		$value['status_users'] = '2';
 		$this->m_person->update($_REQUEST['id_users'], $value);
 	}
-	
+
 	/** ================================================== */
 	/** 					KELAS					       */
 	/** ================================================== */
 
 	public function show_kelas() {
 		$this->load->model('m_kelas');
-		
+
 		$this->data['title'] = "Data Kelas";
 		$this->data['rows'] = $this->m_kelas->show_kelas();
 
@@ -247,14 +247,15 @@ class c_master_data extends CI_Controller {
 		$this->load->view('v_kelas', $this->data);
 		$this->load->view('v_footer', $this->data);
 	}
-	
+
 	public function view_kelas($id) {
 		$this->load->model('m_kelas');
 		$this->load->model('m_pengajar_kelas');
-		
+
 		$this->data['title'] = "Detail Kelas";
 		$this->data['rows'] = $this->m_kelas->edit_kelas($id);
 		$this->data['pes'] = $this->m_pengajar_kelas->show_pengajar_kelas($id);
+		$this->data['siswa'] = $this->m_siswa->get_data_kelas($id);
 
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_detail_kelas', $this->data);
@@ -264,7 +265,7 @@ class c_master_data extends CI_Controller {
 	public function edit_kelas($id_kelas) {
 		$this->load->model('m_kelas');
 		$this->load->model('m_pengajar_kelas');
-		
+
 		$this->data['title'] = "Edit Data Kelas";
 		$this->data['rows'] = $this->m_kelas->edit_kelas($id_kelas);
 		$this->data['pes'] = $this->m_pengajar_kelas->get_data($id_kelas);
@@ -277,39 +278,39 @@ class c_master_data extends CI_Controller {
 	public function submit_kelas() {
 		$this->load->model('m_kelas');
 		$nama_kelas = $this->input->post('nama_kelas');
-		
+
 		$id_kelas = $this->m_kelas->tambah_kelas($nama_kelas);
 		$this->tambah_pengajar_kelas($id_kelas[0]->id_kelas);
 		redirect('c_master_data/show_kelas');
 	}
-	
+
 	public function update_kelas() {
 		$this->load->model('m_kelas');
-	
+
 		$id_kelas = $this->input->post('id_kelas');
 		$nama_kelas = $this->input->post('nama_kelas');
-		$this->m_kelas->update($id_kelas,$nama_kelas);	
+		$this->m_kelas->update($id_kelas,$nama_kelas);
 		$this->tambah_pengajar_kelas($id_kelas);
-		
+
 		redirect('c_master_data/show_kelas');
 	}
-	
+
 	public function tambah_kelas(){
 		$this->load->model('m_pengajar');
-		 
+			
 		$this->data['title'] = "Tambah Data Kelas";
 		$this->data['pes'] = $this->m_pengajar->get_all();
-		
+
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_tambah_kelas', $this->data);
 		$this->load->view('v_footer', $this->data);
 		/*}
-		else
+		 else
 		{
-			redirect('login');
+		redirect('login');
 		}*/
 	}
-	
+
 	public function delete_kelas($id_kelas) {
 		$this->load->model('m_kelas');
 		$result = $this->m_kelas->delete_kelas($id_kelas);
@@ -331,7 +332,7 @@ class c_master_data extends CI_Controller {
 				$j++;
 			}
 		}
-	}	
+	}
 
 	public function show_siswa_kelas($id_kelas) {
 		$value['id_kelas'] = $id_kelas;
@@ -345,189 +346,189 @@ class c_master_data extends CI_Controller {
 			$this->m_pengajar_kelas->insert($value);
 		}
 	}
-	
+
 	public function show_pelajaran() {
 		/*if($this->client_logon)*/
 		//$this->data['result'] = $this->msg;
 		$this->data['title'] = "Data Pelajaran";
-		
+
 		$this->load->model('m_pelajaran');
 		$this->data['rows'] = $this->m_pelajaran->show_pelajaran();
-		
+
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_pelajaran', $this->data);
 		$this->load->view('v_footer', $this->data);
 		/*}
-		else
+		 else
 		{
-			redirect('login');
+		redirect('login');
 		}*/
 	}
-	
+
 	public function edit_pelajaran($kode_pelajaran) {
 		/*if($this->client_logon)*/
 		//$this->data['result'] = $this->msg;
 		$this->data['title'] = "Edit Data Pelajaran";
-		
+
 		$this->load->model('m_pelajaran');
 		$this->data['rows'] = $this->m_pelajaran->edit_pelajaran($kode_pelajaran);
-		
+
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_edit_pelajaran', $this->data);
 		$this->load->view('v_footer', $this->data);
 		/*}
-		else
+		 else
 		{
-			redirect('login');
+		redirect('login');
 		}*/
 	}
-	
+
 	public function submit_pelajaran() {
 		$this->load->model('m_pelajaran');
 		$kode_pelajaran = $this->input->post('kode_pelajaran');
 		$nama_pelajaran = $this->input->post('nama_pelajaran');
-		
+
 		$this->m_pelajaran->tambah_pelajaran($kode_pelajaran,$nama_pelajaran);
 		redirect('c_master_data/show_pelajaran');
 	}
-	
+
 	public function update_pelajaran() {
 		$this->load->model('m_pelajaran');
-	
+
 		$kode_pelajaran = $this->input->post('kode_pelajaran');
 		$nama_pelajaran = $this->input->post('nama_pelajaran');
-		
-		$this->m_pelajaran->update($kode_pelajaran,$nama_pelajaran);	
+
+		$this->m_pelajaran->update($kode_pelajaran,$nama_pelajaran);
 		redirect('c_master_data/show_pelajaran');
 	}
-	
+
 	public function tambah_pelajaran(){
 		/*if($this->client_logon)*/
 		//$this->data['result'] = $this->msg;
 		$this->data['title'] = "Tambah Data Kelas";
-		
+
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_tambah_pelajaran', $this->data);
 		$this->load->view('v_footer', $this->data);
 		/*}
-		else
+		 else
 		{
-			redirect('login');
+		redirect('login');
 		}*/
 	}
-	
+
 	public function delete_pelajaran($kode_pelajaran) {
 		$this->load->model('m_pelajaran');
 		$result = $this->m_pelajaran->delete_pelajaran($kode_pelajaran);
 		redirect('c_master_data/show_pelajaran');
 	}
-	
-	
+
+
 	public function show_pengajar_kelas() {
 		/*if($this->client_logon)*/
 		//$this->data['result'] = $this->msg;
 		$this->data['title'] = "Data Pengajar Kelas";
-		
+
 		$this->load->model('m_pengajar_kelas');
 		$this->data['rows'] = $this->m_pengajar_kelas->show_pengajar_kelas();
-		
+
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_pengajar_kelas', $this->data);
 		$this->load->view('v_footer', $this->data);
 		/*}
-		else
+		 else
 		{
-			redirect('login');
+		redirect('login');
 		}*/
 	}
-	
+
 	public function submit_pengajar_kelas() {
 		$this->load->model('m_pengajar_kelas');
 		$nomor_induk_pengajar = $this->input->post('nomor_induk_pengajar');
 		$id_kelas = $this->input->post('id_kelas');
 		$nilai_kelulusan = $this->input->post('nilai_kelulusan');
-		
+
 		$this->m_pengajar_kelas->tambah_pengajar_kelas($nomor_induk_pengajar,$id_kelas,$nilai_kelulusan);
 		redirect('c_master_data/show_pengajar_kelas');
 	}/*
-	
-	
+
+
 	public function tambah_pengajar_kelas(){
-		if($this->client_logon)
+	if($this->client_logon)
 		//$this->data['result'] = $this->msg;
-		$this->data['title'] = "Tambah Data Pengajar Kelas";
-		
-		$this->load->view('v_header', $this->data);
-		$this->load->view('v_tambah_pengajar_kelas', $this->data);
-		$this->load->view('v_footer', $this->data);
-		}
-		else
-		{
-			redirect('login');
-		}
+	$this->data['title'] = "Tambah Data Pengajar Kelas";
+
+	$this->load->view('v_header', $this->data);
+	$this->load->view('v_tambah_pengajar_kelas', $this->data);
+	$this->load->view('v_footer', $this->data);
+	}
+	else
+	{
+	redirect('login');
+	}
 	}*/
-	
+
 	public function delete_pengajar_kelas($nomor_induk_pengajar,$id_kelas) {
 		$this->load->model('m_pengajar_kelas');
 		$result = $this->m_pengajar_kelas->delete_pengajar_kelas($nomor_induk_pengajar,$id_kelas);
 		redirect('c_master_data/show_pengajar_kelas');
 	}
-	
+
 	public function edit_siswa_kelas($id_kelas) {
-		/*if($this->client_logon)*/
-		//$this->data['result'] = $this->msg;
 		$this->data['title'] = "Edit Siswa Kelas";
-		
+
 		$this->load->model('m_kelas');
+		$this->load->model('m_siswa');
 		$this->data['kelas'] = $this->m_kelas->edit_kelas($id_kelas);
-		$this->data['siswa'] = $this->m_kelas->get_siswa_kelas($id_kelas);
+		$this->data['siswa'] = $this->m_siswa->get_siswa_kelas($id_kelas);
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_edit_siswa_kelas', $this->data);
 		$this->load->view('v_footer', $this->data);
-		/*}
-		else
-		{
-			redirect('login');
-		}*/
 	}
-	
+
 	public function update_siswa_kelas() {
-		
+
 		$this->load->model('m_siswa');
 		$this->load->model('m_pengajar_kelas');
-		
-		$nip = $_REQUEST['nip'];
+
+		$nis = $_REQUEST['nis'];
 		$id_kelas = $_REQUEST['id_kelas'];
-		
-		for ($i = 0; $i < count($nip); $i++) {
+		$tingkat = $_REQUEST['tingkat_kelas'];
+
+		foreach ($nis as $id){
 			$value['id_kelas'] = $id_kelas;
-			$id = $nip[$i];
 			$this->m_siswa->update($id,$value);
-			$pengajar = $this->m_pengajar_kelas->show_pengajar_kelas($id_kelas);
-			foreach ($pengajar as $peng)
-			{
-				$data['id_kelas'] = $id_kelas;
-				$data['nomor_induk_siswa'] = $id;
-				$data['nomor_induk_pengajar'] = $peng->nomor_induk_pengajar;
+		}
+		redirect('c_master_data/show_kelas');
+	}
+
+	function fix_kelas(){
+		$id = $_REQUEST['id_kelas'];
+		$this->load->model('m_pengajar_kelas');
+		$this->load->model('m_siswa');
+		$pengajar = $this->m_pengajar_kelas->show_pengajar_kelas($id);
+		$data['id_kelas'] = $id;
+		foreach ($pengajar as $peng)
+		{
+			$data['nomor_induk_pengajar'] = $peng->nomor_induk_pengajar;
+			$siswa = $this->m_siswa->get_data_kelas($id);
+			foreach($siswa as $row){
+				$data['nomor_induk_siswa'] = $row->nomor_induk_siswa;
 				$this->m_siswa->insert_raport($data);
 			}
 		}
-		
 		redirect('c_master_data/show_kelas');
-		
-		// $value['id_kelas'] = $id_kelas;
-		// $nip = $_REQUEST['nip'];
-		// $nilai = $_REQUEST['nilai'];
-		// $this->load->model('m_pengajar_kelas');
-		// $this->m_pengajar_kelas->delete($value);
-		// for ($i = 0; $i < count($nip); $i++) {
-			// $value['nilai_kelulusan'] = $nilai[$i];
-			// $value['nomor_induk_pengajar'] = $nip[$i];
-			// $this->m_pengajar_kelas->insert($value);
-		// }
 	}
 	
-	function show_periode(){		
+	function delete_pengajar_from_kelas($nip, $id_kelas){
+		$this->load->model('m_pengajar_kelas');
+		$value['nomor_induk_pengajar'] = str_replace("%20", " ", $nip);
+		$value['id_kelas'] = $id_kelas;
+		$this->m_pengajar_kelas->delete($value);
+		redirect('c_master_data/show_kelas');
+	}
+
+	function show_periode(){
 		$this->load->model('m_periode');
 		$this->data['periodes'] = $this->m_periode->get_all();
 		$this->data['title'] = "Periode";
@@ -577,7 +578,7 @@ class c_master_data extends CI_Controller {
 		}
 		redirect('c_master_data/show_periode');
 	}
-	
-	
+
+
 }
 ?>
