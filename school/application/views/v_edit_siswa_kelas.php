@@ -1,7 +1,6 @@
 		<?php
 			$id_kelas = $kelas[0]->id_kelas;
 			$nama_kelas = $kelas[0]->nama_kelas;
-			$tingkat = $kelas[0]->tingkat_kelas;
 		?>
 		<!-- start id-form -->
 		<form action='/school/c_master_data/update_siswa_kelas' method='post'>
@@ -10,7 +9,6 @@
 			<th valign="top">Kelas:</th>
 			<td><input name='nama_kelas' type="text" class="inp-form" readonly value="<?=$nama_kelas?>" /></td>
 			<input name='id_kelas' type="hidden" value="<?=$id_kelas?>" />
-			<input name='tingkat_kelas' type="hidden" value="<?=$tingkat?>" />
 		</tr>
 		<tr>
 			<th valign="top">Siswa:</th>
