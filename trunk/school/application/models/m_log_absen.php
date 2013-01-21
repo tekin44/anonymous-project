@@ -73,23 +73,45 @@ class m_log_absen extends CI_Model{
         
     }
     
-    public function get_rec_server()
+    public function get_rec_server($date,$name)
     {
-        $sql = "select id_users, tanggal_absensi 
+        $sql = "select UPPER(nama_siswa) as nama_siswa, groups.tanggal_absensi from siswa
+                join
+                (select id_users, tanggal_absensi 
                  from absen 
                  where tanggal_absensi ='".$date."'
-                 group by id_users, tanggal_absensi";
+                 group by id_users, tanggal_absensi)
+                 as groups
+                 
+                 on groups.id_users = siswa.id_users
+                  ";
+        
+        if($name != null)
+        {
+            $sql = $sql."where UPPER(nama_siswa) like '%".strtoupper($name)."%'";                                
+        }        
         
         $query = $this->db->query($sql);
         return $query->result();                
     }
     
-    public function get_rec_fingerprint()
+    public function get_rec_fingerprint($date,$name)
     {
-        $sql = "select pin, checktime
+        $sql = "select UPPER(nama_siswa) as nama_siswa, groups.checktime
+                from siswa join
+                (select pin, checktime
                 from inoutdata
                 where checktime ='".$date."'
-                group by pin,checktime";
+                group by pin,checktime)
+                as groups
+                on groups.pin = siswa.id_users
+                ";
+        
+        if($name != null)
+        {
+            
+            $sql = $sql."where UPPER(nama_siswa) like '%".strtoupper($name)."%'";
+        }
         
         $query = $this->db->query($sql);
         return $query->result();        
