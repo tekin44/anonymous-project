@@ -50,6 +50,7 @@ class c_log_absen extends CI_Controller{
         $day = $_REQUEST['d'];
         $month = $_REQUEST['m'];
         $year = $_REQUEST['y'];
+        $name = $_REQUEST['person_name'];
         
         $date =  $year.'-'.$month.'-'.$day;                     
         
@@ -57,13 +58,22 @@ class c_log_absen extends CI_Controller{
         $jum_fp = $this->m_log_absen->get_fingerprint($date);
         $jum_selisih = $this->m_log_absen->get_excluded($date);
         
-//        $rec_server = $this->m_log_absen->get_rec_server($date);
-//        $rec_fp = $this->m_log_absen->get_rec_fingerprint($date);
+        $rec_server = $this->m_log_absen->get_rec_server($date,$name);
+        $rec_fp = $this->m_log_absen->get_rec_fingerprint($date,$name);
+        
+//        echo $name;
+//        echo "<pre>";
+//        print_r($rec_server);
+//        echo "</pre>";
+//        exit;
+        
 //        $rec_selisih = $this->m_log_absen->get_rec_excluded($date);                
         $this->data['tanggal'] = $date;
         $this->data['jum_server'] = $jum_server[0]->count;
         $this->data['jum_fingerprint'] = $jum_fp[0]->count;
         $this->data['jum_selisih'] = $jum_selisih[0]->count;
+        $this->data['rec_server'] = $rec_server;
+        $this->data['rec_fp'] = $rec_fp;
         $this->data['action'] = "/school/c_log_absen/calculatetotal";
 	$this->load->view('v_log_absen', $this->data);    
     }

@@ -24,7 +24,7 @@
         float: left;
         background-color: silver;
         width: 100%;
-        height: 900px;        
+        height: 500px;        
     }
     .leftcolumn {
     background-color: blueviolet;
@@ -58,6 +58,21 @@
       hegiht: 20px;
       width: 100%;
     }
+    #right_table{
+        padding-top: 10px;        
+        float: right; 
+        width: 49%;
+        font-size: 18px;
+        text-align: center;
+    }
+    #left_table{
+        padding-top: 10px;
+        float: left; 
+        width: 49%;
+        font-size: 18px;
+        text-align: center;
+    }
+    
 </style>
 
 <link rel="stylesheet" href="/school/css/screen.css" type="text/css" media="screen" title="default" />
@@ -66,7 +81,7 @@
 <![endif]-->
 
 <!--  jquery core -->
-<script src="/school/js/jquery/jquery-1.4.1.min.js" type="text/javascript"></script>
+<script src="/school/js/jquery/jquery-1.9.0.js" type="text/javascript"></script>
 
 <!--  checkbox styling script -->
 <script src="/school/js/jquery/ui.core.js" type="text/javascript"></script>
@@ -312,7 +327,8 @@ $(document).pngFix( );
 										</td>
 									</tr>
 								</table>
-							</td>																				
+							</td>	
+                                                        <td>Nama Siswa : <input type="text" name="person_name" id="person_name"></input></td>                                                       
 							<td><input type="submit" value="Cari" name="search" /></td>
 						</tr>
 					</table>
@@ -340,6 +356,50 @@ $(document).pngFix( );
                     </div>
                 </div>
             </div>
+        </div>
+        <div>
+            <div id="left_table">
+                    <div style="padding-top : 10px; padding-bottom: 10px;">
+                     TABEL DATA SERVER
+                    </div>                               
+                                <table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
+				<tr>					
+					<th class="table-header-repeat line-left minwidth-1"><a href="">Nama</a></th>
+					<th class="table-header-repeat line-left"><a href="">Tanggal</a></th>					
+				</tr>				
+				<?php										
+					if(isset($rec_server)){
+					foreach ($rec_server as $item) {						
+                                ?>				
+				<tr class="alternate-row">										
+					<td><? echo $item->nama_siswa ?></td>
+					<td><? echo $item->tanggal_absensi ?></td>			
+				</tr>				
+				<?}}?>
+				</table>
+            </div>
+            
+            <div id="right_table">
+                        <div style="padding-top : 10px; padding-bottom: 10px;">
+                        TABEL DATA FINGERPRINT        
+                        </div>                                                                                                               
+                                <br></br>
+                                <table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
+				<tr>					
+					<th class="table-header-repeat line-left minwidth-1"><a href="">Nama</a></th>
+					<th class="table-header-repeat line-left"><a href="">Tanggal</a></th>					
+				</tr>				
+				<?php										
+					if(isset($rec_fp)){
+					foreach ($rec_fp as $item) {						
+                                ?>				
+				<tr class="alternate-row">										
+					<td><? echo $item->nama_siswa ?></td>
+					<td><? echo $item->checktime ?></td>			
+				</tr>				
+				<?}}?>
+				</table>
+            </div>    
         </div>
         <!-- end of the "main-container" DIV-->
     </body>
