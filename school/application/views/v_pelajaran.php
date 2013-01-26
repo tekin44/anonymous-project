@@ -12,9 +12,9 @@
 				
 				<tr class="alternate-row">
 					<td><?=$item->kode_pelajaran ?></td>
-					<td><?=$item->nama_pelajaran ?></td>
+					<td><a href="<?=base_url().'c_master_data/detail_pelajaran/'.$item->kode_pelajaran?>"><?=$item->nama_pelajaran?></a></td>
 					<td>
-					<?="<a href='" . base_url() . "c_master_data/edit_pelajaran/$item->kode_pelajaran' title='Edit' class='icon-1 info-tooltip'>"?></a>
+					<?="<a href='" . base_url() . "c_master_data/edit_pelajaran/2/$item->kode_pelajaran' title='Edit' class='icon-1 info-tooltip'>"?></a>
 					<?="<a href='" . base_url() . "c_master_data/delete_pelajaran/$item->kode_pelajaran' title='Delete' class='icon-2 info-tooltip'>";?></a>
 					</td>
 				</tr>
@@ -28,7 +28,7 @@
 				<div id="actions-box">
 					<a href="" class="action-slider"></a>
 					<div id="actions-box-slider">
-						<a href="/school/c_master_data/tambah_pelajaran" class="action-edit">Add</a>
+						<a href="/school/c_master_data/edit_pelajaran/1" class="action-edit">Add</a>
 					</div>
 					<div class="clear"></div>
 				</div>

@@ -25,7 +25,7 @@ $(document).pngFix( );
 
 	<!-- start logo -->
 	<div id="logo-login">
-		<a href="index.html"><img src="images/shared/logo.png" width="156" height="40" alt="" /></a>
+		<a href="index.html"><img src="images/shared/logo.png" width="300" height="80" alt="" /></a>
 	</div>
 	<!-- end logo -->
 	

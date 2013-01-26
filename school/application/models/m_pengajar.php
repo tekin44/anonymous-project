@@ -40,9 +40,14 @@ class m_pengajar extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
-
+	public function get_data_pel($kode) {
+		$this->load->database();
+		$query = $this->db->query("select * from pengajar WHERE nomor_induk_pengajar not in (select nomor_induk_pengajar from guru_mata_pelajaran where kode_pelajaran = '$kode')");
+		return $query->result();
+	}	
+	
 	public function get_all() {
-		$sql = "select * from pengajar a INNER JOIN pelajaran b on a.kode_pelajaran = b.kode_pelajaran";
+		$sql = "select * from pengajar";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}

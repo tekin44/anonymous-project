@@ -17,7 +17,7 @@ class m_kelas extends CI_Model {
 		$query = $this->db->query("
 						select * from kelas where id_kelas = $id_kelas
 						");
-		return $query->result();
+		return $query->row();
 	}
 	
 	public function update($id_kelas,$nama_kelas) {

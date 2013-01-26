@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Internet Dreams</title>
+<title>SMAN 1 CIREBON - SERVER</title>
 <link rel="stylesheet" href="/school/css/screen.css" type="text/css" media="screen" title="default" />
 <link rel="stylesheet" href="/school/css/date_pick.css" type="text/css" media="screen" title="default" />
 <!--[if IE]>
@@ -168,7 +168,7 @@ $(document).pngFix( );
 
 	<!-- start logo -->
 	<div id="logo">
-	<a href=""><img src="/school/images/shared/logo.png" width="300" height="40" alt="" /></a>
+	<a href=""><img src="/school/images/shared/logo.png" width="300" height="80" alt="" /></a>
 	</div>
 	<!-- end logo -->
  	<div class="clear"></div>

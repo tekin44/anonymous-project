@@ -6,7 +6,7 @@
 		</tr>
 		<tr>
 			<th valign="top">Kelas:</th>
-			<td><?=$rows[0]->nama_kelas?></td>
+			<td><?=$rows->nama_kelas?></td>
 		</tr>
 		<tr>
 			<th valign="top">Pengajar:</th>
@@ -26,7 +26,7 @@
 			<td><?=$pe->nama_pengajar?></td>
 			<td><?=$pe->nama_pelajaran?></td>
 			<td><?=$pe->nilai_kelulusan?></td>
-			<td><a href="/school/c_master_data/delete_pengajar_from_kelas/<?=$pe->nomor_induk_pengajar?>/<?=$rows[0]->id_kelas?>" title='Delete' class='icon-2 info-tooltip'></a></td>
+			<td><a href="/school/c_master_data/delete_pengajar_from_kelas/<?=$pe->nomor_induk_pengajar?>/<?=$rows->id_kelas?>" title='Delete' class='icon-2 info-tooltip'></a></td>
 		</tr>
 			<?php } ?>
 		</table>
@@ -52,7 +52,7 @@
 		<tr>
 			<td valign="top">
 				<input type="submit" value="" class="form-submit" />
-				<input type="hidden" value="<?=$rows[0]->id_kelas?>" name="id_kelas"/>
+				<input type="hidden" value="<?=$rows->id_kelas?>" name="id_kelas"/>
 			</td>
 		</tr>
 		</table>

@@ -1,6 +1,6 @@
 		<?php
-			$id_kelas = $kelas[0]->id_kelas;
-			$nama_kelas = $kelas[0]->nama_kelas;
+			$id_kelas = $kelas->id_kelas;
+			$nama_kelas = $kelas->nama_kelas;
 		?>
 		<!-- start id-form -->
 		<form action='/school/c_master_data/update_siswa_kelas' method='post'>

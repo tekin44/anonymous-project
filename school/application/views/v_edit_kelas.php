@@ -1,6 +1,6 @@
 		<?php
-			$id_kelas = $rows[0]->id_kelas;
-			$nama_kelas = $rows[0]->nama_kelas;
+			$id_kelas = $rows->id_kelas;
+			$nama_kelas = $rows->nama_kelas;
 		?>
 		<!-- start id-form -->
 		<form action='/school/c_master_data/update_kelas' method='post'>
@@ -22,7 +22,7 @@
 				</tr>
 			<?php foreach($pes as $pe){ ?>
 		<tr>
-			<td><input name="nip[]" type="checkbox" value="<?=$pe->nomor_induk_pengajar?>"/></th>
+			<td><input name="nip[]" type="checkbox" value="<?=$pe->nomor_induk_pengajar?>,<?=$pe->kode_pelajaran?>"/></th>
 			<td><?=$pe->nama_pengajar?></td>
 			<td><?=$pe->nama_pelajaran?></td>
 			<td><input name='nilai[]' type="text" class="inp-nilai" /></td>
