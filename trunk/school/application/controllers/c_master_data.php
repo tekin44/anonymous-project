@@ -296,10 +296,10 @@ class c_master_data extends CI_Controller {
 	}
 
 	public function tambah_kelas(){
-		$this->load->model('m_pengajar');
+		$this->load->model('m_pengajar_kelas');
 			
 		$this->data['title'] = "Tambah Data Kelas";
-		$this->data['pes'] = $this->m_pengajar->get_all();
+		$this->data['pes'] = $this->m_pengajar_kelas->get_data();
 
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_tambah_kelas', $this->data);
@@ -326,8 +326,10 @@ class c_master_data extends CI_Controller {
 		$j = 0;
 		for ($i = 0; $i < count($nilai); $i++) {
 			if($nilai[$i] && $nip[$j]){
+				$data = explode(',',$nip[$j]);
 				$value['nilai_kelulusan'] = $nilai[$i];
-				$value['nomor_induk_pengajar'] = $nip[$j];
+				$value['kode_pelajaran'] = $data[1];
+				$value['nomor_induk_pengajar'] = $data[0];
 				$this->m_pengajar_kelas->insert($value);
 				$j++;
 			}
@@ -365,30 +367,65 @@ class c_master_data extends CI_Controller {
 		}*/
 	}
 
-	public function edit_pelajaran($kode_pelajaran) {
+	public function edit_pelajaran($flag, $kode_pelajaran=null) {
 		/*if($this->client_logon)*/
 		//$this->data['result'] = $this->msg;
 		$this->data['title'] = "Edit Data Pelajaran";
+		
+		$this->load->model('m_pengajar');
+		$this->data['guru'] = $this->m_pengajar->get_data_pel($kode_pelajaran);
 
+		$this->data['flag'] = $flag;
 		$this->load->model('m_pelajaran');
 		$this->data['rows'] = $this->m_pelajaran->edit_pelajaran($kode_pelajaran);
 
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_edit_pelajaran', $this->data);
 		$this->load->view('v_footer', $this->data);
-		/*}
-		 else
-		{
-		redirect('login');
-		}*/
+	}
+	
+	public function detail_pelajaran($kode_pelajaran) {
+		/*if($this->client_logon)*/
+		//$this->data['result'] = $this->msg;
+		$this->data['title'] = "Edit Data Pelajaran";
+		$this->load->model('m_guru_mata_pelajaran');
+		
+		$this->data['rows'] = $this->m_guru_mata_pelajaran->get_data($kode_pelajaran);
+		
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_detail_pelajaran', $this->data);
+		$this->load->view('v_footer', $this->data);
+	}
+	
+	public function delete_guru_mata_pelajaran($nip, $kode_pelajaran){
+		$this->load->model('m_guru_mata_pelajaran');
+		
+		$value['nomor_induk_pengajar'] = str_replace('%20',' ',$nip);
+		$value['kode_pelajaran'] = $kode_pelajaran;		
+		
+		$this->m_guru_mata_pelajaran->delete($value);
+		
+		redirect('c_master_data/show_pelajaran');
 	}
 
 	public function submit_pelajaran() {
 		$this->load->model('m_pelajaran');
-		$kode_pelajaran = $this->input->post('kode_pelajaran');
-		$nama_pelajaran = $this->input->post('nama_pelajaran');
-
-		$this->m_pelajaran->tambah_pelajaran($kode_pelajaran,$nama_pelajaran);
+		$this->load->model('m_guru_mata_pelajaran');
+		$flag = $this->input->post('flag');
+		$value['kode_pelajaran'] = $this->input->post('kode_pelajaran');
+		$value['nama_pelajaran'] = $this->input->post('nama_pelajaran');
+	
+		if($flag==1) $this->m_pelajaran->tambah_pelajaran($value);
+		else $this->m_pelajaran->update($value);
+		
+		$nip = $_REQUEST['nip'];
+		foreach ($nip as $id){
+			$data['kode_pelajaran'] = $value['kode_pelajaran'];
+			$data['nomor_induk_pengajar'] = $id;
+		
+			$this->m_guru_mata_pelajaran->insert($data);
+		}
+		
 		redirect('c_master_data/show_pelajaran');
 	}
 

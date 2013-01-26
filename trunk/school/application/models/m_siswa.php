@@ -88,7 +88,7 @@ class m_siswa extends CI_Model {
 
 	public function getByKategori($kategori) {
 		$query = $this->db->query("select * from kategori_siswa a inner join 
-				siswa b on a.no_induk = b.no_induk where a.id_kategori = '" . $kategori . "'");
+				siswa b on a.nomor_induk_siswa = b.nomor_induk_siswa where a.id_kategori = '" . $kategori . "'");
 		return $query->result();
 	}
 	
@@ -129,7 +129,7 @@ class m_siswa extends CI_Model {
 	}
 	
 	public function check($id){
-		$query = $this->db->query("select count(*) as c from siswa where no_induk = '" . $id . "'");
+		$query = $this->db->query("select count(*) as c from siswa where nomor_induk_siswa = '" . $id . "'");
 		$c = $query->result();
 		if($c[0]->c == 0)
 			return false;
