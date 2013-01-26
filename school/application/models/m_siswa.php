@@ -87,9 +87,6 @@ class m_siswa extends CI_Model {
 	}
 
 	public function getByKategori($kategori) {
-		$query = $this->db->query("select * from kategori_siswa a inner join 
-				siswa b on a.nomor_induk_siswa = b.nomor_induk_siswa where a.id_kategori = '" . $kategori . "'");
-		return $query->result();
 	}
 	
 	public function get_by($from,$to){
