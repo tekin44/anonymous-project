@@ -36,7 +36,9 @@ class c_kategori extends CI_Controller {
 	
 	public function viewTambahKategori($flag,$id=0) {
 		$this->load->model('m_kategori');
-		$this->data['row'] = $this->m_kategori->getKategori($id);
+		$this->load->model('m_siswa');
+		$this->data['row'] = $this->m_kategori->getKategori($id);	
+		$this->data['siswa'] = $this->m_siswa->get_siswa_kelas($id_kelas);
 		$this->data['flag'] = $flag;
 		$this->data['title'] = "Kategori";
 		$this->load->view('v_header', $this->data);
