@@ -210,7 +210,6 @@ class c_master_data extends CI_Controller {
 	public function edit_pengajar($flag) {
 		$row['id_users'] = $_REQUEST['id_users'];
 		$row['nama_pengajar'] = $_REQUEST['nama_pengajar'];
-		$row['kode_pelajaran'] = $_REQUEST['kode_pelajaran'];
 		$row['nomor_induk_pengajar'] = $_REQUEST['nomor_induk_pengajar'];
 		$this->load->model('m_pengajar');
 		if ($flag == 1)
@@ -224,6 +223,13 @@ class c_master_data extends CI_Controller {
 		$value['nomor_induk_pengajar'] = $id;
 		$this->m_pengajar->delete($value);
 		redirect('c_master_data/show_data_guru');
+	}
+
+	public function delete_periode($id) {
+		$this->load->model('m_periode');
+		$value['id_periode'] = $id;
+		$this->m_periode->delete($value);
+		redirect('c_master_data/show_periode');
 	}
 
 	/** ================================================== */
