@@ -25,6 +25,10 @@ class m_periode extends CI_Model {
 	public function update($id,$value) {
 		$query = $this->db->update('periode',$value,'id_periode = '.$id);
 	}
+	
+	public function delete($value) {
+		$query = $this->db->delete('periode',$value);
+	}
 
 }
 ?>

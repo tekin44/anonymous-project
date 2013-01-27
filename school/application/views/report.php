@@ -50,15 +50,15 @@ foreach ($dates as $date) {
 ?>
 				
 				<tr>
-					<td width="150"><? echo $item->nomor_induk_pengajar ?></td>
-					<td width="300"><? echo $item->nama_pengajar ?></td>
-					<td width="100"><? echo $item->waktu_masuk ?></td>
-					<td width="100"><? echo $item->waktu_keluar ?></td>
-					<td width="100"><? echo $ket ?></td>
-					<td width="100"><? echo $item->keterangan_absen ?></td>
+					<td width="150"><?=$item->nomor_induk_pengajar ?></td>
+					<td width="300"><?=$item->nama_pengajar ?></td>
+					<td width="100"><?=$item->waktu_masuk ?></td>
+					<td width="100"><?=$item->waktu_keluar ?></td>
+					<td width="100"><?=$ket ?></td>
+					<td width="100"><?=$item->keterangan_absen ?></td>
 				</tr>
 				
-				<?}}}?>
+				<?php }}} ?>
 				</table>
 	</table></body></html>
 <?php
