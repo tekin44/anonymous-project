@@ -554,6 +554,7 @@ class c_master_data extends CI_Controller {
 		foreach ($pengajar as $peng)
 		{
 			$data['nomor_induk_pengajar'] = $peng->nomor_induk_pengajar;
+			$data['kode_pelajaran'] = $peng->kode_pelajaran;
 			$siswa = $this->m_siswa->get_data_kelas($id);
 			foreach($siswa as $row){
 				$data['nomor_induk_siswa'] = $row->nomor_induk_siswa;

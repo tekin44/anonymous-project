@@ -10,7 +10,7 @@ class m_nilai extends CI_Model {
 						select * from siswa a 
 						left join raport b on a.nomor_induk_siswa = b.nomor_induk_siswa
 						left join pengajar c on b.nomor_induk_pengajar = c.nomor_induk_pengajar
-						left join pelajaran d on c.kode_pelajaran = d.kode_pelajaran
+						left join pelajaran d on b.kode_pelajaran = d.kode_pelajaran
 						inner join kelas e on a.id_kelas = e.id_kelas where 
 						a.nomor_induk_siswa = '$nis'
 						");
