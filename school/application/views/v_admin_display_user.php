@@ -25,14 +25,14 @@
 				<?php foreach ($rows as $item){?>
 				
 				<tr class="alternate-row">
-					<td><? echo $item->admin_username ?></td>
+					<td><?=$item->admin_username ?></td>
 					<td>
 					<?="<a href='".base_url()."c_admin/editUser/$item->admin_username' title='Edit' class='icon-1 info-tooltip'>";?></a>
 					<?="<a href='".base_url()."c_admin/deleteUser/$item->admin_username' title='Delete' class='icon-2 info-tooltip'>";?></a>
 					</td>
 				</tr>
 				
-				<?}?>
+				<?php } ?>
 				</table>
 				<!--  end product-table................................... --> 
 				</form>

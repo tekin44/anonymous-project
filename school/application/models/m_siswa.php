@@ -86,7 +86,16 @@ class m_siswa extends CI_Model {
 		return $query->result();
 	}
 
-	public function getByKategori($kategori) {
+	public function getOnNonKategori($id) {
+		$sql = "SELECT nomor_induk_siswa, nama_siswa FROM siswa WHERE nomor_induk_siswa NOT IN (SELECT nomor_induk_siswa FROM kategori_siswa WHERE id_kategori = $id)";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+
+	public function getByKategori($id) {
+		$sql = "SELECT b.nomor_induk_siswa, nama_siswa FROM siswa a INNER JOIN kategori_siswa b ON a.nomor_induk_siswa = b.nomor_induk_siswa WHERE b.id_kategori = $id";
+		$query = $this->db->query($sql);
+		return $query->result();
 	}
 	
 	public function get_by($from,$to){

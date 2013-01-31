@@ -38,7 +38,7 @@ class c_kategori extends CI_Controller {
 		$this->load->model('m_kategori');
 		$this->load->model('m_siswa');
 		$this->data['row'] = $this->m_kategori->getKategori($id);	
-		$this->data['siswa'] = $this->m_siswa->get_siswa_kelas($id_kelas);
+		$this->data['siswa'] = $this->m_siswa->getOnNonKategori($id);
 		$this->data['flag'] = $flag;
 		$this->data['title'] = "Kategori";
 		$this->load->view('v_header', $this->data);
@@ -51,8 +51,12 @@ class c_kategori extends CI_Controller {
 		$id = $this->input->post('id_kategori');
 		$nama = $this->input->post('nama_kategori');
 		$flag = $this->input->post('flag');
-		if($flag==1) $this->m_kategori->tambahKategori($nama);
+		$nis = $this->input->post('nis');
+		if($flag==1) $id = $this->m_kategori->tambahKategori($nama);
 		else $this->m_kategori->update($id,$nama);
+		for($i=0;$i<count($nis);$i++){
+			
+		}
 		redirect(index_kategori);
 	}
 	

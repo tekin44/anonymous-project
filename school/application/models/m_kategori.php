@@ -19,6 +19,8 @@ class m_kategori extends CI_Model {
 				insert into kategori
 				values ('$nama',nextval('kategori_pk_seq'))
 				");
+		$no = $this->db->query("select currval('kategori_pk_seq') as id_kategori");
+		return $no->row();
 	}
 
 	public function update($id,$nama) {

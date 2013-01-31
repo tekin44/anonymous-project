@@ -11,16 +11,16 @@
 				<?php foreach ($rows as $item){?>
 				
 				<tr class="alternate-row">
-					<td><? echo $item->parent ?></td>
-					<td><? echo $item->nama_menu ?></td>
-					<td><? echo $item->action_menu ?></td>
+					<td><?=$item->parent ?></td>
+					<td><?=$item->nama_menu ?></td>
+					<td><?=$item->action_menu ?></td>
 					<td>
 					<?="<a href='".base_url()."c_admin/editMenu/$item->id_menu' title='Edit' class='icon-1 info-tooltip'>";?></a>
 					<?="<a href='".base_url()."c_admin/deleteMenu/$item->id_menu' title='Delete' class='icon-2 info-tooltip'>";?></a>
 					</td>
 				</tr>
 				
-				<?}?>
+				<?php } ?>
 				</table>
 				<!--  end product-table................................... --> 
 				</form>
