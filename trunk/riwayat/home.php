@@ -1,22 +1,21 @@
 <?php
 
 // Connect to server and select databse.
-$dbconn3 = pg_connect("host=127.0.0.1 port=5432 dbname=sekolah user=postgres password=rahasia");
+$dbconn3 = pg_connect("host=127.0.0.1 port=5432 dbname=temp_school user=postgres password=123456");
 //connect to a database named "mary" on the host "sheep" with a username and password
 
+$id_periode = 4;//$_REQUEST['id_periode']?" where id_periode = ".$_REQUEST['id_periode']:'';
 // username and password sent from form
 $myid=$_POST['myid'];
-$mypassword=$_POST['mypassword'];
+$mypassword=md5($_POST['mypassword']);
 //md5()
 
 $sql="SELECT * FROM siswa a 
 	inner join kelas b on a.id_kelas = b.id_kelas 
-	WHERE nomor_induk_siswa = '$myid' and password_siswa= md5('$mypassword')";
+	WHERE nomor_induk_siswa = '$myid' and password_siswa= '$mypassword'";
 $result=pg_query($sql);
-
 // Mysql_num_row is counting table row
 $count=pg_num_rows($result);
-
 // If result matched $myid and $mypassword, table row must be 1 row
 if($count>0){
 $siswa = pg_fetch_assoc($result);
@@ -112,7 +111,15 @@ $rows_keu = pg_fetch_assoc($query_keu);
 		<td><b>Rp <?=$rows_keu['jumlah_tahunan']?></b></td>
 	</tr>
 </table>
-
+<?php 
+	$sql = "select nama_pelajaran, nilai_raport, nilai_kelulusan from raport a 
+		inner join siswa b on a.nomor_induk_siswa = b.nomor_induk_siswa
+		inner join pelajaran c on a.kode_pelajaran = c.kode_pelajaran
+		inner join pengajar_kelas d on a.kode_pelajaran = d.kode_pelajaran
+		and a.id_kelas = d.id_kelas and a.nomor_induk_pengajar = d.nomor_induk_pengajar
+		where b.nomor_induk_siswa = '$myid'";
+	$query = pg_query($sql);
+?>
 <h3><b><u>AKADEMIK</u></b></h3>
 <table border="1" > 
 	<tr bgcolor="#CCCCCC">
@@ -120,15 +127,17 @@ $rows_keu = pg_fetch_assoc($query_keu);
 		<th>NILAI</th>
         <th>KKM</th>
 	</tr>
+<?php while($row = pg_fetch_assoc($query)){?>
 	<tr align="center" > 
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-        <td>&nbsp;</td>
+		<td><?=$row['nama_pelajaran']?></td>
+		<td><?=$row['nilai_raport']?></td>
+        <td><?=$row['nilai_kelulusan']?></td>
 	</tr>
+<?php }?>
 </table>
 <?php
-	$id_periode = $_REQUEST['id_periode']?" where id_periode = ".$_REQUEST['id_periode']:'';
-	$sql = "select * from periode".$id_periode;
+	
+	$sql = "select * from periode where id_periode = ".$id_periode;
 	$query = pg_query($sql);
 	$row = pg_fetch_row($query);
 	$sql = "select (select nama_siswa from siswa where nomor_induk_siswa = '$myid') as nama, tgl,'5' as status from (select tgl from (select generate_series('".$row[3]."', '".$row[4]."', interval'1 day')::date as tgl EXCEPT (select tanggal_absensi from absen a inner join siswa c on a.id_users = c.id_users where c.nomor_induk_siswa = '$myid')) a EXCEPT (select tanggal_hari_libur from hari_libur)) a where EXTRACT(dow from a.tgl::timestamp) != 0 UNION select b.nama_siswa,tanggal_absensi, status_absen as status from absen a inner join siswa b on a.id_users = b.id_users WHERE status_absen != '1' and b.nomor_induk_siswa = '$myid'";
@@ -158,7 +167,8 @@ $rows_keu = pg_fetch_assoc($query_keu);
 	$sql_spp = "select * from siswa a 
 inner join spp b on a.nomor_induk_siswa = b.nomor_induk_siswa 
 inner join bayar_spp c on b.id_spp = c.id_spp
-where a.nomor_induk_siswa = '$myid'";
+inner join periode d on c.id_periode = d.id_periode
+where a.nomor_induk_siswa = '$myid' and d.id_periode = $id_periode";
 	$query_spp = pg_query($sql_spp);
 ?>
 <h3><b><u>KEUANGAN</u></b></h3>
@@ -166,14 +176,14 @@ where a.nomor_induk_siswa = '$myid'";
 <table border="1" > 
 	<tr bgcolor="#CCCCCC">
 		<th>TANGGAL</th>
-		<th>TAHUN</th>
+		<th>PERIODE</th>
 		<th>BULAN</th>
 	</tr>    
 	
 <?php while($row = pg_fetch_assoc($query_spp)){
 	echo "<tr align='center'>
 			<td>".$row['tanggal_bayar_spp']."</td>
-			<td>".$row['tahun_spp']."</td>
+			<td>".$row['tahun_periode']." Semester ".$row['periode_semester']."</td>
 			<td>".date('F',strtotime('2000-'.$row['bulan_spp'].'-01'))."</td>
 		</tr>";
 }
