@@ -28,7 +28,7 @@
 				
 				<tr class="alternate-row">
 					<td><?=$item->id_kategori ?></td>
-					<td><?=$item->nama_kategori ?></td>
+					<td><?='<a href="'.base_url().'c_kategori/show_kategori/'.$item->id_kategori.'">'.$item->nama_kategori.'</a>'?></td>
 					<td>
 					<?="<a href='".base_url()."c_kategori/viewTambahKategori/2/$item->id_kategori' title='Edit' class='icon-1 info-tooltip'>";?></a>
 					<?="<a href='".base_url()."c_kategori/delete/$item->id_kategori' title='Delete' class='icon-2 info-tooltip'>";?></a>

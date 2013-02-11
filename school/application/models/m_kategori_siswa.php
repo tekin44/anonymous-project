@@ -11,6 +11,22 @@ class m_kategori_siswa extends CI_Model {
 				"on a.id_kategori = b.id_kat");
 		return $query->result();
 	}
+	
+	public function get_kategori_siswa($id){
+		$sql = "select * from kategori a left join 
+				kategori_siswa b on a.id_kategori = b.id_kategori 
+				left join siswa c on b.nomor_induk_siswa = c.nomor_induk_siswa
+				where a.id_kategori = $id";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
+	public function get_siswa_not_in_kategori($id){
+		$sql = "select nomor_induk_siswa, nama_siswa from siswa";
+		if($id!=0) $sql .= " where nomor_induk_siswa not in (select nomor_induk_siswa from kategori_siswa where id_kategori = $id)";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 
 	public function add($value) {
 		$this->load->database();
@@ -19,8 +35,13 @@ class m_kategori_siswa extends CI_Model {
 	}
 
 	public function delete($id) {
-		$this->load->database();
-		$delete = $this->db->delete('kategori_siswa',$id);
+		$value['id_kategori'] = $id;
+		$delete = $this->db->delete('kategori_siswa',$value);
+		return $delete;
+	}
+
+	public function delete_siswa($value) {
+		$delete = $this->db->delete('kategori_siswa',$value);
 		return $delete;
 	}
 }

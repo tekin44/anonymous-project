@@ -35,10 +35,10 @@ class c_kategori extends CI_Controller {
 	}
 	
 	public function viewTambahKategori($flag,$id=0) {
+		$this->load->model('m_kategori_siswa');
 		$this->load->model('m_kategori');
-		$this->load->model('m_siswa');
 		$this->data['row'] = $this->m_kategori->getKategori($id);	
-		$this->data['siswa'] = $this->m_siswa->getOnNonKategori($id);
+		$this->data['siswa'] = $this->m_kategori_siswa->get_siswa_not_in_kategori($id);
 		$this->data['flag'] = $flag;
 		$this->data['title'] = "Kategori";
 		$this->load->view('v_header', $this->data);
@@ -48,14 +48,18 @@ class c_kategori extends CI_Controller {
 	
 	public function tambahKategori() {
 		$this->load->model('m_kategori');
+		$this->load->model('m_kategori_siswa');
 		$id = $this->input->post('id_kategori');
 		$nama = $this->input->post('nama_kategori');
 		$flag = $this->input->post('flag');
 		$nis = $this->input->post('nis');
 		if($flag==1) $id = $this->m_kategori->tambahKategori($nama);
 		else $this->m_kategori->update($id,$nama);
+		$this->m_kategori_siswa->delete($id);
+		$value['id_kategori'] = $id;
 		for($i=0;$i<count($nis);$i++){
-			
+			$value['nomor_induk_siswa'] = $nis[$i];
+			$this->m_kategori_siswa->add($value);
 		}
 		redirect(index_kategori);
 	}
@@ -75,6 +79,23 @@ class c_kategori extends CI_Controller {
 		$this->load->view('v_header', $this->data);
 		$this->load->view('v_kategori_siswa', $this->data);
 		$this->load->view('v_footer', $this->data);
+	}
+	
+	public function show_kategori($id){
+		$this->load->model('m_kategori_siswa');
+		$this->data['rows'] = $this->m_kategori_siswa->get_kategori_siswa($id);
+		$this->data['title'] = "Detail Kategori";
+		$this->load->view('v_header', $this->data);
+		$this->load->view('v_detail_kategori', $this->data);
+		$this->load->view('v_footer', $this->data);
+	}
+	
+	public function delete_siswa_from_kategori($nis, $id){
+		$this->load->model('m_kategori_siswa');
+		$value['id_kategori'] = $id;
+		$value['nomor_induk_siswa'] = $nis;
+		$this->m_kategori_siswa->delete_siswa($value);
+		$this->show_kategori($id);
 	}
 	
 	public function add_siswa($id_kategori) {

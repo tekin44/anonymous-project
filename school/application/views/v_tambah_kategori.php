@@ -2,6 +2,7 @@
 		<?php
 			$id = $flag=='2'?$row[0]->id_kategori:'';
 			$nama = $flag=='2'?$row[0]->nama_kategori:'';
+			$selected = "";
 		?>
 		<!--  end step-holder -->
 		<?php echo form_open('c_kategori/tambahKategori'); ?>
