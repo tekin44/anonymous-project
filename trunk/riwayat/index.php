@@ -67,6 +67,20 @@
 <form action="home.php" method="post">
 	Nomor induk siswa <input type="text" name="myid" id="myid">
 	Password <input type="password" name="mypassword" id="mypassword">
+	Periode 
+	<?php
+	$dbconn3 = pg_connect("host=127.0.0.1 port=5432 dbname=temp_school user=postgres password=123456");
+	$sqlperiode = "select * from periode";
+	$q=pg_query($sqlperiode);
+	?>
+	<select name="id_periode">
+			<option value="1">Pilih Periode</option>
+			<?php
+			while($row = pg_fetch_array($q)){
+				echo "<option value='".$row['id_periode']."'>".$row['tahun_periode']." Semester ".$row['periode_semester']."</option>";
+			}
+			?>
+	</select>
 	<input type="submit" name="Submit" value="Login">
 	<input type="hidden" name="id_periode" value="0">
 </form>
