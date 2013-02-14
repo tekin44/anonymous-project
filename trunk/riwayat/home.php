@@ -4,7 +4,7 @@
 $dbconn3 = pg_connect("host=127.0.0.1 port=5432 dbname=temp_school user=postgres password=123456");
 //connect to a database named "mary" on the host "sheep" with a username and password
 
-$id_periode = 4;//$_REQUEST['id_periode']?" where id_periode = ".$_REQUEST['id_periode']:'';
+$id_periode = $_REQUEST['id_periode']?$_REQUEST['id_periode']:'';
 // username and password sent from form
 $myid=$_POST['myid'];
 $mypassword=md5($_POST['mypassword']);
