@@ -55,7 +55,9 @@ $q=pg_query($sqlperiode);
 		<option value="1">Pilih Periode</option>
 		<?php
 		while($row = pg_fetch_array($q)){
-			echo "<option value='".$row['id_periode']."'>".$row['tahun_periode']." Semester ".$row['periode_semester']."</option>";
+			$selected = '';
+			if($row['id_periode'] == $id_periode) $selected = 'selected';
+			echo "<option value='".$row['id_periode']."' ".$selected.">".$row['tahun_periode']." Semester ".$row['periode_semester']."</option>";
 		}
 		?>
 </select></b></td>

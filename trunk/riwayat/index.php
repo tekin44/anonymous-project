@@ -82,7 +82,6 @@
 			?>
 	</select>
 	<input type="submit" name="Submit" value="Login">
-	<input type="hidden" name="id_periode" value="0">
 </form>
 </div>
 
