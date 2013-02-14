@@ -11,14 +11,12 @@ header("Pragma: public");
 				</head>
 			<body>
 			<table>
-				<tr align="center"><th colspan="5">Rekap Absen</th></tr>
+				<tr align="center"><th colspan="4">Rekap Absen</th></tr>
 			</table>
 			<table border="1">
 				<tr>
 					<th>Nomor Induk</th>
 					<th>Nama</th>
-					<th>Waktu Masuk</th>
-					<th>Waktu Keluar</th>
 					<th>Status</th>
 					<th>Keterangan</th>
 				</tr>
@@ -28,7 +26,7 @@ header("Pragma: public");
 foreach ($dates as $date) {
 ?>
 				<tr>
-					<td colspan="5">Tanggal : <?=$date->c?></td>
+					<td colspan="4">Tanggal : <?=$date->c?></td>
 				<?php
 
 	foreach ($rows as $item) {
@@ -52,8 +50,6 @@ foreach ($dates as $date) {
 				<tr>
 					<td width="150"><?=$item->nomor_induk_pengajar ?></td>
 					<td width="300"><?=$item->nama_pengajar ?></td>
-					<td width="100"><?=$item->waktu_masuk ?></td>
-					<td width="100"><?=$item->waktu_keluar ?></td>
 					<td width="100"><?=$ket ?></td>
 					<td width="100"><?=$item->keterangan_absen ?></td>
 				</tr>
