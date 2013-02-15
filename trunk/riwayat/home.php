@@ -7,12 +7,12 @@ $dbconn3 = pg_connect("host=127.0.0.1 port=5432 dbname=temp_school user=postgres
 $id_periode = $_REQUEST['id_periode']?$_REQUEST['id_periode']:'';
 // username and password sent from form
 $myid=$_POST['myid'];
-$mypassword=md5($_POST['mypassword']);
+$mypassword=$_POST['mypassword'];
 //md5()
 
 $sql="SELECT * FROM siswa a 
 	inner join kelas b on a.id_kelas = b.id_kelas 
-	WHERE nomor_induk_siswa = '$myid' and password_siswa= '$mypassword'";
+	WHERE nomor_induk_siswa = '$myid' and password_siswa= md5('$mypassword')";
 $result=pg_query($sql);
 // Mysql_num_row is counting table row
 $count=pg_num_rows($result);
